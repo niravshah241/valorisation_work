@@ -1,0 +1,11 @@
+morepas_html
+html
+latex
+xml
+Doxyfile
+Doxyfile_latex
+Doxyfile_morepas
+configuration
+*.tmp
+*.err
+*.log

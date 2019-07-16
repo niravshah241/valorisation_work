@@ -1,0 +1,9 @@
+.gdbinit
+*.o
+mtoc
+postprocess
+test/html
+.gdbinit
+test/*.cc
+!test/*_ref.cc
+

@@ -1,0 +1,20 @@
+function [ res ] = source_assembly( params, paramsP, grid, ...
+    ref_el_subd, subd_jac)
+%SOURCE_ASSEMBLY Summary of this function goes here
+%   Detailed explanation goes here
+
+res = zeros(params.ndofs,1);
+gids = ldg_global_dof_index(params, grid);
+
+for k=1:1:grid.nelements
+    A = source_integral(params, paramsP, grid, k);
+    res(gids(k,:)) = res(gids(k,:)) + A;
+end
+
+for i = 1:1:size(ref_el_subd,2)
+    res(gids(ref_el_subd{1},:)) = subd_jac{} res(gids(ref_el_subd{1},:)) ;
+end
+
+save('source_vector_assembly.mat','res')
+
+end

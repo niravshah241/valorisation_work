@@ -1,0 +1,18 @@
+function [ affine_vector_assembly ] = affine_vector_assembly_extension...
+    ( vector, affine_factors, el_subd, params, grid )
+%AFFINE_ASSEMBLY_EXTENSION Summary of this function goes here
+%   Detailed explanation goes here
+
+gids = ldg_global_dof_index(params,grid);
+affine_vector_assembly = zeros(length(vector),1);
+a = size(affine_factors);
+
+for k = 1:1:a[2]
+    elements = el_subd{k};
+    for i = 1:1:length(elements)
+        
+        affine_vector_assembly(gids(el_subd(i),:)) = ...
+            affine_factors(k) * vector(gids(el_subd(i),:));
+    end
+end
+end

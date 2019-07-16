@@ -1,0 +1,10 @@
+checkpoint for checking jump and avergae terms for error and debugging
+
+1. Check spy
+2. observe N is not confused with N_neighbour
+3. check gradient is not confused with neighbour
+4. check basis is not confused with neighbour
+5. check gradient is simmued along correct dierction
+6. tria_index_neighbour is not confused with local_vertex_index_neighbour.
+7. check what goes along i and what goes along j
+8. JIT or JIT_neighbour??

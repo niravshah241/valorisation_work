@@ -1,0 +1,313 @@
+@article{Swartling,
+author = {Swartling, M. and Sundelin, B. and Tilliander, A. and Jönsson, P. G.},
+year = {2010},
+title = {Heat Transfer Modelling of a Blast Furnace Hearth},
+journal = {Steel research international},
+volume = {81},
+number = {3},
+pages = {186-196},
+keywords = {Blast furnace, modelling, heat transfer, hearth, measurements},
+doi = {10.1002/srin.200900145},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/srin.200900145},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/srin.200900145},
+abstract = {Abstract This paper describes the development of a heat transfer model with the purpose of studying the heat flows in the hearth of an operating blast furnace. Temperature profiles were calculated for a period of time to study the transition from steady blast furnace operation to an unsteady period, and back to a steady period. This total time period had the highest lining temperatures registered since the beginning of the current campaign. It was concluded that no part of the lining had an inner temperature higher than the critical temperature of 1150 °C. Thus, no refractory could have been in direct contact with slag or iron. The corner between the wall and the bottom was identified to be the most sensitive part of the lining. It is suggested that thermocouples are installed in this area, to improve the temperature control.}
+}
+
+@article{Maldonado,
+author = {Maldonado D. and Zulli P. and Guo B.},
+year = {2006},
+month = {01},
+pages = {},
+title = {MATHEMATICAL MODELLING OF FLOWS AND TEMPERATURE DISTRIBUTIONS IN THE BLAST FURNACE HEARTH}
+}
+
+@article{Guo,
+author = {Guo B. and Yu A. and Wright B. and Zulli P.},
+year = {2018},
+month = {04},
+pages = {},
+title = {COMPARISON OF SEVERAL TURBULENCE MODELS APPLIED TO THE SIMULATION OF GAS FLOW IN A PACKED BED}
+}
+
+@article{Panjkovic,
+author = {Panjkovic V. and Truelove J.},
+year = {2018},
+month = {04},
+pages = {},
+title = {COMPUTATIONAL FLUID DYNAMICS MODELLING OF IRON FLOW AND HEAT TRANSFER IN THE IRON BLAST FURNACE HEARTH}
+}
+
+@article{Wright,
+author = {Wright B. and Zulli P. and Bierbrauer F. and Panjkovic V.},
+year = {2003},
+month = {12},
+pages = {},
+title = {Assement of refractory condition in a blast furnace hearth using computational fluid dynamics}
+}
+
+@article{Torrkulla,
+author = {Torrkulla, J. and Saxen, H.},
+year = {2000},
+month = {01},
+pages = {438-447},
+title = {Model of the State of the Blast Furnace Hearth},
+volume = {40},
+booktitle = {Isij International - ISIJ INT}
+}
+
+@Inbook{mor_book,
+author="Schilders, W. H. A.
+and Lutowska, A.",
+editor="Quarteroni, A. and Rozza, G.",
+title="A Novel Approach to Model Order Reduction for Coupled Multiphysics Problems",
+bookTitle="Reduced Order Methods for Modeling and Computational Reduction",
+year="2014",
+publisher="Springer International Publishing",
+address="Cham",
+pages="1--49",
+abstract="Model order reduction (MOR) has become an important tool in the design of complex high-tech systems. It can be used to find a low-order model that approximates the behavior of the original high-order model, where this low-order approximation facilitates both the computationally efficient analysis and controller design for the system to induce desired behavior. This chapter introduces MOR techniques that are designed especially for coupled problems, meaning that different physical phenomena are simulated in conjunction with each other. The method developed makes use of the reduction of the individual systems, and low rank approximations of the coupling blocks. This is done in such a way that existing software for industrial problems can be adapted in a straightforwward way. An industrial test case is described in detail, so as to demonstrate the effectiveness of the reduction technique.",
+isbn="978-3-319-02090-7",
+doi="10.1007/978-3-319-02090-7_1",
+url="https://doi.org/10.1007/978-3-319-02090-7_1"
+}
+
+@TECHREPORT{freund,
+    author = {Freund, R. W.},
+    title = {The SPRIM algorithm for structure-preserving order reduction of general RCL circuits},
+    institution = {},
+    year = {2008}
+}
+
+@incollection{schilders,
+  title={Introduction to model order reduction},
+  author={Schilders, W. H. A.},
+  booktitle={Model order reduction: theory, research aspects and applications},
+  pages={3--32},
+  year={2008},
+  publisher={Springer}
+}
+
+@Inbook{odabasioglu,
+author="Odabasioglu, A.
+and Celik, M.
+and Pileggi, L. T.",
+editor="Kuehlmann, A.",
+title="PRIMA: Passive Reduced-Order Interconnect Macromodeling Algorithm",
+bookTitle="The Best of ICCAD: 20 Years of Excellence in Computer-Aided Design",
+year="2003",
+publisher="Springer US",
+address="Boston, MA",
+pages="433--450",
+abstract="This paper describes PRIMA, an algorithm for generating provably passive reduced order N-port models for RCL interconnect circuits. It is demonstrated that, in addition to requiring macro- model stability, macromodel passivity is needed to guarantee the overall circuit stability once the active and passive driver/load models are connected. PRIMA extends the block Arnoldi technique to include guaranteed passivity. Moreover, it is empirically observed that the accuracy is superior to existing block Arnoldi methods. While the same passivity extension is not possible for MPVL, we observed comparable accuracy in the frequency domain for all examples considered. Additionally, a path tracing algorithm is used to calculate the reduced order macromodel with the utmost efficiency for generalized RLC interconnects.",
+isbn="978-1-4615-0292-0",
+doi="10.1007/978-1-4615-0292-0_34",
+url="https://doi.org/10.1007/978-1-4615-0292-0_34"
+}
+
+
+
+@techreport{ChaD02,
+  author= 	{Chahlaoui, Y. and Van Dooren, P.},
+  title=	{A collection of benchmark examples for model reduction of linear time invariant dynamical systems},
+  type=	{SLICOT Working Note},
+  number= 	{2002-2},
+  year=		2002,
+  url=		{http://slicot.org/working-notes/wgs-niconet-reports}
+  }
+
+ 
+@techreport{Slicot96,
+  author =	"{Working Group on Software (WGS)}",
+  title=	{{SLICOT} Implementation and Documentation Standards},
+  type=	{WGS Report},
+  number=	{96-1},
+  year=		1996,
+  url=		{http://slicot.org/105-implementation-and-documentation-standards}
+}
+
+@techreport{MehP98,
+  author =       {Mehrmann, V. and Penzl, T.},
+  title =        {Benchmark Collections in {SLICOT}},
+  type =       {SLICOT Working Note},
+  number =       {1998-5},
+  year =         1998,
+  url =          {http://slicot.org/working-notes/wgs-niconet-reports}
+}
+
+@inproceedings{Brulin,
+  TITLE = {{Latest Evolution in Blast Furnace Hearth thermo-Mechanical Stress Modelling}},
+  AUTHOR = {Brulin, J. and Roulet, F. and Rekik, A. and Blond, E. and Gasser, A. and Mc Nally, R. and Micollier, M.},
+  URL = {https://hal.archives-ouvertes.fr/hal-00611744},
+  BOOKTITLE = {{4th International Conference on Modelling and Simulation of Metallurgical Processes in Steelmaking}},
+  ADDRESS = {Dusseldorf, France},
+  HAL_LOCAL_REFERENCE = {MMH},
+  PAGES = {CD rom},
+  YEAR = {2011},
+  MONTH = Jun,
+  KEYWORDS = {blast-furnace ; modeling ; hearth ; ceramic cup},
+  PDF = {https://hal.archives-ouvertes.fr/hal-00611744/file/Latest.pdf},
+  HAL_ID = {hal-00611744},
+  HAL_VERSION = {v1},
+}
+
+@article{Kaymak,
+  title={A Simplified Approach to the Contact in Thermo-mechanical Analysis of Refractory Linings},
+  author={Kaymak, Y.}
+}
+
+@article{Gruber,
+author = {Gruber, D. and Andreev, K. and Harmuth, H.},
+year = {2004},
+month = {11},
+pages = {1539-1543},
+title = {FEM simulation of the thermomechanical behaviour of the refractory lining of a blast furnace},
+volume = {155-156},
+booktitle = {Journal of Materials Processing Technology}
+}
+
+@book{RBniCS,
+  author    = {Hesthaven, J. S. and Rozza, G. and Stamm, B.},
+  title     = {Certified Reduced Basis Methods for Parametrized Partial Differential Equations},
+  publisher = {Springer International Publishing},
+  year      = 2015,
+  series    = {SpringerBriefs in Mathematics},
+  isbn      = {978-3-319-22469-5},
+  page      = {74-82}
+}
+
+@misc{ASTER,
+    Author = {Electricit{\'e} de France},    
+        Howpublished = {Open source on www.code-aster.org},
+    Title = {Finite element {$\bf\it code\_aster$}, Analysis of Structures and Thermomechanics for Studies and Research},
+    Year = {1989--2017}
+    }
+    
+@article{FEniCS,
+  title = {The FEniCS Project Version 1.5},
+  author = {Aln{\ae}s, M. S. and Blechta, J. and Hake, J. and Johansson, A. and Kehlet, B. and Logg, A. and Richardson, C. and Ring, J. and Rognes, M. E. and Wells, G. N.},
+  year = {2015},
+  journal = {Archive of Numerical Software},
+  volume = {3},
+  number = {100},
+  doi = {10.11588/ans.2015.100.20553},
+  page = {9-23},
+}
+
+@article{Hearth_axisymmetric,
+title = "Estimation of operating blast furnace reactor invisible interior surface using Differential Evolution",
+journal = "Applied Soft Computing",
+volume = "13",
+number = "5",
+pages = "2767 - 2789",
+year = "2013",
+issn = "1568-4946",
+doi = "https://doi.org/10.1016/j.asoc.2012.10.010",
+url = "http://www.sciencedirect.com/science/article/pii/S1568494612004619",
+author = "Bhattacharya, A.K. and Debjani, A. and Debjani, S.",
+keywords = "Blast furnace, Evolutionary optimization, Heat transfer solution, Computational domain, Differential Evolution, Constraints"
+}
+
+@Article{Barral,
+author="Barral, P., Quintela, P., S{\'a}nchez, M. T.",
+title="Mechanical Behaviour in DC Alloys Casting Processes",
+journal="Archives of Computational Methods in Engineering",
+year="2014",
+month="Jun",
+day="01",
+volume="21",
+number="2",
+pages="91--125",
+abstract="The aim of this work is to give a review of algorithms computationally efficient to simulate the thermo-mechanical behaviour in casting processes, in particular, the butt curl deformation and the contraction of the lateral sides of the slab. The main aim is to give an overview of the most used methods to deal with the nonlinearities due to the thermo-elastic--viscoplastic laws of the involved materials and to the contact condition with the bottom block. To evaluate the efficiency of the proposed methods, some academic tests adapted to the difficulties arising in casting processes are presented. Applications of the techniques proposed to aluminium casting processes are discussed and numerical results are given.",
+issn="1886-1784",
+doi="10.1007/s11831-014-9100-5",
+url="https://doi.org/10.1007/s11831-014-9100-5"
+}
+
+@article{AMIII,
+author = {R M Duarte and I Ruiz-Bustinza and D Carrascal and L F Verdeja and J Mochón and A Cores},
+title = {Monitoring and control of hearth refractory wear to improve blast furnace operation},
+journal = {Ironmaking \& Steelmaking},
+volume = {40},
+number = {5},
+pages = {350-359},
+year  = {2013},
+publisher = {Taylor & Francis},
+doi = {10.1179/1743281212Y.0000000045},
+
+URL = { 
+        https://doi.org/10.1179/1743281212Y.0000000045
+    
+},
+eprint = { 
+        https://doi.org/10.1179/1743281212Y.0000000045
+    
+}
+
+}
+
+@article{blast_furnace,
+title = "Evaluation of the permeability of the dripping zone and of flooding phenomena in a blast furnace",
+journal = "Journal of Materials Research and Technology",
+year = "2017",
+issn = "2238-7854",
+doi = "https://doi.org/10.1016/j.jmrt.2017.10.001",
+url = "http://www.sciencedirect.com/science/article/pii/S2238785417303769",
+author = "Dimas Henrique Barros Andrade and Roberto Parreiras Tavares and Alfredo Carlos Bitarães Quintas and Victor Eric de Souza Moreira and Arthur Oliveira Viana and Vitor Maggioni Gasparini",
+keywords = "Blast furnace, Dripping zone, Flooding, Irrigation density, Pressure drop"
+}
+
+@misc{hearth_picture,
+  title = {GrafTech international},
+  howpublished = {\url{http://archive.constantcontact.com/fs072/1101483160833/archive/1102208996928.html}},
+  note = {Webpage}
+}
+
+@book{gurtin2010mechanics,
+  title={The Mechanics and Thermodynamics of Continua},
+  author={Gurtin, M.E. and Fried, E. and Anand, L.},
+  isbn={9781139482158},
+  url={https://books.google.it/books?id=eGUQQaDsTsQC},
+  year={2010},
+  publisher={Cambridge University Press}
+}
+
+@InProceedings{nitsche,
+author = {J. Freund and R. Stenberg},
+title = {On weakly imposed boundary conditions for second order problems},
+booktitle = {Finite elements in fluids, Italia, 15-21.10.1995},
+OPTcrossref = {•},
+OPTkey = {•},
+OPTpages = {327-336},
+OPTyear = {1995},
+OPTeditor = {•},
+OPTvolume = {•},
+OPTnumber = {•},
+OPTseries = {•},
+OPTaddress = {•},
+OPTmonth = {•},
+OPTorganization = {•},
+OPTpublisher = {Padovan yliopisto},
+OPTnote = {•},
+OPTannote = {•}
+}
+
+@Unpublished{mult_model_usc,
+author = {Quintela P., and Barral P.},
+title = {Lecture notes, Multiphysics modelling},
+note = {ROMSOC 2018 course},
+OPTkey = {•},
+month = {June-July},
+year = {2018},
+OPTannote = {ROMSOC 2018 course}
+}
+
+@article{Bermudez,
+author = {Alfredo Bermúdez de Castro},
+year = {2006},
+month = {12},
+pages = {697-698},
+title = {Continuum Thermomechanics. Progress in Mathematical Physics},
+volume = {41},
+journal = {Meccanica},
+doi = {10.1007/s11012-006-9015-9}
+}

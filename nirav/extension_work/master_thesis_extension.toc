@@ -1,0 +1,24 @@
+\contentsline {chapter}{\numberline {1}Perspective and formulation}{ii}
+\contentsline {section}{\numberline {1.1}Derivation}{ii}
+\contentsline {section}{\numberline {1.2}Direct numerical simulation}{iv}
+\contentsline {chapter}{\numberline {2}DG formulation for the Stokes equation}{v}
+\contentsline {section}{\numberline {2.1}Grid geometry}{v}
+\contentsline {section}{\numberline {2.2}Grid parameters}{vi}
+\contentsline {section}{\numberline {2.3}Jump operator}{vi}
+\contentsline {section}{\numberline {2.4}Average operator}{vii}
+\contentsline {section}{\numberline {2.5}$L^2$ scalar product}{vii}
+\contentsline {section}{\numberline {2.6}Discontinuous-Galerkin (DG) method}{vii}
+\contentsline {section}{\numberline {2.7}Stokes strong, weak and discrete form}{viii}
+\contentsline {subsubsection}{Derivation of the weak form of the Stokes equation}{viii}
+\contentsline {subsection}{\numberline {2.7.1}Properties of the stiffness matrix}{x}
+\contentsline {subsubsection}{Proof :}{xi}
+\contentsline {chapter}{\numberline {3}Geometric parametrization}{xii}
+\contentsline {section}{\numberline {3.1}Transformation from reference domain to parametrized domain}{xiii}
+\contentsline {section}{\numberline {3.2}Simplified mathematical model}{xiv}
+\contentsline {chapter}{\numberline {4}Reduced basis method}{xvii}
+\contentsline {section}{\numberline {4.1}Snapshot proper orthogonal decomposition}{xvii}
+\contentsline {subsection}{\numberline {4.1.1}Spectral decomposition of snapshots}{xvii}
+\contentsline {section}{\numberline {4.2}Galerkin reduced basis formulation}{xviii}
+\contentsline {chapter}{\numberline {5}Numerical example}{xix}
+\contentsline {chapter}{Appendices}{xx}
+\contentsline {section}{\numberline {.1}Description of symbol}{xxi}
