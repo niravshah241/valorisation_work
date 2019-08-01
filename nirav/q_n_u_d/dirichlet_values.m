@@ -3,7 +3,7 @@ function [ res ] = dirichlet_values(glob,params)
 % Inputs are global corordinates. Output is column vector
 
     if glob(1)<eps
-        res = 1e0*glob(2)*(1-glob(2));
+        res = 100*glob(2)*(1-glob(2));
         res = [res 0]';
         
     elseif (glob(2)>(1-eps) || glob(2)<eps)

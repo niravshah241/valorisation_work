@@ -1,8 +1,13 @@
 function [ params, paramsP, achieved_residual_tol_schur,...
     cholesky_error, cholesky_error_inverse] =...
-    solve_plot_solution_schur( params, paramsP, grid, rhs, stifness_matrix)
+    solve_plot_solution_schur( params, paramsP, grid, rhs, ...
+    stifness_matrix, plot_solution)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
+
+if nargin == 5
+    plot_solution = 1;
+end
 
 disp('Entering into solve (Schur)')
 
@@ -44,38 +49,40 @@ end
 
 disp('entering into plotting Degrees of Freedom (Schur)')
 
-for i=1:1:params.dimrange
-    figure()
-    axis equal
-    [scalar_dofs, scalar_df_info] = ...
-        ldg_scalar_component(params.dofs,i,params);
-    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
-    disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
-    %subplot(params.dimrange,1,i)
-    %title(['Velocity degree of freedom number ',num2str(i)])
-    if i==1
-        title(['Velocity in x direction (Schur)'])
-    else
-        title(['Velocity in y direction (Schur)'])
+if plot_solution == 1
+    
+    for i=1:1:params.dimrange
+        figure()
+        axis equal
+        [scalar_dofs, scalar_df_info] = ...
+            ldg_scalar_component(params.dofs,i,params);
+        sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+        disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
+        %subplot(params.dimrange,1,i)
+        %title(['Velocity degree of freedom number ',num2str(i)])
+        if i==1
+            title(['Velocity in x direction (Schur)'])
+        else
+            title(['Velocity in y direction (Schur)'])
+        end
+        axis equal
+        axis tight
+        ldg_plot(sdf,grid,params);
+        plot(grid);
     end
-    axis equal
-    axis tight
-    ldg_plot(sdf,grid,params);
-    plot(grid);
+    
+    for i=1:1:paramsP.dimrange
+        figure()
+        [scalar_dofs, scalar_df_info] = ...
+            ldg_scalar_component(paramsP.dofs,i,paramsP);
+        sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+        disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
+        %subplot(paramsP.dimrange,1,i)
+        title('Pressure (Schur)')
+        axis equal
+        axis tight
+        ldg_plot(sdf,grid,paramsP);
+        plot(grid);
+    end
 end
-
-for i=1:1:paramsP.dimrange
-    figure()
-    [scalar_dofs, scalar_df_info] = ...
-        ldg_scalar_component(paramsP.dofs,i,paramsP);
-    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
-    disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
-    %subplot(paramsP.dimrange,1,i)
-    title('Pressure (Schur)')
-    axis equal
-    axis tight
-    ldg_plot(sdf,grid,paramsP);
-    plot(grid);
-end
-
 end

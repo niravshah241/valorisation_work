@@ -1,5 +1,5 @@
 function [ pod_res_params, pod_res_paramsP, B_velocity, B_pressure, ...
-    red_dim_velocity, red_dim_pressure] = pod( params, paramsP, grid, ...
+    red_dim_velocity, red_dim_pressure] = pod_extension_obsolete( params, paramsP, grid, ...
     red_dim_velocity, red_dim_pressure, min_eigen_pressure, ...
     min_eigen_velocity, stifness_matrix, rhs)
 
@@ -10,7 +10,7 @@ snapshots_inner_product = S' * M_velocity * S;
 [V,D] = eig(snapshots_inner_product);
 [D,iD] = sort(diag(D),'descend');
 D = diag(D);
-V = V[:,iD];
+V = V(:,iD);
 D = real(D); % remove negligible imaginary part
 eigen_values = diag(D);
 % red_dim_velocity_eigen = sum(eigen_values >= min_eigen_velocity);
@@ -29,7 +29,7 @@ R = [eye(red_dim_velocity,red_dim_velocity);...
     zeros(n_s - red_dim_velocity,red_dim_velocity)];
 for i = 1:1:red_dim_velocity
     B_velocity(:,i) = S * V(:,i);
-    B_velocity(:,i) = B_velocity(:,i) / ((S * V(:,i))' * M_velocity * ...
+    B_velocity(:,i) = B_velocity(:,i) / sqrt((S * V(:,i))' * M_velocity * ...
         (S * V(:,i)));
     %% TODO check B_velocity alternate definition
     %B_velocity = S * V(:,i) * diag(power(diag(D),-0.5)) * R;
@@ -46,9 +46,9 @@ snapshots_inner_product = S'*M_pressure*S;
 
 [V,D] = eig(snapshots_inner_product);
 
-[D, iD]=sort(diag(D),'descend');
-D=diag(D);
-V=V(:,iD);
+[D, iD] = sort(diag(D),'descend');
+D = diag(D);
+V = V(:,iD);
 D = real(D); % remove negligible imaginary part
 eigen_values = diag(D);
 % red_dim_pressure_eigen = sum(eigen_values >= min_eigen_pressure);
@@ -65,11 +65,15 @@ eigen_values = diag(D);
 % B_pressure = S*V(:,1:red_dim_pressure)*diag(D_sqrt)*R(1:red_dim_pressure,:);
 
 B_pressure = zeros(paramsP.ndofs,red_dim_pressure);
+R = [eye(red_dim_pressure,red_dim_pressure);...
+    zeros(n_s - red_dim_pressure,red_dim_pressure)];
 
 for i = 1:1:red_dim_pressure
     B_pressure(:,i) = S * V(:,i);
-    B_pressure(:,i) = B_pressure(:,i) / ((S * V(:,i))' * M_pressure * ...
+    B_pressure(:,i) = B_pressure(:,i) / sqrt((S * V(:,i))' * M_pressure * ...
         (S * V(:,i)));
+    %% TODO check B_pressure alternate definition
+    %B_pressure = S * V(:,i) * diag(power(diag(D),-0.5)) * R;
 end
 
 pod_res_paramsP.eigen_values = eigen_values;
