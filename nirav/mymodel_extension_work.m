@@ -42,9 +42,9 @@ paramsP.dofs = zeros(paramsP.ndofs,1);
 params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
-params.rhs_func = @(glob,params,paramsP,grid)[12 10]';
+params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
 
-c11 = 1e-2;
+c11 = 1;
 qdeg = params.qdeg;
 mu = params.mu;
 
@@ -76,10 +76,18 @@ linear_side_continuity = assemble_rhs_continuity( params, paramsP, grid);
 rhs(1:params.ndofs) = linear_side_offline;
 rhs(params.ndofs+1:params.ndofs+paramsP.ndofs) = linear_side_continuity;
 
-%% Parametrization
-N = 10;
-x_para = 0.48 + (0.52-0.48).*rand(N,1);
-y_para = 0.28 + (0.32-0.28).*rand(N,1);
+params.bilinear_side = bilinear_side;
+params.bilinear_side_pressure_terms = bilinear_side_pressure_terms';
+params.linear_side = rhs(1:params.ndofs);
+params.rhs_continuity = rhs(params.ndofs+1:params.ndofs+paramsP.ndofs);
+
+% [ params, paramsP] = solve_plot_solution_schur...
+%     ( params, paramsP, grid, rhs, stiffness_matrix_offline);
+
+% %% Parametrization
+N = 50;
+x_para = 0.4 + (0.6-0.4).*rand(N,1);
+y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
 snapshot_matrix_pressure = zeros(paramsP.ndofs,N);
 
@@ -87,26 +95,26 @@ for temp = 1:1:N
     disp(['Entering parameter number ' num2str(temp) ' of ' num2str(N)])
     mu_x = x_para(temp);
     mu_y = y_para(temp);
-    
+
     tic();
     [ transformed_grid, F_transformation_matrix, ...
         C_translation_vector] = transform_grid( params, grid, mu_x, mu_y);
     t_end = toc();
     close all
     disp(['Time for grid transformation : ' num2str(t_end)]);
-    
+
     for i = 1:1:length(F_transformation_matrix)
         para_mapping{i} = inv(F_transformation_matrix{i});
     end
-    
+
     assert(length(para_mapping) == length(el_subd),...
         'Number of subdomains and number of parametric mappings not same');
-    
+
     %para_mapping is map from \Omega_{\mu} to \hat{\Omega}
     %i.e para_mapping is T and not F
-    
+
     %% Online stiffness matrix and rhs
-    
+
     [ bilinear_side_online ] = assemble_bilinear_side_extension_online...
         ( params, paramsP, grid, diffusive_term, coercivity_term, ...
         flux_approximation, para_mapping, el_subd, transformed_grid, c11, mu);
@@ -122,7 +130,7 @@ for temp = 1:1:N
         bilinear_side_pressure_terms_online;
     stiffness_matrix_online(params.ndofs+1:params.ndofs+paramsP.ndofs,...
         1:params.ndofs) = bilinear_side_pressure_terms_online';
-    
+
     rhs_online = zeros(params.ndofs + paramsP.ndofs,1);
     linear_side_online = assemble_linear_side_extension_online...
         ( params, paramsP, grid, source_vector_offline, ...
@@ -136,20 +144,20 @@ for temp = 1:1:N
     params.linear_side = rhs_online(1:params.ndofs);
     params.rhs_continuity = rhs_online(params.ndofs+1:...
         params.ndofs + paramsP.ndofs);
-    
+
     [ params, paramsP] = solve_plot_solution_schur...
         ( params, paramsP, transformed_grid, rhs_online, ...
         stiffness_matrix_online);
-    
-    snapshot_matrix_velocity(:,temp) = params.ndofs;
-    snapshot_matrix_pressure(:,temp) = paramsP.ndofs;
-    
+
+    snapshot_matrix_velocity(:,temp) = params.dofs;
+    snapshot_matrix_pressure(:,temp) = paramsP.dofs;
+
 end
 
 %% POD-Galerkin
 
 min_eigen_value = 0;
-max_reduced_basis = 3;
+max_reduced_basis = 30;
 inner_product_matrix = ldg_mass_matrix(params,grid,params);
 
 [ reduced_basis_matrix_B_velocity, eigen_values_velocity] = ...
@@ -164,37 +172,37 @@ inner_product_matrix = ldg_mass_matrix(paramsP,grid,paramsP);
     pod_extension( snapshot_matrix_pressure, paramsP, min_eigen_value, ...
     max_reduced_basis, inner_product_matrix );
 
-%% Galerkin projection
-
-
-%% Stiffness matrix and rhs check
-% [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-%     assemble_stifness_matrix...
-%     ( params, paramsP, grid, params.qdeg, mu, c11 );
-% error_rhs_assembly = max(abs(rhs - rhs_real));
-% error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
-%     - stifness_matrix_real)));
+% %% Galerkin projection
 %
-% [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-%     assemble_stifness_matrix...
-%     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
-% error_rhs_affine = max(abs(rhs_online - rhs_real));
-% error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
-%     - stifness_matrix_real)));
 %
-% [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-%     assemble_stifness_matrix...
-%     ( params, paramsP, grid, params.qdeg, mu, c11 );
-% error_rhs_assembly = max(abs(rhs - rhs_real));
-% error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
-%     - stifness_matrix_real)));
-%
-% [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-%     assemble_stifness_matrix...
-%     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
-% error_rhs_affine = max(abs(rhs_online - rhs_real));
-% error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
-%     - stifness_matrix_real)));
-%
-% [ params, paramsP] = solve_plot_solution_schur...
-%     ( params, paramsP, grid, rhs, stiffness_matrix_offline);
+% %% Stiffness matrix and rhs check
+% % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% %     assemble_stifness_matrix...
+% %     ( params, paramsP, grid, params.qdeg, mu, c11 );
+% % error_rhs_assembly = max(abs(rhs - rhs_real));
+% % error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
+% %     - stifness_matrix_real)));
+% %
+% % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% %     assemble_stifness_matrix...
+% %     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
+% % error_rhs_affine = max(abs(rhs_online - rhs_real));
+% % error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
+% %     - stifness_matrix_real)));
+% %
+% % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% %     assemble_stifness_matrix...
+% %     ( params, paramsP, grid, params.qdeg, mu, c11 );
+% % error_rhs_assembly = max(abs(rhs - rhs_real));
+% % error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
+% %     - stifness_matrix_real)));
+% %
+% % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% %     assemble_stifness_matrix...
+% %     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
+% % error_rhs_affine = max(abs(rhs_online - rhs_real));
+% % error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
+% %     - stifness_matrix_real)));
+% %
+% % [ params, paramsP] = solve_plot_solution_schur...
+% %     ( params, paramsP, grid, rhs, stiffness_matrix_offline);
