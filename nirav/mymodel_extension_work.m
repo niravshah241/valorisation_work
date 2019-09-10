@@ -20,11 +20,11 @@ tic();
 %     grid_dd_func_extension_lid_driven_cavity( params);
 %[ grid, params, el_subd] = grid_dd_func_extension_analytical(params);
 %% Rectangular analytical grid
-params.xnumintervals = 5;
-params.ynumintervals = 15;
+params.xnumintervals = 10;
+params.ynumintervals = 10;
 params.xrange = [0,1];
 params.yrange = [0,1];
-params.bnd_rect_corner1 = [-1,-1;1-eps,0.02]';
+params.bnd_rect_corner1 = [-1,-1;1-eps,0.00005]';
 params.bnd_rect_corner2 = [2,2;1+eps,1-eps]';
 params.bnd_rect_index = [-1,-2];
 grid = construct_grid(params);
@@ -55,9 +55,9 @@ paramsP.dofs = zeros(paramsP.ndofs,1);
 params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
-params.rhs_func = @(glob,params,paramsP,grid)[2*params.mu-1 0]';
+params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
 
-c11 = 1e1;
+c11 = 1e2;
 qdeg = params.qdeg;
 mu = params.mu;
 
@@ -97,7 +97,7 @@ close all
 [ params, paramsP] = solve_plot_solution_schur...
     ( params, paramsP, grid, rhs, stiffness_matrix_offline);
 
-params.dof_analytical = @(glob) glob(2) * (1 - glob(2));
+params.dof_analytical = @(glob) [glob(2) * (1 - glob(2)) 0];
 paramsP.dof_analytical = @(glob) (1 - glob(1));
 
 velocity_l2_error = error_l2_norm_assembly( params, grid);
