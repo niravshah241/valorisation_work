@@ -1,0 +1,169 @@
+%%1e-4 was making matrix non spd so the present c11_range covers good lower c11 value
+
+%% Data used for generating these results
+params.pdeg = 2
+paramsP.pdeg = 1
+
+%% Grid generation
+params.xnumintervals = 10;
+params.ynumintervals = 10;
+params.xrange = [0,1];
+params.yrange = [0,1];
+params.bnd_rect_corner1 = [-1,-1;1-eps,1/(params.ynumintervals*2)+1e-14]';
+params.bnd_rect_corner2 = [2,2;1+eps,1-eps]';
+params.bnd_rect_index = [-1,-2];
+grid = construct_grid(params);
+
+%% Dirichlet value
+%% for analytical case
+if glob(1) < eps
+    res = glob(2) * (1 - glob(2));
+    res = [res 0]';
+else
+    res = [0 0]';
+end
+
+%% Neumann value
+%% analytical example
+if glob(1) > 1 - eps
+    res = [0 0]';
+else
+    disp('Not on Neumann boundary')
+end
+
+%% main code
+clc
+close all
+clear all
+%% grid making and saving
+% pdetool
+% draw geometry and save file as pdetool1_extension.m or similar
+% pdetool1_extension.m or similar
+% mesh --> export mesh
+% save('my_grids_extension/mygridnirav1_extension','p','e','t')
+%% start grid structure
+% DO NOT DELETE : actual grid
+params.mesh_number = 3;
+params.gridtype = 'triagrid';
+params.grid_show = false;
+params.reference_parameter = [0.5 0.3];
+
+tic();
+%[ grid, params, el_subd] = grid_dd_func_extension(params);
+%[ grid, params, el_subd ] = ...
+%     grid_dd_func_extension_lid_driven_cavity( params);
+%[ grid, params, el_subd] = grid_dd_func_extension_analytical(params);
+%% Rectangular analytical grid
+params.xnumintervals = 10;
+params.ynumintervals = 10;
+params.xrange = [0,1];
+params.yrange = [0,1];
+params.bnd_rect_corner1 = [-1,-1;1-eps,1/(params.ynumintervals*2)+1e-14]';
+params.bnd_rect_corner2 = [2,2;1+eps,1-eps]';
+params.bnd_rect_index = [-1,-2];
+grid = construct_grid(params);
+
+t_end = toc();
+disp(['Time for grid generation : ' num2str(t_end)]);
+
+nrep = [3 6 10 15];
+
+params.pdeg = 2;
+paramsP.pdeg = params.pdeg - 1;
+params.dimrange = 2;
+paramsP.dimrange = 1;
+params.qdeg = 2;
+paramsP.qdeg = params.qdeg;
+params.mu = 1e-6;
+paramsP.mu = params.mu;
+params.nelements = grid.nelements;
+paramsP.nelements = grid.nelements;
+
+params.ndofs_per_element= nrep(params.pdeg) * params.dimrange;
+params.ndofs = params.ndofs_per_element * grid.nelements;
+params.dofs = zeros(params.ndofs,1);
+
+paramsP.ndofs_per_element= nrep(paramsP.pdeg) * paramsP.dimrange;
+paramsP.ndofs = paramsP.ndofs_per_element * grid.nelements;
+paramsP.dofs = zeros(paramsP.ndofs,1);
+params.show_sparsity = false;
+paramsP.show_sparsity = params.show_sparsity;
+
+params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
+
+c11_range = [linspace(2e-4,2e-2,20) linspace(2e-2,1,10)];
+
+for i = 1:1:length(c11_range)
+    disp(['Entering in ' num2str(i) ' of ' num2str(length(c11_range))])
+    c11 = c11_range(i); %1e-2;
+    qdeg = params.qdeg;
+    mu = params.mu;
+    
+    % check_assembly_n_u_tensor_jump_n_phi_tensor_jump_extension;
+    % c11_calculation;
+    % disp('TODO : check_assembly_n_u_tensor_jump_n_phi_tensor_jump_extension');
+    % disp('TODO : c11_calculation');
+    
+    %% Creating stiffness matrix
+    [ bilinear_side, diffusive_term, coercivity_term, flux_approximation] = ...
+        assemble_bilinear_side_extension( params, paramsP, grid, mu, c11 );
+    [ bilinear_side_pressure_terms, incompressibility_term, pressure_flux_term ] = ...
+        assemble_bilinear_side_pressure_terms_extension...
+        ( params, paramsP, grid);
+    stiffness_matrix_offline = sparse(zeros(params.ndofs+paramsP.ndofs));
+    stiffness_matrix_offline(1:params.ndofs,1:params.ndofs) = bilinear_side;
+    stiffness_matrix_offline(1:params.ndofs,...
+        params.ndofs+1:params.ndofs+paramsP.ndofs) = ...
+        bilinear_side_pressure_terms';
+    stiffness_matrix_offline(params.ndofs+1:params.ndofs+paramsP.ndofs,...
+        1:params.ndofs) = bilinear_side_pressure_terms;
+    
+    
+    %% Creating rhs vector
+    rhs = zeros(params.ndofs + paramsP.ndofs,1);
+    [ linear_side_offline, source_vector_offline ] = ...
+        assemble_linear_side_extension( params, paramsP, grid, mu, c11 );
+    linear_side_continuity = assemble_rhs_continuity( params, paramsP, grid);
+    rhs(1:params.ndofs) = linear_side_offline;
+    rhs(params.ndofs+1:params.ndofs+paramsP.ndofs) = linear_side_continuity;
+    
+    params.bilinear_side = bilinear_side;
+    params.bilinear_side_pressure_terms = bilinear_side_pressure_terms';
+    params.linear_side = rhs(1:params.ndofs);
+    params.rhs_continuity = rhs(params.ndofs+1:params.ndofs+paramsP.ndofs);
+    close all
+    [ params, paramsP] = solve_plot_solution_schur...
+        ( params, paramsP, grid, rhs, stiffness_matrix_offline);
+    
+    params.dof_analytical = @(glob) [glob(2) * (1 - glob(2)) 0];
+    paramsP.dof_analytical = @(glob) (1 - glob(1));
+    
+    velocity_l2_error = error_l2_norm_assembly( params, grid);
+    pressure_l2_error = error_l2_norm_assembly( paramsP, grid);
+    matrix_condition_number = condest(stiffness_matrix_offline);
+    
+    velocity_error(i) = velocity_l2_error;
+    pressure_error(i) = pressure_l2_error;
+    condition_number(i) = matrix_condition_number;
+end
+close all
+figure()
+plot(c11_range,velocity_error,'*')
+axis tight
+xlabel('c11')
+ylabel('velocity error')
+title('c11 vs velocity error')
+
+figure()
+plot(c11_range,pressure_error,'*')
+axis tight
+xlabel('c11')
+ylabel('pressure error')
+title('c11 vs pressure error')
+
+figure()
+plot(c11_range,condition_number,'*')
+axis tight
+xlabel('c11')
+ylabel('Condition number')
+title('c11 vs condition number')
