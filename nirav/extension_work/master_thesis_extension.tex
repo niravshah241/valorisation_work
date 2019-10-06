@@ -824,11 +824,9 @@ By substituting the equation \eqref{transformation_matrices_subsdomain} in the e
 
 The expression under integral on $\Omega_1$ is not evaluated repeatedly and evaluated only over the domain $\hat{\Omega}_1$. The number of $FLOPS$ for evaluating integral by $n-$point quadrature rule is $n(n-1)$ (not considering the $FLOPS$ for evaluating the function under integral). In return, a simplified expression dependent only on parameter $\mu$ is required to be evaluated. The number of these expressions is number of parameter dependent subdomains i.e. $4$, in this case. Hence, by avoiding the expensive operation of evaluating the integral, significant time saving is achieved. 
 
-\textbf{TODO : Further affine transformations}
-
 \chapter{Reduced basis method}
 
-\section{Snapshot proper orthogonal decomposition}
+\section{Snapshot proper orthogonal decomposition}\label{POD_section}
 
 We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $M_u \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}}$ and $M_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$, formed by inner product of basis function with respect to suitable function space $\mathbb{W}$.
 
@@ -893,7 +891,7 @@ We set now $R$ as,
 R = [I_{N \times N} ; 0_{(n_s \times N)}] \quad \textrm{ and accordingly} \quad B = S V \Theta^{-\frac{1}{2}} R \textrm{.}
 \end{equation}
 
-\section{Galerkin reduced basis formulation}
+\section{Galerkin reduced basis formulation}\label{Galerkin_section}
 
 We now present the reduced bilinear form as,
 
@@ -935,7 +933,180 @@ u_N = \psi_u \zeta_u \textrm{,} \quad u_N \in \mathbb{R}^{d_u} \textrm{.}
 
 \chapter{Numerical example}
 
-\textbf{TODO}
+\section{Lid-driven cavity problem} \label{lid_driven_cavity_stokes}
+
+We next present a benchmark $CFD$ problem, the Lid-driven cavity flow \cite{Montlaur2}. We solve the Stokes flow on the unit square [0,1] $\times$ [0,1] in the $x-y$ plane. On boundaries ${x = 0}, {x = 1}$ and ${y = 0}$, we impose no slip or zero velocity Dirichlet condition. On ${y = 1}$, we impose Dirichlet condition with Dirichlet velocity,
+\begin{equation}
+\begin{split}
+u = (10x,0) \quad \textrm{for} \quad 0 \leq x \leq 0.1 \textrm{,}\\
+u = (1,0) \quad \textrm{for} \quad 0.1 \leq x \leq 0.9 \textrm{,}\\
+u = (10 - 10x,0) \quad \textrm{for} \quad 0.9 \leq x \leq 1 \textrm{.}
+\end{split}
+\end{equation}
+
+The results are shown in Figure \ref{stoke_schur_lid}. The results are found to be in agreement with literature i.e. boundary layer formation at the no slip boundaries and shape of streamline. 
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=0.8\linewidth]{velocity_x_lid_driven_cavity.png}
+  \caption{$x-$velocity} 
+  \label{x_vel_stoke_schur_lid}
+\end{subfigure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=0.8\linewidth]{velocity_y_lid_driven_cavity.png}
+    \caption{$y-$velocity} 
+    \label{y_vel_stoke_schur_lid}
+\end{subfigure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=0.8\linewidth]{pressure_lid_driven_cavity.png}
+    \caption{Pressure} 
+    \label{pressure_stoke_schur_lid}
+\end{subfigure}
+\caption{Lid driven cavity problem (Schur complement method)}
+\label{stoke_schur_lid}
+\end{figure}
+
+\section{Analytical example}
+
+The domain considered for this example is the unit square [0,1] $\times$ [0,1] in the $x-y$ plane. 
+The boundary ${x=0}$ is dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundaries ${y = 0}$ and ${y = 1}$ are Dirichlet boundaries with no slip or zero velocity condition. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. The source term is $f = (2 \nu - 1, 0)$. The analytical solution for pressure and velocity reads as,
+
+\begin{center}
+
+\begin{equation}
+p = (1 - x) \textrm{,}
+\end{equation}
+
+\begin{equation} 
+ u = (y(1-y), 0) \textrm{.}
+\end{equation}
+
+\end{center}
+
+The results of an $h-$convergence test with velocity polynomial degree $D=2$ and pressure polynomial degree $D-1 = 2$ in the $L^2$ norm is presented in Figures \ref{convergence_check_velocity} and \ref{convergence_check_pressure}.
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth]{step_size_vs_velocity_l2_error.jpg}
+  \caption{step size vs $L^2$ error in velocity} 
+  \label{step_size_vs_velocity_l2_error}
+  \includegraphics[width=\linewidth]{step_size_vs_velocity_l2_error_loglog.jpg}
+  \caption{step size vs $L^2$ error in velocity (loglog scale)} 
+  \label{step_size_vs_velocity_l2_error_loglog}
+\end{subfigure}
+\caption{Convergence test for velocity}
+\label{convergence_check_velocity}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth]{step_size_vs_pressure_l2_error.jpg}
+  \caption{step size vs $L^2$ error in pressure} 
+  \label{step_size_vs_pressure_l2_error}
+  \includegraphics[width=\linewidth]{step_size_vs_pressure_l2_error_loglog.jpg}
+  \caption{step size vs $L^2$ error in pressure (loglog scale)} 
+  \label{step_size_vs_pressure_l2_error_loglog}
+\end{subfigure}
+\caption{Convergence test for pressure}
+\label{convergence_check_pressure}
+\end{figure}
+
+Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure}, \ref{all_c11_figure_loglog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=0.8\linewidth]{c11_condition_number.jpg}
+  \caption{$c11$ vs condition number} 
+  \label{$c11$ vs Condition number}
+  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error.jpg}
+  \caption{$c11$ vs $L^2$ error in velocity} 
+  \label{c11_L2_error_velocity}
+  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error.jpg}
+  \caption{$c11$ vs $L^2$ error in pressure} 
+  \label{c11_L2_error_pressure}
+\end{subfigure}
+\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error}
+\label{all_c11_figure}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=0.8\linewidth]{c11_condition_number_loglog.jpg}
+  \caption{$c11$ vs condition number (loglog scale)} 
+  \label{$c11$ vs Condition number_loglog}
+  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error_loglog.jpg}
+  \caption{$c11$ vs $L^2$ error in velocity (loglog scale)} 
+  \label{c11_L2_error_velocity_loglog}
+  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error_loglog.jpg}
+  \caption{$c11$ vs $L^2$ error in pressure (loglog scale)} 
+  \label{c11_L2_error_pressure_loglog}
+\end{subfigure}
+\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error (loglog scale)}
+\label{all_c11_figure_loglog}
+\end{figure}
+
+\section{POD-Galerkin method}
+
+We perform the POD-Galerkin method as mentioned in section \ref{POD_section} and section \ref{Galerkin_section}. The boundary ${x=0}$ is dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (2 \nu - 1, 0)$. We consider inner-product matrix as Discontinuous Galerkin mass matrix i.e.
+\begin{gather}
+M_u = \int_{\Omega} \phi_i \phi_j \ , \ i,j = 1, \ldots, u_{ndofs} \ . \\
+M_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
+\end{gather}
+
+The domain is shown in Figure \ref{pod_figure}. The geometric parameters were coordinates of tip of the obstacle.
+\begin{gather}
+(x,y) = (\mu_1,\mu_2) \ . \\
+(x_{ref},y_{ref}) = (0.5,0.3) \ .
+\end{gather}
+
+We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure}, \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $40$. 
+
+The reduced basis error was measured at $10$ random points in parameter space (Figure \ref{rb_error}).
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{pod_figure.jpg}
+  \caption{Domain $\Omega$} 
+  \label{pod_figure}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth]{velocity_eigen_value.jpg}
+  \caption{Velocity Eigenvalue decay} 
+  \label{eigen_value_decay_velocity}
+  \includegraphics[width=\linewidth]{pressure_eigen_value.jpg}
+  \caption{Pressure Eigenvalue decay} 
+  \label{eigen_value_decay_pressure}
+\end{subfigure}
+\caption{Eigenvalue decay for velocity and pressure}
+\label{pod_eigenvalue_figure}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth]{velocity_eigen_value_semilog.jpg}
+  \caption{Velocity Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_velocity_semilog}
+  \includegraphics[width=\linewidth]{pressure_eigen_value_semilog.jpg}
+  \caption{Pressure Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_pressure_semilog}
+\end{subfigure}
+\caption{Eigenvalue decay for velocity and pressure}
+\label{pod_eigenvalue_figure_semilog}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth]{rb_l2_error_velocity.jpg}
+  \caption{Reduced basis $L^2$ error for velocity} 
+  \label{rb_L2_error_velocity}
+  \includegraphics[width=\linewidth]{rb_l2_error_pressure.jpg}
+  \caption{Reduced basis $L^2$ error for pressure} 
+  \label{rb_L2_error_pressure}
+\end{subfigure}
+\caption{Reduced basis $L^2$ error}
+\label{rb_error}
+\end{figure}
 
 \begin{appendices}
 

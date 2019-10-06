@@ -20,5 +20,8 @@
 \contentsline {subsection}{\numberline {4.1.1}Spectral decomposition of snapshots}{xvii}
 \contentsline {section}{\numberline {4.2}Galerkin reduced basis formulation}{xviii}
 \contentsline {chapter}{\numberline {5}Numerical example}{xix}
-\contentsline {chapter}{Appendices}{xx}
-\contentsline {section}{\numberline {.1}Description of symbol}{xxi}
+\contentsline {section}{\numberline {5.1}Lid-driven cavity problem}{xix}
+\contentsline {section}{\numberline {5.2}Analytical example}{xix}
+\contentsline {section}{\numberline {5.3}POD-Galerkin method}{xix}
+\contentsline {chapter}{Appendices}{xxix}
+\contentsline {section}{\numberline {.1}Description of symbol}{xxx}
