@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  10 OCT 2019 13:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  10 OCT 2019 13:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1301,10 +1301,6 @@ Package pdftex.def Info: images/step_size_vs_pressure_l2_error_loglog.jpg used
 on input line 1006.
 (pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
 
-
-LaTeX Warning: Reference `all_c11_figure' on page xix undefined on input line 1
-014.
-
 <images/c11_condition_number_semilog.jpg, id=93, 1606.0pt x 783.92876pt>
 File: images/c11_condition_number_semilog.jpg Graphic file (type jpg)
 
@@ -1336,19 +1332,8 @@ PNG copy)>] [21 <./images/step_size_vs_velocity_l2_error.jpg> <./images/step_si
 ze_vs_velocity_l2_error_loglog.jpg>] [22 <./images/step_size_vs_pressure_l2_err
 or.jpg> <./images/step_size_vs_pressure_l2_error_loglog.jpg>] [23 <./images/c11
 _condition_number_semilog.jpg> <./images/c11_velocity_l2_error_semilog.jpg> <./
-images/c11_pressure_l2_error_semilog.jpg>]
-
-LaTeX Warning: Reference `pod_eigenvalue_figure' on page xxiv undefined on inpu
-t line 1046.
-
-
-Overfull \hbox (4.62302pt too wide) in paragraph at lines 1046--1047
-\OT1/cmr/m/n/10 ram-e-ters for gen-er-at-ing snap-shots were gen-er-ated ran-do
-mly over space $[0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 4\OML/cmm/m/it/10 ; \OT1/cm
-r/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6] \OMS/cmsy/m/n/10 ^^B
- []
-
-<images/pod_figure.jpg, id=115, 562.1pt x 421.575pt>
+images/c11_pressure_l2_error_semilog.jpg>] <images/pod_figure.jpg, id=115, 562.
+1pt x 421.575pt>
 File: images/pod_figure.jpg Graphic file (type jpg)
 
 <use images/pod_figure.jpg>
@@ -1401,17 +1386,14 @@ ange[]and[]area[]change.
 
 ] (./master_thesis_extension.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 25405 strings out of 493029
- 486475 string characters out of 6136233
+ 25403 strings out of 493029
+ 486436 string characters out of 6136233
  549196 words of memory out of 5000000
- 28514 multiletter control sequences out of 15000+600000
+ 28512 multiletter control sequences out of 15000+600000
  25002 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,25n,54p,10396b,720s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1437,7 +1419,7 @@ s/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1
 ts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msbm7.pfb>
-Output written on master_thesis_extension.pdf (30 pages, 1524184 bytes).
+Output written on master_thesis_extension.pdf (30 pages, 1523884 bytes).
 PDF statistics:
  213 PDF objects out of 1000 (max. 8388607)
  139 compressed objects within 2 object streams

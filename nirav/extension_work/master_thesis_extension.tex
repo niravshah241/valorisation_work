@@ -1011,7 +1011,7 @@ The results of an $h-$convergence test with velocity polynomial degree $D=2$ and
 \label{convergence_check_pressure}
 \end{figure}
 
-Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure}, \ref{all_c11_figure_semilog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
+Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure_semilog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
 
 \begin{figure}
 \begin{subfigure}{\textwidth}	
@@ -1025,7 +1025,7 @@ Additionally, we also compare the impact of changing coercivity parameter $c11$ 
   \caption{$c11$ vs $L^2$ error in pressure (semilog scale)} 
   \label{c11_L2_error_pressure_semilog}
 \end{subfigure}
-\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error (loglog scale)}
+\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error}
 \label{all_c11_figure_semilog}
 \end{figure}
 
@@ -1043,7 +1043,7 @@ The domain is shown in Figure \ref{pod_figure}. The geometric parameters were co
 (x_{ref},y_{ref}) = (0.5,0.3) \ .
 \end{gather}
 
-We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure}, \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $40$. 
+We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $40$. 
 
 The reduced basis error was measured at $10$ random points in parameter space (Figure \ref{rb_error}).
 
