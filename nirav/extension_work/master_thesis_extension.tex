@@ -1011,38 +1011,22 @@ The results of an $h-$convergence test with velocity polynomial degree $D=2$ and
 \label{convergence_check_pressure}
 \end{figure}
 
-Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure}, \ref{all_c11_figure_loglog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
+Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure}, \ref{all_c11_figure_semilog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
 
 \begin{figure}
 \begin{subfigure}{\textwidth}	
-  \includegraphics[width=0.8\linewidth]{c11_condition_number.jpg}
-  \caption{$c11$ vs condition number} 
-  \label{$c11$ vs Condition number}
-  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error.jpg}
-  \caption{$c11$ vs $L^2$ error in velocity} 
-  \label{c11_L2_error_velocity}
-  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error.jpg}
-  \caption{$c11$ vs $L^2$ error in pressure} 
-  \label{c11_L2_error_pressure}
-\end{subfigure}
-\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error}
-\label{all_c11_figure}
-\end{figure}
-
-\begin{figure}
-\begin{subfigure}{\textwidth}	
-  \includegraphics[width=0.8\linewidth]{c11_condition_number_loglog.jpg}
-  \caption{$c11$ vs condition number (loglog scale)} 
-  \label{$c11$ vs Condition number_loglog}
-  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error_loglog.jpg}
-  \caption{$c11$ vs $L^2$ error in velocity (loglog scale)} 
-  \label{c11_L2_error_velocity_loglog}
-  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error_loglog.jpg}
-  \caption{$c11$ vs $L^2$ error in pressure (loglog scale)} 
-  \label{c11_L2_error_pressure_loglog}
+  \includegraphics[width=0.8\linewidth]{c11_condition_number_semilog.jpg}
+  \caption{$c11$ vs condition number (semilog scale)} 
+  \label{$c11$ vs Condition number_semilog}
+  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error_semilog.jpg}
+  \caption{$c11$ vs $L^2$ error in velocity (semilog scale)} 
+  \label{c11_L2_error_velocity_semilog}
+  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error_semilog.jpg}
+  \caption{$c11$ vs $L^2$ error in pressure (semilog scale)} 
+  \label{c11_L2_error_pressure_semilog}
 \end{subfigure}
 \caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error (loglog scale)}
-\label{all_c11_figure_loglog}
+\label{all_c11_figure_semilog}
 \end{figure}
 
 \section{POD-Galerkin method}
@@ -1067,19 +1051,6 @@ The reduced basis error was measured at $10$ random points in parameter space (F
   \includegraphics[width=\linewidth]{pod_figure.jpg}
   \caption{Domain $\Omega$} 
   \label{pod_figure}
-\end{figure}
-
-\begin{figure}
-\begin{subfigure}{\textwidth}	
-  \includegraphics[width=\linewidth]{velocity_eigen_value.jpg}
-  \caption{Velocity Eigenvalue decay} 
-  \label{eigen_value_decay_velocity}
-  \includegraphics[width=\linewidth]{pressure_eigen_value.jpg}
-  \caption{Pressure Eigenvalue decay} 
-  \label{eigen_value_decay_pressure}
-\end{subfigure}
-\caption{Eigenvalue decay for velocity and pressure}
-\label{pod_eigenvalue_figure}
 \end{figure}
 
 \begin{figure}

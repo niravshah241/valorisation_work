@@ -20,14 +20,14 @@ tic();
 %     grid_dd_func_extension_lid_driven_cavity( params);
 % [ grid, params, el_subd] = grid_dd_func_extension_analytical(params);
 %% Rectangular analytical grid
-% params.xnumintervals = 10;
-% params.ynumintervals = 10;
-% params.xrange = [0,1];
-% params.yrange = [0,1];
-% params.bnd_rect_corner1 = [-1,-1;1-eps,1/(params.ynumintervals*2)+1e-14]';
-% params.bnd_rect_corner2 = [2,2;1+eps,1-eps]';
-% params.bnd_rect_index = [-1,-2];
-% grid = construct_grid(params);
+params.xnumintervals = 10;
+params.ynumintervals = 10;
+params.xrange = [0,1];
+params.yrange = [0,1];
+params.bnd_rect_corner1 = [-1,-1;1-eps,1/(params.ynumintervals*2)+1e-14]';
+params.bnd_rect_corner2 = [2,2;1+eps,1-eps]';
+params.bnd_rect_index = [-1,-2];
+grid = construct_grid(params);
 
 t_end = toc();
 disp(['Time for grid generation : ' num2str(t_end)]);
@@ -57,7 +57,7 @@ paramsP.show_sparsity = params.show_sparsity;
 
 params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
 
-% c11_range = [linspace(2e-4,2e-2,3) linspace(2e-2,1,2)];
+% c11_range = [linspace(2e-4,2e-2,20) linspace(2e-2,1,10)];
 % 
 % for i = 1:1:length(c11_range)
 %     disp(['Entering in ' num2str(i) ' of ' num2str(length(c11_range))])
@@ -134,6 +134,7 @@ params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
 % ylabel('Condition number')
 % title('c11 vs condition number')
 
+tic();
 c11 = 1e-2;
 qdeg = params.qdeg;
 mu = params.mu;
@@ -355,44 +356,75 @@ title('pressure eigenvalues')
 
 figure()
 semilogy(real(eigen_values_velocity),'*')
+axis tight
 xlabel('number of eigen value')
 ylabel('eigenvalues velocity (log scale)')
 title('velocity eigenvalues (semilog scale))')
 
 figure()
 semilogy(real(eigen_values_pressure),'*')
+axis tight
 xlabel('number of eigen value')
-ylabel('eigenvalues velocity (log scale)')
-title('velocity eigenvalues (semilog scale))')
+ylabel('eigenvalues pressure (log scale)')
+title('pressure eigenvalues (semilog scale))')
 
-% %%%%%%%% Stiffness matrix and rhs check
-% % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-% % %     assemble_stifness_matrix...
-% % %     ( params, paramsP, grid, params.qdeg, mu, c11 );
-% % % error_rhs_assembly = max(abs(rhs - rhs_real));
-% % % error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
-% % %     - stifness_matrix_real)));
-% % % 
-% % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-% % %     assemble_stifness_matrix...
-% % %     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
-% % % error_rhs_affine = max(abs(rhs_online - rhs_real));
-% % % error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
-% % %     - stifness_matrix_real)));
-% % % 
-% % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-% % %     assemble_stifness_matrix...
-% % %     ( params, paramsP, grid, params.qdeg, mu, c11 );
-% % % error_rhs_assembly = max(abs(rhs - rhs_real));
-% % % error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
-% % %     - stifness_matrix_real)));
-% % % 
-% % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
-% % %     assemble_stifness_matrix...
-% % %     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
-% % % error_rhs_affine = max(abs(rhs_online - rhs_real));
-% % % error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
-% % %     - stifness_matrix_real)));
-% % % 
-% % % [ params, paramsP] = solve_plot_solution_schur...
-% % %     ( params, paramsP, grid, rhs, stiffness_matrix_offline);
+figure()
+scatter3(x_para,y_para,error_rb_l2_velocity,'*')
+axis tight
+xlabel('x-coordinate of tip')
+ylabel('y-coordinate of tip')
+zlabel('RB L^2 error velocity')
+title('Velocity RB absolute error')
+
+figure()
+scatter3(x_para,y_para,error_rb_l2_pressure,'*')
+axis tight
+xlabel('x-coordinate of tip')
+ylabel('y-coordinate of tip')
+zlabel('RB L^2 error pressure')
+title('Pressure RB absolute error')
+
+figure()
+scatter(x_para,y_para,[],error_rb_l2_velocity,'filled')
+axis tight
+xlabel('x-coordinate of tip')
+ylabel('y-coordinate of tip')
+%zlabel('RB L^2 error velocity')
+title('Velocity RB absolute error')
+colorbar('eastoutside','RB error velocity')
+
+
+run_time = toc();
+disp(['Run time : ' num2str(run_time)]);
+
+% % %%%%%%%% Stiffness matrix and rhs check
+% % % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% % % %     assemble_stifness_matrix...
+% % % %     ( params, paramsP, grid, params.qdeg, mu, c11 );
+% % % % error_rhs_assembly = max(abs(rhs - rhs_real));
+% % % % error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
+% % % %     - stifness_matrix_real)));
+% % % % 
+% % % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% % % %     assemble_stifness_matrix...
+% % % %     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
+% % % % error_rhs_affine = max(abs(rhs_online - rhs_real));
+% % % % error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
+% % % %     - stifness_matrix_real)));
+% % % % 
+% % % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% % % %     assemble_stifness_matrix...
+% % % %     ( params, paramsP, grid, params.qdeg, mu, c11 );
+% % % % error_rhs_assembly = max(abs(rhs - rhs_real));
+% % % % error_stiffness_matrix_assembly = max(max(abs(stiffness_matrix_offline ...
+% % % %     - stifness_matrix_real)));
+% % % % 
+% % % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
+% % % %     assemble_stifness_matrix...
+% % % %     ( params, paramsP, transformed_grid, params.qdeg, mu, c11 );
+% % % % error_rhs_affine = max(abs(rhs_online - rhs_real));
+% % % % error_stiffness_matrix_affine = max(max(abs(stiffness_matrix_online ...
+% % % %     - stifness_matrix_real)));
+% % % % 
+% % % % [ params, paramsP] = solve_plot_solution_schur...
+% % % %     ( params, paramsP, grid, rhs, stiffness_matrix_offline);

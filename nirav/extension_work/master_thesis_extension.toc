@@ -23,5 +23,5 @@
 \contentsline {section}{\numberline {5.1}Lid-driven cavity problem}{xix}
 \contentsline {section}{\numberline {5.2}Analytical example}{xix}
 \contentsline {section}{\numberline {5.3}POD-Galerkin method}{xix}
-\contentsline {chapter}{Appendices}{xxix}
-\contentsline {section}{\numberline {.1}Description of symbol}{xxx}
+\contentsline {chapter}{Appendices}{xxvii}
+\contentsline {section}{\numberline {.1}Description of symbol}{xxviii}

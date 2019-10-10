@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  6 OCT 2019 14:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  10 OCT 2019 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1084,8 +1084,8 @@ Overfull \hbox (3.38892pt too wide) detected at line 21
  []
 
 
-Overfull \hbox (0.33336pt too wide) detected at line 27
- []\OT1/cmr/m/n/10 xxx
+Overfull \hbox (8.66672pt too wide) detected at line 27
+ []\OT1/cmr/m/n/10 xxviii
  []
 
 )
@@ -1301,52 +1301,32 @@ Package pdftex.def Info: images/step_size_vs_pressure_l2_error_loglog.jpg used
 on input line 1006.
 (pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
 
-<images/c11_condition_number.jpg, id=93, 562.1pt x 421.575pt>
-File: images/c11_condition_number.jpg Graphic file (type jpg)
 
-<use images/c11_condition_number.jpg>
-Package pdftex.def Info: images/c11_condition_number.jpg used on input line 101
-8.
-(pdftex.def)             Requested size: 273.1475pt x 204.85602pt.
+LaTeX Warning: Reference `all_c11_figure' on page xix undefined on input line 1
+014.
 
-<images/c11_velocity_l2_error.jpg, id=94, 562.1pt x 421.575pt>
-File: images/c11_velocity_l2_error.jpg Graphic file (type jpg)
+<images/c11_condition_number_semilog.jpg, id=93, 1606.0pt x 783.92876pt>
+File: images/c11_condition_number_semilog.jpg Graphic file (type jpg)
 
-<use images/c11_velocity_l2_error.jpg>
-Package pdftex.def Info: images/c11_velocity_l2_error.jpg used on input line 10
-21.
-(pdftex.def)             Requested size: 273.1475pt x 204.85602pt.
-
-<images/c11_pressure_l2_error.jpg, id=95, 552.0625pt x 428.60126pt>
-File: images/c11_pressure_l2_error.jpg Graphic file (type jpg)
-
-<use images/c11_pressure_l2_error.jpg>
-Package pdftex.def Info: images/c11_pressure_l2_error.jpg used on input line 10
-24.
-(pdftex.def)             Requested size: 273.1475pt x 212.06998pt.
-
-<images/c11_condition_number_loglog.jpg, id=96, 1606.0pt x 783.92876pt>
-File: images/c11_condition_number_loglog.jpg Graphic file (type jpg)
-
-<use images/c11_condition_number_loglog.jpg>
-Package pdftex.def Info: images/c11_condition_number_loglog.jpg used on input l
-ine 1034.
+<use images/c11_condition_number_semilog.jpg>
+Package pdftex.def Info: images/c11_condition_number_semilog.jpg used on input 
+line 1018.
 (pdftex.def)             Requested size: 273.1475pt x 133.32593pt.
 
-<images/c11_velocity_l2_error_loglog.jpg, id=97, 1606.0pt x 783.92876pt>
-File: images/c11_velocity_l2_error_loglog.jpg Graphic file (type jpg)
+<images/c11_velocity_l2_error_semilog.jpg, id=94, 1606.0pt x 783.92876pt>
+File: images/c11_velocity_l2_error_semilog.jpg Graphic file (type jpg)
 
-<use images/c11_velocity_l2_error_loglog.jpg>
-Package pdftex.def Info: images/c11_velocity_l2_error_loglog.jpg used on input 
-line 1037.
+<use images/c11_velocity_l2_error_semilog.jpg>
+Package pdftex.def Info: images/c11_velocity_l2_error_semilog.jpg used on input
+ line 1021.
 (pdftex.def)             Requested size: 273.1475pt x 133.32593pt.
 
-<images/c11_pressure_l2_error_loglog.jpg, id=98, 1606.0pt x 783.92876pt>
-File: images/c11_pressure_l2_error_loglog.jpg Graphic file (type jpg)
+<images/c11_pressure_l2_error_semilog.jpg, id=95, 1606.0pt x 783.92876pt>
+File: images/c11_pressure_l2_error_semilog.jpg Graphic file (type jpg)
 
-<use images/c11_pressure_l2_error_loglog.jpg>
-Package pdftex.def Info: images/c11_pressure_l2_error_loglog.jpg used on input 
-line 1040.
+<use images/c11_pressure_l2_error_semilog.jpg>
+Package pdftex.def Info: images/c11_pressure_l2_error_semilog.jpg used on input
+ line 1024.
 (pdftex.def)             Requested size: 273.1475pt x 133.32593pt.
  [19
 
@@ -1355,94 +1335,83 @@ _y_lid_driven_cavity.png (PNG copy)> <./images/pressure_lid_driven_cavity.png (
 PNG copy)>] [21 <./images/step_size_vs_velocity_l2_error.jpg> <./images/step_si
 ze_vs_velocity_l2_error_loglog.jpg>] [22 <./images/step_size_vs_pressure_l2_err
 or.jpg> <./images/step_size_vs_pressure_l2_error_loglog.jpg>] [23 <./images/c11
-_condition_number.jpg> <./images/c11_velocity_l2_error.jpg> <./images/c11_press
-ure_l2_error.jpg>] [24 <./images/c11_condition_number_loglog.jpg> <./images/c11
-_velocity_l2_error_loglog.jpg> <./images/c11_pressure_l2_error_loglog.jpg>]
-Overfull \hbox (4.62302pt too wide) in paragraph at lines 1062--1063
+_condition_number_semilog.jpg> <./images/c11_velocity_l2_error_semilog.jpg> <./
+images/c11_pressure_l2_error_semilog.jpg>]
+
+LaTeX Warning: Reference `pod_eigenvalue_figure' on page xxiv undefined on inpu
+t line 1046.
+
+
+Overfull \hbox (4.62302pt too wide) in paragraph at lines 1046--1047
 \OT1/cmr/m/n/10 ram-e-ters for gen-er-at-ing snap-shots were gen-er-ated ran-do
 mly over space $[0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 4\OML/cmm/m/it/10 ; \OT1/cm
 r/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6] \OMS/cmsy/m/n/10 ^^B
  []
 
-<images/pod_figure.jpg, id=122, 562.1pt x 421.575pt>
+<images/pod_figure.jpg, id=115, 562.1pt x 421.575pt>
 File: images/pod_figure.jpg Graphic file (type jpg)
 
 <use images/pod_figure.jpg>
-Package pdftex.def Info: images/pod_figure.jpg used on input line 1067.
+Package pdftex.def Info: images/pod_figure.jpg used on input line 1051.
 (pdftex.def)             Requested size: 341.43309pt x 256.07324pt.
 
-<images/velocity_eigen_value.jpg, id=123, 1606.0pt x 783.92876pt>
-File: images/velocity_eigen_value.jpg Graphic file (type jpg)
-
-<use images/velocity_eigen_value.jpg>
-Package pdftex.def Info: images/velocity_eigen_value.jpg used on input line 107
-4.
-(pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
-
-<images/pressure_eigen_value.jpg, id=124, 1606.0pt x 783.92876pt>
-File: images/pressure_eigen_value.jpg Graphic file (type jpg)
-
-<use images/pressure_eigen_value.jpg>
-Package pdftex.def Info: images/pressure_eigen_value.jpg used on input line 107
-7.
-(pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
-
-<images/velocity_eigen_value_semilog.jpg, id=125, 1606.0pt x 783.92876pt>
+<images/velocity_eigen_value_semilog.jpg, id=116, 1606.0pt x 783.92876pt>
 File: images/velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use images/velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: images/velocity_eigen_value_semilog.jpg used on input 
-line 1087.
+line 1058.
 (pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
 
-<images/pressure_eigen_value_semilog.jpg, id=126, 1606.0pt x 783.92876pt>
+<images/pressure_eigen_value_semilog.jpg, id=117, 1606.0pt x 783.92876pt>
 File: images/pressure_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use images/pressure_eigen_value_semilog.jpg>
 Package pdftex.def Info: images/pressure_eigen_value_semilog.jpg used on input 
-line 1090.
+line 1061.
 (pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
 
-<images/rb_l2_error_velocity.jpg, id=127, 1606.0pt x 783.92876pt>
+<images/rb_l2_error_velocity.jpg, id=118, 1606.0pt x 783.92876pt>
 File: images/rb_l2_error_velocity.jpg Graphic file (type jpg)
 
 <use images/rb_l2_error_velocity.jpg>
-Package pdftex.def Info: images/rb_l2_error_velocity.jpg used on input line 110
-0.
+Package pdftex.def Info: images/rb_l2_error_velocity.jpg used on input line 107
+1.
 (pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
 
-<images/rb_l2_error_pressure.jpg, id=128, 1606.0pt x 783.92876pt>
+<images/rb_l2_error_pressure.jpg, id=119, 1606.0pt x 783.92876pt>
 File: images/rb_l2_error_pressure.jpg Graphic file (type jpg)
 
 <use images/rb_l2_error_pressure.jpg>
-Package pdftex.def Info: images/rb_l2_error_pressure.jpg used on input line 110
-3.
+Package pdftex.def Info: images/rb_l2_error_pressure.jpg used on input line 107
+4.
 (pdftex.def)             Requested size: 341.43309pt x 166.66339pt.
- [25 <./images/pod_figure.jpg>] [26 <./images/velocity_eigen_value.jpg> <./imag
-es/pressure_eigen_value.jpg>] [27 <./images/velocity_eigen_value_semilog.jpg> <
-./images/pressure_eigen_value_semilog.jpg>] [28 <./images/rb_l2_error_velocity.
-jpg> <./images/rb_l2_error_pressure.jpg>]
-[29
+ [24 <./images/pod_figure.jpg>] [25 <./images/velocity_eigen_value_semilog.jpg>
+ <./images/pressure_eigen_value_semilog.jpg>] [26 <./images/rb_l2_error_velocit
+y.jpg> <./images/rb_l2_error_pressure.jpg>] [27
 
 
-] (./master_thesis_extension.bbl [30]
+] (./master_thesis_extension.bbl [28]
 Overfull \hbox (58.7622pt too wide) in paragraph at lines 71--73
 \OT1/cmr/m/n/10 https://en.wikiversity.org/wiki/Continuum[]mechanics/Volume[]ch
 ange[]and[]area[]change. 
  []
 
-) [31
+) [29
 
 ] (./master_thesis_extension.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 25452 strings out of 493029
- 487946 string characters out of 6136233
+ 25405 strings out of 493029
+ 486475 string characters out of 6136233
  549196 words of memory out of 5000000
- 28556 multiletter control sequences out of 15000+600000
+ 28514 multiletter control sequences out of 15000+600000
  25002 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,25n,54p,10396b,720s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1468,10 +1437,10 @@ s/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1
 ts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msbm7.pfb>
-Output written on master_thesis_extension.pdf (32 pages, 1697740 bytes).
+Output written on master_thesis_extension.pdf (30 pages, 1524184 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
+ 213 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 
