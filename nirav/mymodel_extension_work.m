@@ -114,7 +114,7 @@ for temp = 1:1:N
         flux_approximation, para_mapping, el_subd, transformed_grid, c11, ...
         mu, incompressibility_term, pressure_flux_term);
     
-    [ rhs_online ] = assemble_rhs_online_extension...
+    [ rhs_online, params ] = assemble_rhs_online_extension...
         ( params, paramsP, grid, source_vector_offline, ...
         linear_side_offline, el_subd, para_mapping, linear_side_continuity);
     
@@ -124,13 +124,12 @@ for temp = 1:1:N
     
     snapshot_matrix_velocity(:,temp) = params.dofs;
     snapshot_matrix_pressure(:,temp) = paramsP.dofs;
-    
 end
 
 % POD-Galerkin
 
 min_eigen_value = 0;
-max_reduced_basis = 30;
+max_reduced_basis = 5;
 inner_product_matrix = ldg_mass_matrix(params,grid,params);
 
 [ reduced_basis_matrix_B_velocity, eigen_values_velocity] = ...
@@ -138,7 +137,7 @@ inner_product_matrix = ldg_mass_matrix(params,grid,params);
     max_reduced_basis, inner_product_matrix );
 
 min_eigen_value = 0;
-max_reduced_basis = 30;
+max_reduced_basis = 5;
 inner_product_matrix = ldg_mass_matrix(paramsP,grid,paramsP);
 
 [ reduced_basis_matrix_B_pressure, eigen_values_pressure] = ...
@@ -183,7 +182,7 @@ for temp = 1:1:N
         flux_approximation, para_mapping, el_subd, transformed_grid, c11, ...
         mu, incompressibility_term, pressure_flux_term);
     
-    [ rhs_online ] = assemble_rhs_online_extension...
+    [ rhs_online, params ] = assemble_rhs_online_extension...
         ( params, paramsP, grid, source_vector_offline, ...
         linear_side_offline, el_subd, para_mapping, linear_side_continuity);
     
@@ -246,58 +245,9 @@ run_time = toc();
 disp(['Run time : ' num2str(run_time)]);
 
 %% %%%online phase
-mu_x = 0.58;
-mu_y = 0.32;
-
-tic();
-[ transformed_grid, F_transformation_matrix, ...
-    C_translation_vector] = transform_grid( params, grid, mu_x, mu_y);
-close all
-
-for i = 1:1:length(F_transformation_matrix)
-    para_mapping{i} = inv(F_transformation_matrix{i});
-end
-
-assert(length(para_mapping) == length(el_subd),...
-    'Number of subdomains and number of parametric mappings not same');
-
-[ stiffness_matrix_online, params ] = ...
-    assemble_stiffness_matrix_online_extension( params, paramsP, ...
-    grid, diffusive_term, coercivity_term, ...
-    flux_approximation, para_mapping, el_subd, transformed_grid, c11, ...
-    mu, incompressibility_term, pressure_flux_term);
-
-[ rhs_online ] = assemble_rhs_online_extension...
-    ( params, paramsP, grid, source_vector_offline, ...
-    linear_side_offline, el_subd, para_mapping, linear_side_continuity);
-
-[ params, paramsP] = solve_plot_solution_schur...
-    ( params, paramsP, transformed_grid, rhs_online, ...
-    stiffness_matrix_online);
-
-t_end = toc();
-disp(['Time for online computation : ' num2str(t_end)]);
-
-pause();
-
-% DG / full order solution for given parameter
-
-% Creating stiffness matrix
-tic();
-[ stiffness_matrix_offline2] = assemble_stiffness_matrix_extension...
-    ( params, paramsP, transformed_grid, mu, c11);
-
-% Creating rhs vector
-[ rhs_offline2] = assemble_rhs_extension...
-    ( params, paramsP, transformed_grid, mu, c11);
-
-close all
-
-[ params, paramsP] = solve_plot_solution_schur...
-    ( params, paramsP, transformed_grid, rhs_offline2, ...
-    stiffness_matrix_offline2);
-t_end = toc();
-disp(['Time for offline computation : ' num2str(t_end)]);
+mu_x = 0.45; % online parameter 1
+mu_y = 0.35; % online parameter 2
+online_phase;
 
 
 % % %%%%%%%% Stiffness matrix and rhs check
