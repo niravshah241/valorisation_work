@@ -129,7 +129,7 @@ end
 % POD-Galerkin
 
 min_eigen_value = 0;
-max_reduced_basis = 20;
+max_reduced_basis = 30;
 inner_product_matrix = ldg_mass_matrix(params,grid,params);
 h1_seminorm_mass_matrix = ldg_h1_seminorm_mass_matrix_assembly(params,grid);
 
