@@ -79,7 +79,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 40;
+N = 10;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -129,16 +129,15 @@ end
 % POD-Galerkin
 
 min_eigen_value = 0;
-max_reduced_basis = 20;
+max_reduced_basis = 5;
 inner_product_matrix = ldg_mass_matrix(params,grid,params);
-h1_seminorm_mass_matrix = ldg_h1_seminorm_mass_matrix_assembly(params,grid);
 
 [ reduced_basis_matrix_B_velocity, eigen_values_velocity] = ...
     pod_extension( snapshot_matrix_velocity, params, min_eigen_value, ...
-    max_reduced_basis, inner_product_matrix + h1_seminorm_mass_matrix);
+    max_reduced_basis, inner_product_matrix );
 
 min_eigen_value = 0;
-max_reduced_basis = 10;
+max_reduced_basis = 5;
 inner_product_matrix = ldg_mass_matrix(paramsP,grid,paramsP);
 
 [ reduced_basis_matrix_B_pressure, eigen_values_pressure] = ...
@@ -152,7 +151,6 @@ x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 error_rb_l2_velocity = zeros(N,1);
 error_rb_l2_pressure = zeros(N,1);
-error_rb_h1_seminorm_velocity = zeros(N,1);
 
 for temp = 1:1:N
     disp(['Entering parameter number ' num2str(temp) ' of ' num2str(N)])
@@ -208,14 +206,15 @@ for temp = 1:1:N
         ( paramsP, transformed_grid, zeros(paramsP.ndofs,1));
     error_vector_velocity = params.dofs - velocity_dofs;
     error_vector_pressure = paramsP.dofs - pressure_dofs;
-    error_rb_h1_seminorm_velocity(temp) = sqrt(error_vector_velocity' * ...
+    error_rb_h1_seminorm_velocity = error_vector_velocity' * ...
         ldg_h1_seminorm_mass_matrix_assembly(params,transformed_grid) * ...
-        error_vector_velocity);
+        error_vector_velocity;
+    
+    
 end
 
 error_rb_l2_velocity_mean = mean(error_rb_l2_velocity);
 error_rb_l2_pressure_mean = mean(error_rb_l2_pressure);
-error_rb_h1_seminorm_velocity_mean = mean(error_rb_h1_seminorm_velocity);
 
 figure()
 semilogy(real(eigen_values_velocity),'*')
