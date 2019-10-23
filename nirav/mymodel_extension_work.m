@@ -79,7 +79,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 40;
+N = 20;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -129,21 +129,31 @@ end
 % POD-Galerkin
 
 min_eigen_value = 0;
-max_reduced_basis = 30;
+max_reduced_basis = 10;
 inner_product_matrix = ldg_mass_matrix(params,grid,params);
 h1_seminorm_mass_matrix = ldg_h1_seminorm_mass_matrix_assembly(params,grid);
 
-[ reduced_basis_matrix_B_velocity, eigen_values_velocity] = ...
+[ reduced_basis_matrix_B_velocity, eigen_values_velocity, ...
+    error_estimate_velocity] = ...
     pod_extension( snapshot_matrix_velocity, params, min_eigen_value, ...
     max_reduced_basis, inner_product_matrix + h1_seminorm_mass_matrix);
 
+disp(['Max error estimate for velocity : ' num2str(error_estimate_velocity)]);
+disp(['Before comparing error, please verify that ' newline...
+    'error estimator and actual error are measured in same norm'])
+
 min_eigen_value = 0;
-max_reduced_basis = 10;
+max_reduced_basis = 5;
 inner_product_matrix = ldg_mass_matrix(paramsP,grid,paramsP);
 
-[ reduced_basis_matrix_B_pressure, eigen_values_pressure] = ...
+[ reduced_basis_matrix_B_pressure, eigen_values_pressure, ...
+    error_estimate_pressure] = ...
     pod_extension( snapshot_matrix_pressure, paramsP, min_eigen_value, ...
     max_reduced_basis, inner_product_matrix );
+
+disp(['Max error estimate for pressure : ' num2str(error_estimate_pressure)]);
+disp(['Before comparing error, please verify that ' newline...
+    'error estimator and actual error are measured in same norm'])
 
 % Galerkin projection and rb error
 
@@ -255,10 +265,9 @@ run_time = toc();
 disp(['Run time : ' num2str(run_time)]);
 
 %% %%%online phase
-mu_x = 0.45; % online parameter 1
-mu_y = 0.35; % online parameter 2
+mu_x = 0.47; % online parameter 1
+mu_y = 0.27; % online parameter 2
 online_phase;
-
 
 % % %%%%%%%% Stiffness matrix and rhs check
 % % % % [ params, paramsP, rhs_real, stifness_matrix_real] = ...
