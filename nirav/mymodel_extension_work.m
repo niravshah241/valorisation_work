@@ -130,13 +130,13 @@ end
 
 min_eigen_value = 0;
 max_reduced_basis = 10;
-inner_product_matrix = ldg_mass_matrix(params,grid,params);
-h1_seminorm_mass_matrix = ldg_h1_seminorm_mass_matrix_assembly(params,grid);
+inner_product_matrix_velocity = ldg_mass_matrix(params,grid,params) + ...
+    ldg_h1_seminorm_mass_matrix_assembly(params,grid);
 
 [ reduced_basis_matrix_B_velocity, eigen_values_velocity, ...
     error_estimate_velocity] = ...
     pod_extension( snapshot_matrix_velocity, params, min_eigen_value, ...
-    max_reduced_basis, inner_product_matrix + h1_seminorm_mass_matrix);
+    max_reduced_basis, inner_product_matrix_velocity);
 
 disp(['Max error estimate for velocity : ' num2str(error_estimate_velocity)]);
 disp(['Before comparing error, please verify that ' newline...
@@ -144,12 +144,12 @@ disp(['Before comparing error, please verify that ' newline...
 
 min_eigen_value = 0;
 max_reduced_basis = 5;
-inner_product_matrix = ldg_mass_matrix(paramsP,grid,paramsP);
+inner_product_matrix_pressure = ldg_mass_matrix(paramsP,grid,paramsP);
 
 [ reduced_basis_matrix_B_pressure, eigen_values_pressure, ...
     error_estimate_pressure] = ...
     pod_extension( snapshot_matrix_pressure, paramsP, min_eigen_value, ...
-    max_reduced_basis, inner_product_matrix );
+    max_reduced_basis, inner_product_matrix_pressure);
 
 disp(['Max error estimate for pressure : ' num2str(error_estimate_pressure)]);
 disp(['Before comparing error, please verify that ' newline...
@@ -160,9 +160,8 @@ disp(['Before comparing error, please verify that ' newline...
 % N = 10;
 % x_para = 0.4 + (0.6-0.4).*rand(N,1);
 % y_para = 0.2 + (0.4-0.2).*rand(N,1);
-error_rb_l2_velocity = zeros(N,1);
-error_rb_l2_pressure = zeros(N,1);
-error_rb_h1_seminorm_velocity = zeros(N,1);
+error_rb_velocity = zeros(N,1);
+error_rb_pressure = zeros(N,1);
 
 for temp = 1:1:N
     disp(['Entering parameter number ' num2str(temp) ' of ' num2str(N)])
@@ -208,26 +207,20 @@ for temp = 1:1:N
         reduced_basis_matrix_B_pressure, reduced_basis_matrix_B_velocity);
     velocity_dofs = reduced_basis_matrix_B_velocity * params_reduced.dofs;
     pressure_dofs = reduced_basis_matrix_B_pressure * paramsP_reduced.dofs;
-    error_rb_l2_velocity(temp) = error_rb_l2_norm_assembly...
-        ( params, transformed_grid, velocity_dofs) / ...
-        error_rb_l2_norm_assembly...
-        ( params, transformed_grid, zeros(params.ndofs,1));
-    error_rb_l2_pressure(temp) = error_rb_l2_norm_assembly...
-        ( paramsP, transformed_grid, pressure_dofs) / ...
-        error_rb_l2_norm_assembly...
-        ( paramsP, transformed_grid, zeros(paramsP.ndofs,1));
     error_vector_velocity = params.dofs - velocity_dofs;
     error_vector_pressure = paramsP.dofs - pressure_dofs;
-    error_rb_h1_seminorm_velocity(temp) = sqrt(error_vector_velocity' * ...
-        ldg_h1_seminorm_mass_matrix_assembly(params,transformed_grid) * ...
-        error_vector_velocity) / sqrt(params.dofs' * ...
-        ldg_h1_seminorm_mass_matrix_assembly(params,transformed_grid) * ...
-        params.dofs);
+    error_rb_velocity(temp) = ...
+        ((params.dofs - velocity_dofs)' * inner_product_matrix_velocity * ...
+        (params.dofs - velocity_dofs)) / ...
+        (params.dofs' * inner_product_matrix_velocity * params.dofs);
+    error_rb_pressure(temp) = ...
+        ((paramsP.dofs - pressure_dofs)' * inner_product_matrix_pressure * ...
+        (paramsP.dofs - pressure_dofs)) / ...
+        (paramsP.dofs' * inner_product_matrix_pressure * paramsP.dofs);
 end
 
-error_rb_l2_velocity_mean = mean(error_rb_l2_velocity);
-error_rb_l2_pressure_mean = mean(error_rb_l2_pressure);
-error_rb_h1_seminorm_velocity_mean = mean(error_rb_h1_seminorm_velocity);
+error_rb_velocity_mean = mean(error_rb_velocity);
+error_rb_pressure_mean = mean(error_rb_pressure);
 
 figure()
 semilogy(real(eigen_values_velocity),'*')
@@ -244,22 +237,22 @@ ylabel('eigenvalues pressure (log scale)')
 title('pressure eigenvalues (semilog scale))')
 
 figure()
-scatter(x_para,y_para,[],error_rb_l2_pressure,'filled')
+scatter(x_para,y_para,[],error_rb_pressure,'filled')
 axis tight
 xlabel('x-coordinate of tip')
 ylabel('y-coordinate of tip')
 title('Pressure RB relative error')
 c = colorbar('eastoutside');
-c.Label.String='RB L^2 Pressure error';
+c.Label.String='RB Pressure error';
 
 figure()
-scatter(x_para,y_para,[],error_rb_l2_velocity,'filled')
+scatter(x_para,y_para,[],error_rb_velocity,'filled')
 axis tight
 xlabel('x-coordinate of tip')
 ylabel('y-coordinate of tip')
 title('Velocity RB relative error')
 c = colorbar('eastoutside');
-c.Label.String='RB L^2 Velocity error';
+c.Label.String='RB Velocity error';
 
 run_time = toc();
 disp(['Run time : ' num2str(run_time)]);
