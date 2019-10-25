@@ -157,9 +157,9 @@ disp(['Before comparing error, please verify that ' newline...
 
 % Galerkin projection and rb error
 
-N = 10;
-x_para = 0.4 + (0.6-0.4).*rand(N,1);
-y_para = 0.2 + (0.4-0.2).*rand(N,1);
+% N = 10;
+% x_para = 0.4 + (0.6-0.4).*rand(N,1);
+% y_para = 0.2 + (0.4-0.2).*rand(N,1);
 error_rb_l2_velocity = zeros(N,1);
 error_rb_l2_pressure = zeros(N,1);
 error_rb_h1_seminorm_velocity = zeros(N,1);
