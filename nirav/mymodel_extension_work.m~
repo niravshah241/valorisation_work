@@ -18,6 +18,15 @@ tic();
 [ grid, params, el_subd] = grid_dd_func_extension(params);
 % [ grid, params, el_subd ] = ...
 %     grid_dd_func_extension_lid_driven_cavity( params);
+%% Rectangular analytical grid
+% params.xnumintervals = 10;
+% params.ynumintervals = 10;
+% params.xrange = [0,1];
+% params.yrange = [0,1];
+% params.bnd_rect_corner1 = [-1,-1;1-eps,1/(params.ynumintervals*2)+1e-14]';
+% params.bnd_rect_corner2 = [2,2;1+eps,1-eps]';
+% params.bnd_rect_index = [-1,-2];
+% grid = construct_grid(params);
 
 t_end = toc();
 disp(['Time for grid generation : ' num2str(t_end)]);
@@ -70,7 +79,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 100;
+N = 20;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -120,7 +129,7 @@ end
 % POD-Galerkin
 
 min_eigen_value = 0;
-max_reduced_basis = 20;
+max_reduced_basis = 10;
 inner_product_matrix_velocity = ldg_mass_matrix(params,grid,params) + ...
     ldg_h1_seminorm_mass_matrix_assembly(params,grid);
 
@@ -134,7 +143,7 @@ disp(['Before comparing error, please verify that ' newline...
     'error estimator and actual error are measured in same norm'])
 
 min_eigen_value = 0;
-max_reduced_basis = 10;
+max_reduced_basis = 5;
 inner_product_matrix_pressure = ldg_mass_matrix(paramsP,grid,paramsP);
 
 [ reduced_basis_matrix_B_pressure, eigen_values_pressure, ...
@@ -148,9 +157,9 @@ disp(['Before comparing error, please verify that ' newline...
 
 % Galerkin projection and rb error
 
-N = 10;
-x_para = 0.4 + (0.6-0.4).*rand(N,1);
-y_para = 0.2 + (0.4-0.2).*rand(N,1);
+% N = 10;
+% x_para = 0.4 + (0.6-0.4).*rand(N,1);
+% y_para = 0.2 + (0.4-0.2).*rand(N,1);
 error_rb_velocity = zeros(N,1);
 error_rb_pressure = zeros(N,1);
 
@@ -232,17 +241,6 @@ saveas(a,'nirav/pod_galerkin/pressure_eigen_value_semilog.fig');
 saveas(a,'nirav/pod_galerkin/pressure_eigen_value_semilog.jpg');
 
 a = figure();
-scatter(x_para,y_para,[],error_rb_velocity,'filled');
-axis tight
-xlabel('x-coordinate of tip');
-ylabel('y-coordinate of tip');
-title('Velocity RB relative error');
-c = colorbar('eastoutside');
-c.Label.String='RB Velocity error';
-saveas(a,'nirav/pod_galerkin/rb_error_velocity.fig');
-saveas(a,'nirav/pod_galerkin/rb_error_velocity.jpg');
-
-a = figure();
 scatter(x_para,y_para,[],error_rb_pressure,'filled');
 axis tight
 xlabel('x-coordinate of tip');
@@ -250,8 +248,16 @@ ylabel('y-coordinate of tip');
 title('Pressure RB relative error');
 c = colorbar('eastoutside');
 c.Label.String='RB Pressure error';
-saveas(a,'nirav/pod_galerkin/rb_error_pressure.fig');
-saveas(a,'nirav/pod_galerkin/rb_error_pressure.jpg');
+
+
+figure()
+scatter(x_para,y_para,[],error_rb_velocity,'filled')
+axis tight
+xlabel('x-coordinate of tip')
+ylabel('y-coordinate of tip')
+title('Velocity RB relative error')
+c = colorbar('eastoutside');
+c.Label.String='RB Velocity error';
 
 run_time = toc();
 disp(['Run time : ' num2str(run_time)]);

@@ -51,7 +51,45 @@ close all
 
 [ params, paramsP] = solve_plot_solution_schur...
     ( params, paramsP, transformed_grid, rhs_offline2, ...
-    stiffness_matrix_offline2);
+    stiffness_matrix_offline2,0);
+
+for i=1:1:params.dimrange
+    a = figure();
+    axis equal
+    [scalar_dofs, scalar_df_info] = ...
+        ldg_scalar_component(params.dofs,i,params);
+    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+    disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
+    %subplot(params.dimrange,1,i)
+    %title(['Velocity degree of freedom number ',num2str(i)])
+    if i==1
+        title(['Velocity in x direction (Schur)'])
+    else
+        title(['Velocity in y direction (Schur)'])
+    end
+    axis equal
+    axis tight
+    ldg_plot(sdf,transformed_grid,params);
+    plot(transformed_grid);
+    saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+    saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+end
+
+for i=1:1:paramsP.dimrange
+    a = figure();
+    [scalar_dofs, scalar_df_info] = ...
+        ldg_scalar_component(paramsP.dofs,i,paramsP);
+    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+    disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
+    %subplot(paramsP.dimrange,1,i)
+    title('Pressure (Schur)')
+    axis equal
+    axis tight
+    ldg_plot(sdf,transformed_grid,paramsP);
+    plot(transformed_grid);
+    saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+    saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+end
 t_end_full = toc();
 disp(['Time for offline computation : ' num2str(t_end)]);
 
@@ -66,7 +104,7 @@ paramsP_reduced_full = paramsP;
 paramsP_reduced_full.dofs = pressure_reduced_dofs_online_parameter;
 
 for i=1:1:params_reduced_full.dimrange
-    figure()
+    a = figure();
     axis equal
     [scalar_dofs, scalar_df_info] = ...
         ldg_scalar_component(params_reduced_full.dofs,i,params_reduced_full);
@@ -83,10 +121,12 @@ for i=1:1:params_reduced_full.dimrange
     axis tight
     ldg_plot(sdf,transformed_grid,params_reduced_full);
     plot(transformed_grid);
+    saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+    saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
 end
 
 for i=1:1:paramsP_reduced_full.dimrange
-    figure()
+    a = figure();
     [scalar_dofs, scalar_df_info] = ...
         ldg_scalar_component(paramsP_reduced_full.dofs,i,paramsP_reduced_full);
     sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
@@ -97,6 +137,8 @@ for i=1:1:paramsP_reduced_full.dimrange
     axis tight
     ldg_plot(sdf,transformed_grid,paramsP_reduced_full);
     plot(transformed_grid);
+    saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+    saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
 end
 
 t_end_rb_2 = toc();

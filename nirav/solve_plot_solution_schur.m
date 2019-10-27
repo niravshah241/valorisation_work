@@ -47,9 +47,9 @@ if nargout>3
     
 end
 
-disp('entering into plotting Degrees of Freedom (Schur)')
-
 if plot_solution == 1
+    
+    disp('entering into plotting Degrees of Freedom (Schur)')
     
     for i=1:1:params.dimrange
         figure()
