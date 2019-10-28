@@ -933,6 +933,20 @@ u_N = \psi_u \zeta_u \textrm{,} \quad u_N \in \mathbb{R}^{d_u} \textrm{.}
 
 \chapter{Numerical example}
 
+\section{Error definitions}
+
+In the present analysis, we measure the error in the $L^2$ norm and the $H_0$ semi norm and present the results.
+
+The $L^2$ norm of the error is defined as,
+\begin{equation*}
+P_{error,L^2} = (\int_{\Omega} |P - P_h|^2 )^{\frac{1}{2}} \ .
+\end{equation*}
+
+The $H_0$ semi norm of the error is defined as,
+\begin{equation*}
+P_{error,H_0} = (\sum_{k=1}^{nel} \int_{\tau_k} |\nabla P - \nabla P_h|^2)^{\frac{1}{2}} \ .
+\end{equation*}
+
 \section{Lid-driven cavity problem} \label{lid_driven_cavity_stokes}
 
 We next present a benchmark $CFD$ problem, the Lid-driven cavity flow \cite{Montlaur2}. We solve the Stokes flow on the unit square [0,1] $\times$ [0,1] in the $x-y$ plane. On boundaries ${x = 0}, {x = 1}$ and ${y = 0}$, we impose no slip or zero velocity Dirichlet condition. On ${y = 1}$, we impose Dirichlet condition with Dirichlet velocity,
@@ -983,15 +997,15 @@ p = (1 - x) \textrm{,}
 
 \end{center}
 
-The results of an $h-$convergence test with velocity polynomial degree $D=2$ and pressure polynomial degree $D-1 = 2$ in the $L^2$ norm is presented in Figures \ref{convergence_check_velocity} and \ref{convergence_check_pressure}.
+The results of an $h-$convergence test with velocity polynomial degree $D=2$ and pressure polynomial degree $D-1 = 1$ in the $L^2$ norm is presented in Figures \ref{convergence_check_velocity} and \ref{convergence_check_pressure}.
 
 \begin{figure}
 \begin{subfigure}{\textwidth}	
-  \includegraphics[width=\linewidth]{step_size_vs_velocity_l2_error.jpg}
-  \caption{step size vs $L^2$ error in velocity} 
-  \label{step_size_vs_velocity_l2_error}
+  \includegraphics[width=\linewidth]{step_size_vs_velocity_l2_error_semilog.jpg}
+  \caption{step size vs $L^2$ relative error in velocity (semilog scale)} 
+  \label{step_size_vs_velocity_l2_error_semilog}
   \includegraphics[width=\linewidth]{step_size_vs_velocity_l2_error_loglog.jpg}
-  \caption{step size vs $L^2$ error in velocity (loglog scale)} 
+  \caption{step size vs $L^2$ relative error in velocity (loglog scale)} 
   \label{step_size_vs_velocity_l2_error_loglog}
 \end{subfigure}
 \caption{Convergence test for velocity}
@@ -1000,52 +1014,54 @@ The results of an $h-$convergence test with velocity polynomial degree $D=2$ and
 
 \begin{figure}
 \begin{subfigure}{\textwidth}	
-  \includegraphics[width=\linewidth]{step_size_vs_pressure_l2_error.jpg}
-  \caption{step size vs $L^2$ error in pressure} 
-  \label{step_size_vs_pressure_l2_error}
+  \includegraphics[width=\linewidth]{step_size_vs_pressure_l2_error_semilog.jpg}
+  \caption{step size vs $L^2$ relative error in pressure (semilog scale)} 
+  \label{step_size_vs_pressure_l2_error_semilog}
   \includegraphics[width=\linewidth]{step_size_vs_pressure_l2_error_loglog.jpg}
-  \caption{step size vs $L^2$ error in pressure (loglog scale)} 
+  \caption{step size vs $L^2$ relative error in pressure (loglog scale)} 
   \label{step_size_vs_pressure_l2_error_loglog}
 \end{subfigure}
 \caption{Convergence test for pressure}
 \label{convergence_check_pressure}
 \end{figure}
 
-Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure_semilog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
-
-\begin{figure}
-\begin{subfigure}{\textwidth}	
-  \includegraphics[width=0.8\linewidth]{c11_condition_number_semilog.jpg}
-  \caption{$c11$ vs condition number (semilog scale)} 
-  \label{$c11$ vs Condition number_semilog}
-  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error_semilog.jpg}
-  \caption{$c11$ vs $L^2$ error in velocity (semilog scale)} 
-  \label{c11_L2_error_velocity_semilog}
-  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error_semilog.jpg}
-  \caption{$c11$ vs $L^2$ error in pressure (semilog scale)} 
-  \label{c11_L2_error_pressure_semilog}
-\end{subfigure}
-\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error}
-\label{all_c11_figure_semilog}
-\end{figure}
+%Additionally, we also compare the impact of changing coercivity parameter $c11$ on condition number and error in the solution (Figure \ref{all_c11_figure_semilog}). The number of divisions in each direction is 10. The lowest value of $c11$ considered is the value that is required to maintain coercivity.
+%
+%\begin{figure}
+%\begin{subfigure}{\textwidth}	
+%  \includegraphics[width=0.8\linewidth]{c11_condition_number_semilog.jpg}
+%  \caption{$c11$ vs condition number (semilog scale)} 
+%  \label{$c11$ vs Condition number_semilog}
+%  \includegraphics[width=0.8\linewidth]{c11_velocity_l2_error_semilog.jpg}
+%  \caption{$c11$ vs $L^2$ error in velocity (semilog scale)} 
+%  \label{c11_L2_error_velocity_semilog}
+%  \includegraphics[width=0.8\linewidth]{c11_pressure_l2_error_semilog.jpg}
+%  \caption{$c11$ vs $L^2$ error in pressure (semilog scale)} 
+%  \label{c11_L2_error_pressure_semilog}
+%\end{subfigure}
+%\caption{Impact of $c11$ on condition number, velocity and pressure $L^2$ error}
+%\label{all_c11_figure_semilog}
+%\end{figure}
 
 \section{POD-Galerkin method}
 
-We perform the POD-Galerkin method as mentioned in section \ref{POD_section} and section \ref{Galerkin_section}. The boundary ${x=0}$ is dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (2 \nu - 1, 0)$. We consider inner-product matrix as Discontinuous Galerkin mass matrix i.e.
-\begin{gather}
-M_u = \int_{\Omega} \phi_i \phi_j \ , \ i,j = 1, \ldots, u_{ndofs} \ . \\
+We perform the POD-Galerkin method as mentioned in section \ref{POD_section} and section \ref{Galerkin_section}. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
+
+We consider inner-product matrix as ($u_{rb},p_{rb}$ is reduced basis solution and $u_h,p_h$ is DG solution) i.e.
+\begin{gather*}
+M_u = \int_{\Omega} \phi_i \cdot \phi_j + \sum_{k=1}^{nel} \int_{\tau_k} \nabla \phi_l : \nabla \phi_m \ ,  \\ \ i,j = 1, \ldots, u_{ndofs} \ , \ l,m = 1,\ldots,u_{ndofs\_per\_element} \\
 M_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
-\end{gather}
+\end{gather*}
 
 The domain is shown in Figure \ref{pod_figure}. The geometric parameters were coordinates of tip of the obstacle.
-\begin{gather}
+\begin{gather*}
 (x,y) = (\mu_1,\mu_2) \ . \\
 (x_{ref},y_{ref}) = (0.5,0.3) \ .
-\end{gather}
+\end{gather*}
 
-We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $40$. 
+We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $100$. 
 
-The reduced basis error was measured at $10$ random points in parameter space (Figure \ref{rb_error}).
+The reduced basis error was measured at $10$ random points in parameter range $[0.4,0.6] \times [0.2,0.4]$ (Figure \ref{rb_error}). The figures \ref{rb_error_vs_size}, \ref{online_simulation_time} and \ref{speedup} represent reduced basis relative error, online simulation time and speedup vs size of reduced basis respectively. The reduced basis size for pressure is kept constant at $5$ as further eigenvalues are close to machine precision.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{pod_figure.jpg}
@@ -1068,16 +1084,103 @@ The reduced basis error was measured at $10$ random points in parameter space (F
 
 \begin{figure}
 \begin{subfigure}{\textwidth}	
-  \includegraphics[width=\linewidth]{rb_l2_error_velocity.jpg}
-  \caption{Reduced basis $L^2$ error for velocity} 
-  \label{rb_L2_error_velocity}
-  \includegraphics[width=\linewidth]{rb_l2_error_pressure.jpg}
-  \caption{Reduced basis $L^2$ error for pressure} 
-  \label{rb_L2_error_pressure}
+  \includegraphics[width=\linewidth]{rb_error_velocity.jpg}
+  \caption{Reduced basis relative error for velocity} 
+  \label{rb_error_velocity}
+  \includegraphics[width=\linewidth]{rb_error_pressure.jpg}
+  \caption{Reduced basis relative error for pressure} 
+  \label{rb_error_pressure}
 \end{subfigure}
-\caption{Reduced basis $L^2$ error}
+\caption{Reduced basis error}
 \label{rb_error}
 \end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Reduced basis relative error vs size of reduced basis for velocity (semilog scale)} 
+\label{rb_error_vs_size}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_online_simulation_time_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
+\label{online_simulation_time}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_reduced_basis_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs speedup (semilog scale)} 
+\label{speedup}
+\end{figure}
+
+The solution computed by reduced basis and full order at parameter values $[0.43,0.36]$ and $[0.55,0.25]$ are given in figures \ref{dg_rb_solution_43_36} and \ref{dg_rb_solution_55_25}.
+
+\begin{figure}[t!] % "[t!]" placement specifier just for this example
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{offline_velocity_1_at_43_36.jpg}
+\caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{online_velocity_1_at_43_36.jpg}
+\caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{offline_velocity_2_at_43_36.jpg}
+\caption{Velocity $y-$direction DG solution} \label{vel_y_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{online_velocity_2_at_43_36.jpg}
+\caption{Velocity $y-$direction RB solution} \label{vel_y_rb}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Pressure DG solution} \label{pre_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{online_pressure_at_43_36.jpg}
+\caption{Pressure RB solution} \label{pre_rb}
+\end{subfigure}
+\caption{DG and RB solution $[\mu_x \ \mu_y] = [0.43 \ 0.36]$} 
+\label{dg_rb_solution_43_36}
+\end{figure}
+
+\begin{figure}[t!] % "[t!]" placement specifier just for this example
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{offline_velocity_1_at_55_25.jpg}
+\caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{online_velocity_1_at_55_25.jpg}
+\caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{offline_velocity_2_at_55_25.jpg}
+\caption{Velocity $y-$direction DG solution} \label{vel_y_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{online_velocity_2_at_55_25.jpg}
+\caption{Velocity $y-$direction RB solution} \label{vel_y_rb}
+\end{subfigure}
+
+\medskip
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_55_25.jpg}
+\caption{Pressure DG solution} \label{pre_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{online_pressure_at_55_25.jpg}
+\caption{Pressure RB solution} \label{pre_rb}
+\end{subfigure}
+\caption{DG and RB solution $[\mu_x \ \mu_y] = [0.55 \ 0.25]$} 
+\label{dg_rb_solution_55_25}
+\end{figure}
+
 
 \begin{appendices}
 

@@ -1,8 +1,8 @@
-tic();
+
 [ transformed_grid, F_transformation_matrix, ...
     C_translation_vector] = transform_grid( params, grid, mu_x, mu_y);
 close all
-
+tic();
 for i = 1:1:length(F_transformation_matrix)
     para_mapping{i} = inv(F_transformation_matrix{i});
 end
@@ -38,7 +38,6 @@ t_end_rb = toc();
 
 % DG / full order solution for given parameter
 tic();
-
 % Creating stiffness matrix
 [ stiffness_matrix_offline2, params] = assemble_stiffness_matrix_extension...
     ( params, paramsP, transformed_grid, mu, c11);
@@ -53,93 +52,93 @@ close all
     ( params, paramsP, transformed_grid, rhs_offline2, ...
     stiffness_matrix_offline2,0);
 
-for i=1:1:params.dimrange
-    a = figure();
-    axis equal
-    [scalar_dofs, scalar_df_info] = ...
-        ldg_scalar_component(params.dofs,i,params);
-    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
-    disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
-    %subplot(params.dimrange,1,i)
-    %title(['Velocity degree of freedom number ',num2str(i)])
-    if i==1
-        title(['Velocity in x direction (Schur)'])
-    else
-        title(['Velocity in y direction (Schur)'])
-    end
-    axis equal
-    axis tight
-    ldg_plot(sdf,transformed_grid,params);
-    plot(transformed_grid);
-    saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-    saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
-end
-
-for i=1:1:paramsP.dimrange
-    a = figure();
-    [scalar_dofs, scalar_df_info] = ...
-        ldg_scalar_component(paramsP.dofs,i,paramsP);
-    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
-    disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
-    %subplot(paramsP.dimrange,1,i)
-    title('Pressure (Schur)')
-    axis equal
-    axis tight
-    ldg_plot(sdf,transformed_grid,paramsP);
-    plot(transformed_grid);
-    saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-    saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
-end
+% for i=1:1:params.dimrange
+%     a = figure();
+%     axis equal
+%     [scalar_dofs, scalar_df_info] = ...
+%         ldg_scalar_component(params.dofs,i,params);
+%     sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+%     disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
+%     %subplot(params.dimrange,1,i)
+%     %title(['Velocity degree of freedom number ',num2str(i)])
+%     if i==1
+%         title(['Velocity in x direction (Schur)'])
+%     else
+%         title(['Velocity in y direction (Schur)'])
+%     end
+%     axis equal
+%     axis tight
+%     ldg_plot(sdf,transformed_grid,params);
+%     plot(transformed_grid);
+% %     saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+% %     saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+% end
+% 
+% for i=1:1:paramsP.dimrange
+%     a = figure();
+%     [scalar_dofs, scalar_df_info] = ...
+%         ldg_scalar_component(paramsP.dofs,i,paramsP);
+%     sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+%     disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
+%     %subplot(paramsP.dimrange,1,i)
+%     title('Pressure (Schur)')
+%     axis equal
+%     axis tight
+%     ldg_plot(sdf,transformed_grid,paramsP);
+%     plot(transformed_grid);
+% %     saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+% %     saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+% end
 t_end_full = toc();
-disp(['Time for offline computation : ' num2str(t_end)]);
+disp(['Time for offline computation : ' num2str(t_end_full)]);
 
 velocity_dg_dofs_online_parameter = params.dofs;
 pressure_dg_dofs_online_parameter = paramsP.dofs;
 
 
 tic();
-params_reduced_full = params;
-params_reduced_full.dofs = velocity_reduced_dofs_online_parameter;
-paramsP_reduced_full = paramsP;
-paramsP_reduced_full.dofs = pressure_reduced_dofs_online_parameter;
+% params_reduced_full = params;
+% params_reduced_full.dofs = velocity_reduced_dofs_online_parameter;
+% paramsP_reduced_full = paramsP;
+% paramsP_reduced_full.dofs = pressure_reduced_dofs_online_parameter;
 
-for i=1:1:params_reduced_full.dimrange
-    a = figure();
-    axis equal
-    [scalar_dofs, scalar_df_info] = ...
-        ldg_scalar_component(params_reduced_full.dofs,i,params_reduced_full);
-    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
-    disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
-    %subplot(params.dimrange,1,i)
-    %title(['Velocity degree of freedom number ',num2str(i)])
-    if i==1
-        title(['Velocity in x direction RB solution (Schur)'])
-    else
-        title(['Velocity in y direction RB solution (Schur)'])
-    end
-    axis equal
-    axis tight
-    ldg_plot(sdf,transformed_grid,params_reduced_full);
-    plot(transformed_grid);
-    saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-    saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
-end
-
-for i=1:1:paramsP_reduced_full.dimrange
-    a = figure();
-    [scalar_dofs, scalar_df_info] = ...
-        ldg_scalar_component(paramsP_reduced_full.dofs,i,paramsP_reduced_full);
-    sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
-    disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
-    %subplot(paramsP.dimrange,1,i)
-    title('Pressure RB solution (Schur)')
-    axis equal
-    axis tight
-    ldg_plot(sdf,transformed_grid,paramsP_reduced_full);
-    plot(transformed_grid);
-    saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-    saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
-end
+% for i=1:1:params_reduced_full.dimrange
+%     a = figure();
+%     axis equal
+%     [scalar_dofs, scalar_df_info] = ...
+%         ldg_scalar_component(params_reduced_full.dofs,i,params_reduced_full);
+%     sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+%     disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
+%     %subplot(params.dimrange,1,i)
+%     %title(['Velocity degree of freedom number ',num2str(i)])
+%     if i==1
+%         title(['Velocity in x direction RB solution (Schur)'])
+%     else
+%         title(['Velocity in y direction RB solution (Schur)'])
+%     end
+%     axis equal
+%     axis tight
+%     ldg_plot(sdf,transformed_grid,params_reduced_full);
+%     plot(transformed_grid);
+% %     saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+% %     saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+% end
+% 
+% for i=1:1:paramsP_reduced_full.dimrange
+%     a = figure();
+%     [scalar_dofs, scalar_df_info] = ...
+%         ldg_scalar_component(paramsP_reduced_full.dofs,i,paramsP_reduced_full);
+%     sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+%     disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
+%     %subplot(paramsP.dimrange,1,i)
+%     title('Pressure RB solution (Schur)')
+%     axis equal
+%     axis tight
+%     ldg_plot(sdf,transformed_grid,paramsP_reduced_full);
+%     plot(transformed_grid);
+% %     saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+% %     saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+% end
 
 t_end_rb_2 = toc();
 
@@ -157,7 +156,7 @@ error_rb_pressure_online_parameter = ...
     (paramsP.dofs' * inner_product_matrix_pressure * paramsP.dofs);
 
 disp(['Speed up factor : ' num2str(t_end_full/(t_end_rb+t_end_rb_2))]);
-disp(['RB l2 error for velocity : ' ...
+disp(['RB error for velocity : ' ...
     num2str(error_rb_velocity_online_parameter)]);
-disp(['RB l2 error for pressure : ' ...
+disp(['RB error for pressure : ' ...
     num2str(error_rb_pressure_online_parameter)]);
