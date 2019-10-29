@@ -1,3 +1,4 @@
+tic();
 clc
 close all
 clear all
@@ -70,7 +71,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 100;
+N = 10;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -118,7 +119,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 5:5:40;
+k = 1:1:min(size(snapshot_matrix_velocity,2),40);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
@@ -157,9 +158,9 @@ for temp2 = 1:1:length(k)
     
     % Galerkin projection and rb error
     
-    N = 10;
-    x_para = 0.4 + (0.6-0.4).*rand(N,1);
-    y_para = 0.2 + (0.4-0.2).*rand(N,1);
+%     N = 10;
+%     x_para = 0.4 + (0.6-0.4).*rand(N,1);
+%     y_para = 0.2 + (0.4-0.2).*rand(N,1);
     error_rb_velocity = zeros(N,1);
     error_rb_pressure = zeros(N,1);
     
@@ -303,6 +304,24 @@ saveas(a,'nirav/pod_galerkin/size_vs_maximum_reduced_basis_velocity_error_semilo
 saveas(a,'nirav/pod_galerkin/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg');
 
 a = figure();
+semilogy(k,error_rb_velocity_mean,'*-');
+axis tight
+xlabel('Size of reduced basis');
+ylabel('Average reduced basis velocity error (log scale)');
+title('Size of reduced basis vs average velocity error (semilog scale)');
+saveas(a,'nirav/pod_galerkin/size_vs_average_reduced_basis_velocity_error_semilog.fig');
+saveas(a,'nirav/pod_galerkin/size_vs_average_reduced_basis_velocity_error_semilog.jpg');
+
+a = figure();
+semilogy(k,error_rb_pressure_mean,'*-');
+axis tight
+xlabel('Size of reduced basis');
+ylabel('Average reduced basis pressure error (log scale)');
+title('Size of reduced basis vs average pressure error (semilog scale)');
+saveas(a,'nirav/pod_galerkin/size_vs_average_reduced_basis_pressure_error_semilog.fig');
+saveas(a,'nirav/pod_galerkin/size_vs_average_reduced_basis_pressure_error_semilog.jpg');
+
+a = figure();
 semilogy(k,error_rb_pressure_max,'*-');
 axis tight
 xlabel('Size of reduced basis');
@@ -342,3 +361,6 @@ zlabel('Relative error rb Pressure')
 title('RB relative error pressure over parameter space')
 saveas(a,'nirav/pod_galerkin/rb_error_pressure.fig');
 saveas(a,'nirav/pod_galerkin/rb_error_pressure.jpg');
+total_time = toc();
+
+disp(['Total time for script : ' num2str(total_time)]);
