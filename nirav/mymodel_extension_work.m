@@ -1,7 +1,8 @@
-tic();
 clc
 close all
 clear all
+clock_start_time = clock;
+total_start_time = tic();
 %% grid making and saving
 % pdetool
 % draw geometry and save file as pdetool1_extension.m or similar
@@ -71,7 +72,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 10;
+N = 7;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -119,7 +120,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 1:1:min(size(snapshot_matrix_velocity,2),40);
+k = 1:1:min(size(snapshot_matrix_velocity,2),10);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
@@ -129,10 +130,10 @@ online_simulation_time = zeros(length(k),1);
 
 for temp2 = 1:1:length(k)
     disp(['Entering POD-Galerkin number ' num2str(temp2) ' of ' num2str(length(k))])
-    min_eigen_value = 0;
+    min_eigen_value = 1e-8;
     max_reduced_basis = k(temp2);
-    inner_product_matrix_velocity = ldg_mass_matrix(params,grid,params) + ...
-        ldg_h1_seminorm_mass_matrix_assembly(params,grid);
+    inner_product_matrix_velocity = ldg_mass_matrix(params,grid,params);% ...
+        %+ ldg_h1_seminorm_mass_matrix_assembly(params,grid);
     
     [ reduced_basis_matrix_B_velocity, eigen_values_velocity, ...
         error_estimate_velocity] = ...
@@ -143,7 +144,7 @@ for temp2 = 1:1:length(k)
     disp(['Before comparing error, please verify that ' newline...
         'error estimator and actual error are measured in same norm'])
     
-    min_eigen_value = 0;
+    min_eigen_value = 1e-10;
     max_reduced_basis = 5;
     inner_product_matrix_pressure = ldg_mass_matrix(paramsP,grid,paramsP);
     
@@ -361,6 +362,7 @@ zlabel('Relative error rb Pressure')
 title('RB relative error pressure over parameter space')
 saveas(a,'nirav/pod_galerkin/rb_error_pressure.fig');
 saveas(a,'nirav/pod_galerkin/rb_error_pressure.jpg');
-total_time = toc();
 
-disp(['Total time for script : ' num2str(total_time)]);
+total_end_time = toc(total_start_time);
+disp(['Total time for script : ' num2str(total_end_time)]);
+etime(clock,clock_start_time)

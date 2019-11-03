@@ -31,6 +31,7 @@ for i = 1:1:max_reduced_basis
 end
 
 error_estimate = sqrt(sum(eigen_values(...
-    size(reduced_basis_matrix_B,2)+1:size(snapshot_matrix,2)))) / sqrt(sum(eigen_values));
+    size(reduced_basis_matrix_B,2)+1:size(snapshot_matrix,2)))) / ...
+    sqrt(sum(eigen_values));
 
 end
