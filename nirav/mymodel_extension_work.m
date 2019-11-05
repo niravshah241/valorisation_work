@@ -47,8 +47,8 @@ paramsP.dofs = zeros(paramsP.ndofs,1);
 params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
-% params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
-params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
+params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
+% params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
 
 tic();
 c11 = 1e-2;
@@ -72,7 +72,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 7;
+N = 3;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -125,6 +125,8 @@ error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
 error_rb_pressure_max = zeros(length(k),1);
+error_estimate_velocity = zeros(length(k),1);
+error_estimate_pressure = zeros(length(k),1);
 speedup = zeros(length(k),1);
 online_simulation_time = zeros(length(k),1);
 
@@ -132,36 +134,38 @@ for temp2 = 1:1:length(k)
     disp(['Entering POD-Galerkin number ' num2str(temp2) ' of ' num2str(length(k))])
     min_eigen_value = 1e-8;
     max_reduced_basis = k(temp2);
+    
     inner_product_matrix_velocity = ldg_mass_matrix(params,grid,params);% ...
-        %+ ldg_h1_seminorm_mass_matrix_assembly(params,grid);
+    %+ ldg_h1_seminorm_mass_matrix_assembly(params,grid);
     
     [ reduced_basis_matrix_B_velocity, eigen_values_velocity, ...
-        error_estimate_velocity] = ...
+        error_estimate_velocity(temp2)] = ...
         pod_extension( snapshot_matrix_velocity, params, min_eigen_value, ...
         max_reduced_basis, inner_product_matrix_velocity);
     
-    disp(['Max error estimate for velocity : ' num2str(error_estimate_velocity)]);
+    disp(['Max error estimate for velocity : ' num2str(error_estimate_velocity(temp2))]);
     disp(['Before comparing error, please verify that ' newline...
         'error estimator and actual error are measured in same norm'])
     
     min_eigen_value = 1e-10;
-    max_reduced_basis = 5;
+    max_reduced_basis = max(k);
+    
     inner_product_matrix_pressure = ldg_mass_matrix(paramsP,grid,paramsP);
     
     [ reduced_basis_matrix_B_pressure, eigen_values_pressure, ...
-        error_estimate_pressure] = ...
+        error_estimate_pressure(temp2)] = ...
         pod_extension( snapshot_matrix_pressure, paramsP, min_eigen_value, ...
         max_reduced_basis, inner_product_matrix_pressure);
     
-    disp(['Max error estimate for pressure : ' num2str(error_estimate_pressure)]);
+    disp(['Max error estimate for pressure : ' num2str(error_estimate_pressure(temp2))]);
     disp(['Before comparing error, please verify that ' newline...
         'error estimator and actual error are measured in same norm'])
     
     % Galerkin projection and rb error
     
-%     N = 10;
-%     x_para = 0.4 + (0.6-0.4).*rand(N,1);
-%     y_para = 0.2 + (0.4-0.2).*rand(N,1);
+    %     N = 10;
+    %     x_para = 0.4 + (0.6-0.4).*rand(N,1);
+    %     y_para = 0.2 + (0.4-0.2).*rand(N,1);
     error_rb_velocity = zeros(N,1);
     error_rb_pressure = zeros(N,1);
     
