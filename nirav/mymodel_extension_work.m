@@ -47,8 +47,8 @@ paramsP.dofs = zeros(paramsP.ndofs,1);
 params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
-params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
-% params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
+% params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
+params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
 
 tic();
 c11 = 1e-2;
@@ -72,7 +72,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 4;
+N = 10;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -133,7 +133,7 @@ online_simulation_time = zeros(length(k),1);
 
 for temp2 = 1:1:length(k)
     disp(['Entering POD-Galerkin number ' num2str(temp2) ' of ' num2str(length(k))])
-    min_eigen_value = [1e-6 1e-8];
+    min_eigen_value = [0 0];
     max_reduced_basis = [k(temp2) k(temp2)];
     
     inner_product_matrix_velocity = ldg_mass_matrix(params,grid,params) ...
@@ -148,7 +148,7 @@ for temp2 = 1:1:length(k)
     %     disp(['Before comparing error, please verify that ' newline...
     %         'error estimator and actual error are measured in same norm'])
     
-    min_eigen_value = 1e-10;
+    min_eigen_value = 0;
     max_reduced_basis = k(temp2);
     
     inner_product_matrix_pressure = ldg_mass_matrix(paramsP,grid,paramsP);
