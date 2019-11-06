@@ -101,7 +101,7 @@ tic();
 % params_reduced_full.dofs = velocity_reduced_dofs_online_parameter;
 % paramsP_reduced_full = paramsP;
 % paramsP_reduced_full.dofs = pressure_reduced_dofs_online_parameter;
-
+% 
 % for i=1:1:params_reduced_full.dimrange
 %     a = figure();
 %     axis equal

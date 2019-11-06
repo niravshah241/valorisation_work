@@ -5,7 +5,7 @@ function [ reduced_basis_matrix_B, eigen_values, error_estimate] = ...
 %   Detailed explanation goes here
 
 error_estimate = zeros(params.dimrange,1);
-
+total_length = 0;
 for k = 1:1:params.dimrange
     ns = size(snapshot_matrix,2);
     M = inner_product_matrix...
@@ -40,6 +40,20 @@ for k = 1:1:params.dimrange
     error_estimate(k) = sqrt(sum(eigen_values{k}(...
         size(reduced_basis_matrix_B{k},2)+1:size(snapshot_matrix,2)))) / ...
         sqrt(sum(eigen_values{k}));
+    total_length = total_length + size(reduced_basis_matrix_B{k},2);
 end
+
+reduced_basis_matrix_B_velocity = zeros(params.ndofs,total_length);
+i = 0;
+
+for k = 1:1:params.dimrange
+    for l = 1:1:size(reduced_basis_matrix_B{k},2)
+        i = i+1;
+        reduced_basis_matrix_B_velocity(k:params.dimrange:params.ndofs,i) = ...
+            reduced_basis_matrix_B{k}(:,l);
+    end
+end
+
+reduced_basis_matrix_B = reduced_basis_matrix_B_velocity;
 
 end
