@@ -72,7 +72,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 10;
+N = 20;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -120,7 +120,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 1:1:min(size(snapshot_matrix_velocity,2),10);
+k = 1:1:min(size(snapshot_matrix_velocity,2),20);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
