@@ -47,8 +47,8 @@ paramsP.dofs = zeros(paramsP.ndofs,1);
 params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
-% params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
-params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
+params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
+% params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
 
 tic();
 c11 = 1e-2;
@@ -72,7 +72,7 @@ close all
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
 
 % % Parametrization
-N = 20;
+N = 50;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -120,7 +120,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 1:1:min(size(snapshot_matrix_velocity,2),20);
+k = 1:1:min(size(snapshot_matrix_velocity,2),10);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
@@ -164,9 +164,9 @@ for temp2 = 1:1:length(k)
     
     % Galerkin projection and rb error
     
-    %     N = 10;
-    %     x_para = 0.4 + (0.6-0.4).*rand(N,1);
-    %     y_para = 0.2 + (0.4-0.2).*rand(N,1);
+    N = 10;
+    x_para = 0.4 + (0.6-0.4).*rand(N,1);
+    y_para = 0.2 + (0.4-0.2).*rand(N,1);
     error_rb_velocity = zeros(N,1);
     error_rb_pressure = zeros(N,1);
     
@@ -363,7 +363,7 @@ saveas(a,'nirav/pod_galerkin/size_vs_maximum_reduced_basis_pressure_error_semilo
 % title('Size of reduced basis vs average energy error (semilog scale)');
 % saveas(a,'nirav/pod_galerkin/size_vs_average_reduced_basis_energy_error_semilog.fig');
 % saveas(a,'nirav/pod_galerkin/size_vs_average_reduced_basis_energy_error_semilog.jpg');
-% 
+%
 % a = figure();
 % semilogy(k,error_rb_energy_max,'*-');
 % axis tight
