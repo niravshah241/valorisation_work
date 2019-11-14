@@ -48,13 +48,14 @@ params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
 params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
-% params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
+params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
 
 tic();
 c11 = 1e-2;
 qdeg = params.qdeg;
 mu = params.mu;
 
+tic();
 % Creating stiffness matrix
 [ stiffness_matrix_offline, params, bilinear_side, diffusive_term, ...
     coercivity_term, flux_approximation, bilinear_side_pressure_terms, ...
@@ -63,16 +64,35 @@ mu = params.mu;
     ( params, paramsP, grid, mu, c11);
 
 % Creating rhs vector
+
 [ rhs_offline, params, linear_side_offline, source_vector_offline, ...
     linear_side_continuity ] = assemble_rhs_extension...
     ( params, paramsP, grid, mu, c11);
-
 close all
+t_DG_assembly = toc();
+disp(['Time for assembling DG stiffness matrix and rhs : ' num2str(t_DG_assembly)]);
+
+tic();
 [ params, paramsP] = solve_plot_solution_schur...
     ( params, paramsP, grid, rhs_offline, stiffness_matrix_offline);
+t_DG_solve = toc();
+disp(['Time for solving DG system : ' num2str(t_DG_solve)]);
+disp(['Time for assembling+solving DG system : ' ...
+    num2str(t_DG_assembly+t_DG_solve)]);
+
+%%%% assembling offline stifness matrix and rhs
+%%%% This is true offline time as extension files are used for parametrization
+%%%% purpose whereas real assemblies can be assembled faster,
+%%%% if parametritaion is not needed.
+%%%% The difference for assembly could be upto 3 times.
+% tic();
+% [ params, paramsP, rhs, stifness_matrix] = ...
+%     assemble_stifness_matrix( params, paramsP, grid, params.qdeg, mu, c11 );
+% t_DG_assembly_short = toc();
+% disp(['Time for assembling DG stiffness matrix and rhs : ' num2str(t_DG_assembly_short)]);
 
 % % Parametrization
-N = 10;
+N = 20;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -120,7 +140,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 1:1:min(size(snapshot_matrix_velocity,2),10);
+k = 1:1:min(size(snapshot_matrix_velocity,2),20);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
@@ -164,9 +184,9 @@ for temp2 = 1:1:length(k)
     
     % Galerkin projection and rb error
     
-%     N = 10;
-%     x_para = 0.4 + (0.6-0.4).*rand(N,1);
-%     y_para = 0.2 + (0.4-0.2).*rand(N,1);
+    N = 10;
+    x_para = 0.4 + (0.6-0.4).*rand(N,1);
+    y_para = 0.2 + (0.4-0.2).*rand(N,1);
     error_rb_velocity = zeros(N,1);
     error_rb_pressure = zeros(N,1);
     
@@ -296,6 +316,7 @@ for temp2 = 1:1:length(k)
     %% %%%online phase
     mu_x = 0.43; % online parameter 1
     mu_y = 0.36; % online parameter 2
+    plot_online_solution = 0;
     online_phase;
     speedup(temp2) = t_end_full/(t_end_rb+t_end_rb_2);
     online_simulation_time(temp2) = t_end_rb+t_end_rb_2;
