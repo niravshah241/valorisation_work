@@ -1,10 +1,3 @@
-[ transformed_grid, F_transformation_matrix, ...
-    C_translation_vector] = transform_grid( params, grid, mu_x, mu_y);
-
-for i = 1:1:length(F_transformation_matrix)
-    para_mapping{i} = inv(F_transformation_matrix{i});
-end
-
 plus_plus_assembly_offline = ...
     n_u_tensor_jump_n_phi_tensor_jump_plus_plus_assembly...
     (grid,params);

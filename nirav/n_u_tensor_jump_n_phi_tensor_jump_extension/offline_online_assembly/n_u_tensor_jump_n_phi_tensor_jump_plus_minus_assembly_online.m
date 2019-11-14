@@ -10,7 +10,7 @@ plus_minus_21_assembly = offline_assembly_plus_minus.plus_minus_21;
 plus_minus_22_assembly = offline_assembly_plus_minus.plus_minus_22;
 
 for i = 1:1:length(el_subd)
-    para_mapping{i} = inv(poldecomp(inv(para_mapping{i})));    
+    para_mapping{i} = poldecomp((para_mapping{i})');
 end
 
 for i = 1:1:length(el_subd)
