@@ -92,7 +92,7 @@ disp(['Time for assembling+solving DG system : ' ...
 % disp(['Time for assembling DG stiffness matrix and rhs : ' num2str(t_DG_assembly_short)]);
 
 % % Parametrization
-N = 100;
+N = 25;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -184,9 +184,9 @@ for temp2 = 1:1:length(k)
     
     % Galerkin projection and rb error
     
-    N = 10;
-    x_para = 0.4 + (0.6-0.4).*rand(N,1);
-    y_para = 0.2 + (0.4-0.2).*rand(N,1);
+%     N = 10;
+%     x_para = 0.4 + (0.6-0.4).*rand(N,1);
+%     y_para = 0.2 + (0.4-0.2).*rand(N,1);
     error_rb_velocity = zeros(N,1);
     error_rb_pressure = zeros(N,1);
     
