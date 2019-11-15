@@ -92,7 +92,7 @@ disp(['Time for assembling+solving DG system : ' ...
 % disp(['Time for assembling DG stiffness matrix and rhs : ' num2str(t_DG_assembly_short)]);
 
 % % Parametrization
-N = 20;
+N = 100;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
