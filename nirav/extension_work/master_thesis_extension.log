@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  28 OCT 2019 05:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  17 NOV 2019 22:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -991,6 +991,58 @@ LaTeX Warning: Label `sub@pre_rb' multiply defined.
 
 LaTeX Warning: Label `sub@pre_rb@cref' multiply defined.
 
+
+LaTeX Warning: Label `rb_max_velocity_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `rb_max_velocity_error_vs_size@cref' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_max_velocity_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_max_velocity_error_vs_size@cref' multiply defined.
+
+
+
+LaTeX Warning: Label `rb_avg_velocity_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `rb_avg_velocity_error_vs_size@cref' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_avg_velocity_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_avg_velocity_error_vs_size@cref' multiply defined.
+
+
+
+LaTeX Warning: Label `rb_max_pressure_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `rb_max_pressure_error_vs_size@cref' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_max_pressure_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_max_pressure_error_vs_size@cref' multiply defined.
+
+
+
+LaTeX Warning: Label `rb_avg_pressure_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `rb_avg_pressure_error_vs_size@cref' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_avg_pressure_error_vs_size' multiply defined.
+
+
+LaTeX Warning: Label `sub@rb_avg_pressure_error_vs_size@cref' multiply defined.
+
+
 )
 \openout1 = `master_thesis_extension.aux'.
 
@@ -1162,8 +1214,18 @@ Overfull \hbox (3.38892pt too wide) detected at line 26
  []
 
 
-Overfull \hbox (0.33336pt too wide) detected at line 28
- []\OT1/cmr/m/n/10 xxx
+Overfull \hbox (3.38892pt too wide) detected at line 27
+ []\OT1/cmr/m/n/10 xxiii
+ []
+
+
+Overfull \hbox (3.11115pt too wide) detected at line 28
+ []\OT1/cmr/m/n/10 xxix
+ []
+
+
+Overfull \hbox (11.16673pt too wide) detected at line 30
+ []\OT1/cmr/m/n/10 xxxvii
  []
 
 )
@@ -1313,7 +1375,7 @@ Chapter 4.
 [17
 
 ]
-Overfull \hbox (13.93231pt too wide) detected at line 922
+Overfull \hbox (13.93231pt too wide) detected at line 933
 [] [] \OT1/cmr/m/n/10 = [] []
  []
 
@@ -1324,19 +1386,19 @@ File: images/velocity_x_lid_driven_cavity.png Graphic file (type png)
 
 <use images/velocity_x_lid_driven_cavity.png>
 Package pdftex.def Info: images/velocity_x_lid_driven_cavity.png used on input 
-line 965.
+line 976.
 (pdftex.def)             Requested size: 273.1475pt x 146.09267pt.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <9> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 966.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 977.
 
 <images/velocity_y_lid_driven_cavity.png, id=87, 1155.56718pt x 618.05907pt>
 File: images/velocity_y_lid_driven_cavity.png Graphic file (type png)
 
 <use images/velocity_y_lid_driven_cavity.png>
 Package pdftex.def Info: images/velocity_y_lid_driven_cavity.png used on input 
-line 970.
+line 981.
 (pdftex.def)             Requested size: 273.1475pt x 146.09267pt.
 
 <images/pressure_lid_driven_cavity.png, id=88, 1155.56718pt x 618.05907pt>
@@ -1344,7 +1406,7 @@ File: images/pressure_lid_driven_cavity.png Graphic file (type png)
 
 <use images/pressure_lid_driven_cavity.png>
 Package pdftex.def Info: images/pressure_lid_driven_cavity.png used on input li
-ne 975.
+ne 986.
 (pdftex.def)             Requested size: 273.1475pt x 146.09267pt.
 
 <images/step_size_vs_velocity_l2_error_semilog.jpg, id=89, 894.34125pt x 647.41
@@ -1353,7 +1415,7 @@ File: images/step_size_vs_velocity_l2_error_semilog.jpg Graphic file (type jpg)
 
  <use images/step_size_vs_velocity_l2_error_semilog.jpg>
 Package pdftex.def Info: images/step_size_vs_velocity_l2_error_semilog.jpg used
- on input line 1004.
+ on input line 1015.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
 <images/step_size_vs_velocity_l2_error_loglog.jpg, id=90, 894.34125pt x 647.418
@@ -1361,7 +1423,7 @@ Package pdftex.def Info: images/step_size_vs_velocity_l2_error_semilog.jpg used
 File: images/step_size_vs_velocity_l2_error_loglog.jpg Graphic file (type jpg)
  <use images/step_size_vs_velocity_l2_error_loglog.jpg>
 Package pdftex.def Info: images/step_size_vs_velocity_l2_error_loglog.jpg used 
-on input line 1007.
+on input line 1018.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
 <images/step_size_vs_pressure_l2_error_semilog.jpg, id=91, 894.34125pt x 647.41
@@ -1370,7 +1432,7 @@ File: images/step_size_vs_pressure_l2_error_semilog.jpg Graphic file (type jpg)
 
  <use images/step_size_vs_pressure_l2_error_semilog.jpg>
 Package pdftex.def Info: images/step_size_vs_pressure_l2_error_semilog.jpg used
- on input line 1017.
+ on input line 1028.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
 <images/step_size_vs_pressure_l2_error_loglog.jpg, id=92, 894.34125pt x 647.418
@@ -1378,7 +1440,7 @@ Package pdftex.def Info: images/step_size_vs_pressure_l2_error_semilog.jpg used
 File: images/step_size_vs_pressure_l2_error_loglog.jpg Graphic file (type jpg)
  <use images/step_size_vs_pressure_l2_error_loglog.jpg>
 Package pdftex.def Info: images/step_size_vs_pressure_l2_error_loglog.jpg used 
-on input line 1020.
+on input line 1031.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
  [19
 
@@ -1392,183 +1454,357 @@ emilog.jpg> <./images/step_size_vs_pressure_l2_error_loglog.jpg>]
 File: images/pod_figure.jpg Graphic file (type jpg)
 
 <use images/pod_figure.jpg>
-Package pdftex.def Info: images/pod_figure.jpg used on input line 1067.
+Package pdftex.def Info: images/pod_figure.jpg used on input line 1080.
 (pdftex.def)             Requested size: 341.43309pt x 256.07324pt.
 
-<images/velocity_eigen_value_semilog.jpg, id=110, 894.34125pt x 647.41875pt>
-File: images/velocity_eigen_value_semilog.jpg Graphic file (type jpg)
+<images/x_velocity_eigen_value_semilog.jpg, id=110, 894.34125pt x 647.41875pt>
+File: images/x_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
-<use images/velocity_eigen_value_semilog.jpg>
-Package pdftex.def Info: images/velocity_eigen_value_semilog.jpg used on input 
-line 1074.
-(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+<use images/x_velocity_eigen_value_semilog.jpg>
+Package pdftex.def Info: images/x_velocity_eigen_value_semilog.jpg used on inpu
+t line 1087.
+(pdftex.def)             Requested size: 341.4362pt x 219.36867pt.
 
-<images/pressure_eigen_value_semilog.jpg, id=111, 894.34125pt x 647.41875pt>
+<images/y_velocity_eigen_value_semilog.jpg, id=111, 894.34125pt x 647.41875pt>
+File: images/y_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
+
+<use images/y_velocity_eigen_value_semilog.jpg>
+Package pdftex.def Info: images/y_velocity_eigen_value_semilog.jpg used on inpu
+t line 1090.
+(pdftex.def)             Requested size: 341.4362pt x 219.36867pt.
+
+<images/pressure_eigen_value_semilog.jpg, id=112, 894.34125pt x 647.41875pt>
 File: images/pressure_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use images/pressure_eigen_value_semilog.jpg>
 Package pdftex.def Info: images/pressure_eigen_value_semilog.jpg used on input 
-line 1077.
-(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+line 1093.
+(pdftex.def)             Requested size: 341.4362pt x 219.36867pt.
 
-<images/rb_error_velocity.jpg, id=112, 894.34125pt x 647.41875pt>
+
+LaTeX Warning: Float too large for page by 1.87016pt on input line 1099.
+
+<images/rb_error_velocity.jpg, id=113, 894.34125pt x 647.41875pt>
 File: images/rb_error_velocity.jpg Graphic file (type jpg)
 
 <use images/rb_error_velocity.jpg>
-Package pdftex.def Info: images/rb_error_velocity.jpg used on input line 1087.
+Package pdftex.def Info: images/rb_error_velocity.jpg used on input line 1103.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
-<images/rb_error_pressure.jpg, id=113, 894.34125pt x 647.41875pt>
+<images/rb_error_pressure.jpg, id=114, 894.34125pt x 647.41875pt>
 File: images/rb_error_pressure.jpg Graphic file (type jpg)
 
 <use images/rb_error_pressure.jpg>
-Package pdftex.def Info: images/rb_error_pressure.jpg used on input line 1090.
+Package pdftex.def Info: images/rb_error_pressure.jpg used on input line 1106.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
-<images/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg, id=114, 894.3
+<images/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg, id=115, 894.3
 4125pt x 647.41875pt>
 File: images/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg Graphic f
 ile (type jpg)
 
 <use images/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg>
 Package pdftex.def Info: images/size_vs_maximum_reduced_basis_velocity_error_se
-milog.jpg used on input line 1099.
-(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+milog.jpg used on input line 1116.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
 
-<images/size_vs_online_simulation_time_semilog.jpg, id=115, 894.34125pt x 647.4
+<images/size_vs_average_reduced_basis_velocity_error_semilog.jpg, id=116, 894.3
+4125pt x 647.41875pt>
+File: images/size_vs_average_reduced_basis_velocity_error_semilog.jpg Graphic f
+ile (type jpg)
+
+<use images/size_vs_average_reduced_basis_velocity_error_semilog.jpg>
+Package pdftex.def Info: images/size_vs_average_reduced_basis_velocity_error_se
+milog.jpg used on input line 1120.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+<images/size_vs_maximum_reduced_basis_pressure_error_semilog.jpg, id=117, 894.3
+4125pt x 647.41875pt>
+File: images/size_vs_maximum_reduced_basis_pressure_error_semilog.jpg Graphic f
+ile (type jpg)
+
+<use images/size_vs_maximum_reduced_basis_pressure_error_semilog.jpg>
+Package pdftex.def Info: images/size_vs_maximum_reduced_basis_pressure_error_se
+milog.jpg used on input line 1128.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+<images/size_vs_average_reduced_basis_pressure_error_semilog.jpg, id=118, 894.3
+4125pt x 647.41875pt>
+File: images/size_vs_average_reduced_basis_pressure_error_semilog.jpg Graphic f
+ile (type jpg)
+
+<use images/size_vs_average_reduced_basis_pressure_error_semilog.jpg>
+Package pdftex.def Info: images/size_vs_average_reduced_basis_pressure_error_se
+milog.jpg used on input line 1132.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+
+LaTeX Warning: Float too large for page by 5.87018pt on input line 1138.
+
+
+<images/size_vs_online_simulation_time_semilog.jpg, id=119, 894.34125pt x 647.4
 1875pt>
 File: images/size_vs_online_simulation_time_semilog.jpg Graphic file (type jpg)
 
  <use images/size_vs_online_simulation_time_semilog.jpg>
 Package pdftex.def Info: images/size_vs_online_simulation_time_semilog.jpg used
- on input line 1105.
+ on input line 1141.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
-<images/size_vs_reduced_basis_semilog.jpg, id=116, 894.34125pt x 647.41875pt>
+<images/size_vs_reduced_basis_semilog.jpg, id=120, 894.34125pt x 647.41875pt>
 File: images/size_vs_reduced_basis_semilog.jpg Graphic file (type jpg)
 
 <use images/size_vs_reduced_basis_semilog.jpg>
 Package pdftex.def Info: images/size_vs_reduced_basis_semilog.jpg used on input
- line 1111.
+ line 1147.
 (pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
 
-<images/offline_velocity_1_at_43_36.jpg, id=117, 894.34125pt x 647.41875pt>
+<images/offline_velocity_1_at_43_36.jpg, id=121, 894.34125pt x 647.41875pt>
 File: images/offline_velocity_1_at_43_36.jpg Graphic file (type jpg)
 
 <use images/offline_velocity_1_at_43_36.jpg>
 Package pdftex.def Info: images/offline_velocity_1_at_43_36.jpg used on input l
-ine 1120.
+ine 1156.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/online_velocity_1_at_43_36.jpg, id=118, 894.34125pt x 647.41875pt>
+<images/online_velocity_1_at_43_36.jpg, id=122, 894.34125pt x 647.41875pt>
 File: images/online_velocity_1_at_43_36.jpg Graphic file (type jpg)
 
 <use images/online_velocity_1_at_43_36.jpg>
 Package pdftex.def Info: images/online_velocity_1_at_43_36.jpg used on input li
-ne 1124.
+ne 1160.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/offline_velocity_2_at_43_36.jpg, id=119, 894.34125pt x 647.41875pt>
+<images/offline_velocity_2_at_43_36.jpg, id=123, 894.34125pt x 647.41875pt>
 File: images/offline_velocity_2_at_43_36.jpg Graphic file (type jpg)
 
 <use images/offline_velocity_2_at_43_36.jpg>
 Package pdftex.def Info: images/offline_velocity_2_at_43_36.jpg used on input l
-ine 1130.
+ine 1166.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/online_velocity_2_at_43_36.jpg, id=120, 894.34125pt x 647.41875pt>
+<images/online_velocity_2_at_43_36.jpg, id=124, 894.34125pt x 647.41875pt>
 File: images/online_velocity_2_at_43_36.jpg Graphic file (type jpg)
 
 <use images/online_velocity_2_at_43_36.jpg>
 Package pdftex.def Info: images/online_velocity_2_at_43_36.jpg used on input li
-ne 1134.
+ne 1170.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/offline_pressure_at_43_36.jpg, id=121, 894.34125pt x 647.41875pt>
+<images/offline_pressure_at_43_36.jpg, id=125, 894.34125pt x 647.41875pt>
 File: images/offline_pressure_at_43_36.jpg Graphic file (type jpg)
 
 <use images/offline_pressure_at_43_36.jpg>
 Package pdftex.def Info: images/offline_pressure_at_43_36.jpg used on input lin
-e 1140.
+e 1176.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/online_pressure_at_43_36.jpg, id=122, 894.34125pt x 647.41875pt>
+<images/online_pressure_at_43_36.jpg, id=126, 894.34125pt x 647.41875pt>
 File: images/online_pressure_at_43_36.jpg Graphic file (type jpg)
 
 <use images/online_pressure_at_43_36.jpg>
 Package pdftex.def Info: images/online_pressure_at_43_36.jpg used on input line
- 1144.
+ 1180.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/offline_velocity_1_at_55_25.jpg, id=123, 894.34125pt x 647.41875pt>
+<images/offline_velocity_1_at_55_25.jpg, id=127, 894.34125pt x 647.41875pt>
 File: images/offline_velocity_1_at_55_25.jpg Graphic file (type jpg)
 
 <use images/offline_velocity_1_at_55_25.jpg>
 Package pdftex.def Info: images/offline_velocity_1_at_55_25.jpg used on input l
-ine 1153.
+ine 1189.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/online_velocity_1_at_55_25.jpg, id=124, 894.34125pt x 647.41875pt>
+<images/online_velocity_1_at_55_25.jpg, id=128, 894.34125pt x 647.41875pt>
 File: images/online_velocity_1_at_55_25.jpg Graphic file (type jpg)
 
 <use images/online_velocity_1_at_55_25.jpg>
 Package pdftex.def Info: images/online_velocity_1_at_55_25.jpg used on input li
-ne 1157.
+ne 1193.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/offline_velocity_2_at_55_25.jpg, id=125, 894.34125pt x 647.41875pt>
+<images/offline_velocity_2_at_55_25.jpg, id=129, 894.34125pt x 647.41875pt>
 File: images/offline_velocity_2_at_55_25.jpg Graphic file (type jpg)
 
 <use images/offline_velocity_2_at_55_25.jpg>
 Package pdftex.def Info: images/offline_velocity_2_at_55_25.jpg used on input l
-ine 1163.
+ine 1199.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/online_velocity_2_at_55_25.jpg, id=126, 894.34125pt x 647.41875pt>
+<images/online_velocity_2_at_55_25.jpg, id=130, 894.34125pt x 647.41875pt>
 File: images/online_velocity_2_at_55_25.jpg Graphic file (type jpg)
 
 <use images/online_velocity_2_at_55_25.jpg>
 Package pdftex.def Info: images/online_velocity_2_at_55_25.jpg used on input li
-ne 1167.
+ne 1203.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/offline_pressure_at_55_25.jpg, id=127, 894.34125pt x 647.41875pt>
+<images/offline_pressure_at_55_25.jpg, id=131, 894.34125pt x 647.41875pt>
 File: images/offline_pressure_at_55_25.jpg Graphic file (type jpg)
 
 <use images/offline_pressure_at_55_25.jpg>
 Package pdftex.def Info: images/offline_pressure_at_55_25.jpg used on input lin
-e 1173.
+e 1209.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
 
-<images/online_pressure_at_55_25.jpg, id=128, 894.34125pt x 647.41875pt>
+<images/online_pressure_at_55_25.jpg, id=132, 894.34125pt x 647.41875pt>
 File: images/online_pressure_at_55_25.jpg Graphic file (type jpg)
 
 <use images/online_pressure_at_55_25.jpg>
 Package pdftex.def Info: images/online_pressure_at_55_25.jpg used on input line
- 1177.
+ 1213.
 (pdftex.def)             Requested size: 163.88641pt x 118.63452pt.
  [23 <./images/pod_figure.jpg>]
-[24 <./images/velocity_eigen_value_semilog.jpg> <./images/pressure_eigen_value_
-semilog.jpg>] [25 <./images/rb_error_velocity.jpg> <./images/rb_error_pressure.
-jpg>] [26 <./images/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg> <
-./images/size_vs_online_simulation_time_semilog.jpg>] [27 <./images/size_vs_red
-uced_basis_semilog.jpg> <./images/offline_velocity_1_at_43_36.jpg> <./images/on
-line_velocity_1_at_43_36.jpg> <./images/offline_velocity_2_at_43_36.jpg> <./ima
-ges/online_velocity_2_at_43_36.jpg> <./images/offline_pressure_at_43_36.jpg> <.
-/images/online_pressure_at_43_36.jpg>] [28 <./images/offline_velocity_1_at_55_2
-5.jpg> <./images/online_velocity_1_at_55_25.jpg> <./images/offline_velocity_2_a
-t_55_25.jpg> <./images/online_velocity_2_at_55_25.jpg> <./images/offline_pressu
-re_at_55_25.jpg> <./images/online_pressure_at_55_25.jpg>] [29
+[24 <./images/x_velocity_eigen_value_semilog.jpg> <./images/y_velocity_eigen_va
+lue_semilog.jpg> <./images/pressure_eigen_value_semilog.jpg>] [25 <./images/rb_
+error_velocity.jpg> <./images/rb_error_pressure.jpg>] [26 <./images/size_vs_max
+imum_reduced_basis_velocity_error_semilog.jpg> <./images/size_vs_average_reduce
+d_basis_velocity_error_semilog.jpg>] [27 <./images/size_vs_maximum_reduced_basi
+s_pressure_error_semilog.jpg> <./images/size_vs_average_reduced_basis_pressure_
+error_semilog.jpg>] [28 <./images/size_vs_online_simulation_time_semilog.jpg> <
+./images/size_vs_reduced_basis_semilog.jpg>]
+<images/same_train_test/x_velocity_eigen_value_semilog.jpg, id=152, 894.34125pt
+ x 647.41875pt>
+File: images/same_train_test/x_velocity_eigen_value_semilog.jpg Graphic file (t
+ype jpg)
+
+<use images/same_train_test/x_velocity_eigen_value_semilog.jpg>
+Package pdftex.def Info: images/same_train_test/x_velocity_eigen_value_semilog.
+jpg used on input line 1228.
+(pdftex.def)             Requested size: 341.4362pt x 219.36867pt.
+
+<images/same_train_test/y_velocity_eigen_value_semilog.jpg, id=153, 894.34125pt
+ x 647.41875pt>
+File: images/same_train_test/y_velocity_eigen_value_semilog.jpg Graphic file (t
+ype jpg)
+
+<use images/same_train_test/y_velocity_eigen_value_semilog.jpg>
+Package pdftex.def Info: images/same_train_test/y_velocity_eigen_value_semilog.
+jpg used on input line 1231.
+(pdftex.def)             Requested size: 341.4362pt x 219.36867pt.
+
+<images/same_train_test/pressure_eigen_value_semilog.jpg, id=154, 894.34125pt x
+ 647.41875pt>
+File: images/same_train_test/pressure_eigen_value_semilog.jpg Graphic file (typ
+e jpg)
+ <use images/same_train_test/pressure_eigen_value_semilog.jpg>
+Package pdftex.def Info: images/same_train_test/pressure_eigen_value_semilog.jp
+g used on input line 1234.
+(pdftex.def)             Requested size: 341.4362pt x 219.36867pt.
 
 
-]
-(./master_thesis_extension.bbl [30]
+LaTeX Warning: Float too large for page by 1.87016pt on input line 1240.
+
+
+<images/same_train_test/rb_error_velocity.jpg, id=155, 894.34125pt x 647.41875p
+t>
+File: images/same_train_test/rb_error_velocity.jpg Graphic file (type jpg)
+ <use images/same_train_test/rb_error_velocity.jpg>
+Package pdftex.def Info: images/same_train_test/rb_error_velocity.jpg used on i
+nput line 1244.
+(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+
+<images/same_train_test/rb_error_pressure.jpg, id=156, 894.34125pt x 647.41875p
+t>
+File: images/same_train_test/rb_error_pressure.jpg Graphic file (type jpg)
+ <use images/same_train_test/rb_error_pressure.jpg>
+Package pdftex.def Info: images/same_train_test/rb_error_pressure.jpg used on i
+nput line 1247.
+(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+
+<images/same_train_test/size_vs_maximum_reduced_basis_velocity_error_semilog.jp
+g, id=157, 894.34125pt x 647.41875pt>
+File: images/same_train_test/size_vs_maximum_reduced_basis_velocity_error_semil
+og.jpg Graphic file (type jpg)
+
+<use images/same_train_test/size_vs_maximum_reduced_basis_velocity_error_semilo
+g.jpg>
+Package pdftex.def Info: images/same_train_test/size_vs_maximum_reduced_basis_v
+elocity_error_semilog.jpg used on input line 1257.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+<images/same_train_test/size_vs_average_reduced_basis_velocity_error_semilog.jp
+g, id=158, 894.34125pt x 647.41875pt>
+File: images/same_train_test/size_vs_average_reduced_basis_velocity_error_semil
+og.jpg Graphic file (type jpg)
+
+<use images/same_train_test/size_vs_average_reduced_basis_velocity_error_semilo
+g.jpg>
+Package pdftex.def Info: images/same_train_test/size_vs_average_reduced_basis_v
+elocity_error_semilog.jpg used on input line 1261.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+<images/same_train_test/size_vs_maximum_reduced_basis_pressure_error_semilog.jp
+g, id=159, 894.34125pt x 647.41875pt>
+File: images/same_train_test/size_vs_maximum_reduced_basis_pressure_error_semil
+og.jpg Graphic file (type jpg)
+
+<use images/same_train_test/size_vs_maximum_reduced_basis_pressure_error_semilo
+g.jpg>
+Package pdftex.def Info: images/same_train_test/size_vs_maximum_reduced_basis_p
+ressure_error_semilog.jpg used on input line 1269.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+<images/same_train_test/size_vs_average_reduced_basis_pressure_error_semilog.jp
+g, id=160, 894.34125pt x 647.41875pt>
+File: images/same_train_test/size_vs_average_reduced_basis_pressure_error_semil
+og.jpg Graphic file (type jpg)
+
+<use images/same_train_test/size_vs_average_reduced_basis_pressure_error_semilo
+g.jpg>
+Package pdftex.def Info: images/same_train_test/size_vs_average_reduced_basis_p
+ressure_error_semilog.jpg used on input line 1273.
+(pdftex.def)             Requested size: 341.4362pt x 329.05301pt.
+
+
+LaTeX Warning: Float too large for page by 5.87018pt on input line 1279.
+
+
+<images/same_train_test/size_vs_online_simulation_time_semilog.jpg, id=161, 894
+.34125pt x 647.41875pt>
+File: images/same_train_test/size_vs_online_simulation_time_semilog.jpg Graphic
+ file (type jpg)
+
+<use images/same_train_test/size_vs_online_simulation_time_semilog.jpg>
+Package pdftex.def Info: images/same_train_test/size_vs_online_simulation_time_
+semilog.jpg used on input line 1282.
+(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+
+<images/same_train_test/size_vs_reduced_basis_semilog.jpg, id=162, 894.34125pt 
+x 647.41875pt>
+File: images/same_train_test/size_vs_reduced_basis_semilog.jpg Graphic file (ty
+pe jpg)
+ <use images/same_train_test/size_vs_reduced_basis_semilog.jpg>
+Package pdftex.def Info: images/same_train_test/size_vs_reduced_basis_semilog.j
+pg used on input line 1288.
+(pdftex.def)             Requested size: 341.43309pt x 247.16762pt.
+
+[29 <./images/offline_velocity_1_at_43_36.jpg> <./images/online_velocity_1_at_4
+3_36.jpg> <./images/offline_velocity_2_at_43_36.jpg> <./images/online_velocity_
+2_at_43_36.jpg> <./images/offline_pressure_at_43_36.jpg> <./images/online_press
+ure_at_43_36.jpg>] [30 <./images/offline_velocity_1_at_55_25.jpg> <./images/onl
+ine_velocity_1_at_55_25.jpg> <./images/offline_velocity_2_at_55_25.jpg> <./imag
+es/online_velocity_2_at_55_25.jpg> <./images/offline_pressure_at_55_25.jpg> <./
+images/online_pressure_at_55_25.jpg>] [31 <./images/same_train_test/x_velocity_
+eigen_value_semilog.jpg> <./images/same_train_test/y_velocity_eigen_value_semil
+og.jpg> <./images/same_train_test/pressure_eigen_value_semilog.jpg>] [32 <./ima
+ges/same_train_test/rb_error_velocity.jpg> <./images/same_train_test/rb_error_p
+ressure.jpg>] [33 <./images/same_train_test/size_vs_maximum_reduced_basis_veloc
+ity_error_semilog.jpg> <./images/same_train_test/size_vs_average_reduced_basis_
+velocity_error_semilog.jpg>] [34 <./images/same_train_test/size_vs_maximum_redu
+ced_basis_pressure_error_semilog.jpg> <./images/same_train_test/size_vs_average
+_reduced_basis_pressure_error_semilog.jpg>] [35 <./images/same_train_test/size_
+vs_online_simulation_time_semilog.jpg> <./images/same_train_test/size_vs_reduce
+d_basis_semilog.jpg>] [36
+
+
+] (./master_thesis_extension.bbl [37]
 Overfull \hbox (58.7622pt too wide) in paragraph at lines 71--73
 \OT1/cmr/m/n/10 https://en.wikiversity.org/wiki/Continuum[]mechanics/Volume[]ch
 ange[]and[]area[]change. 
  []
 
-) [31
+) [38
 
 ] (./master_thesis_extension.aux)
 
@@ -1576,10 +1812,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25483 strings out of 493029
- 489097 string characters out of 6136233
- 549195 words of memory out of 5000000
- 28580 multiletter control sequences out of 15000+600000
+ 25602 strings out of 493029
+ 495141 string characters out of 6136233
+ 548196 words of memory out of 5000000
+ 28693 multiletter control sequences out of 15000+600000
  25002 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,25n,54p,10396b,720s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1605,10 +1841,10 @@ s/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1
 ts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msbm7.pfb>
-Output written on master_thesis_extension.pdf (32 pages, 2722132 bytes).
+Output written on master_thesis_extension.pdf (39 pages, 3366400 bytes).
 PDF statistics:
- 232 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
+ 271 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 158 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
 

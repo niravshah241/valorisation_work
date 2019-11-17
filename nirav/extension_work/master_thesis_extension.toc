@@ -14,7 +14,7 @@
 \contentsline {subsubsection}{Proof :}{xi}
 \contentsline {chapter}{\numberline {3}Geometric parametrization}{xii}
 \contentsline {section}{\numberline {3.1}Transformation from reference domain to parametrized domain}{xiii}
-\contentsline {section}{\numberline {3.2}Simplified mathematical model}{xiv}
+\contentsline {section}{\numberline {3.2}Simplified mathematical model}{xv}
 \contentsline {chapter}{\numberline {4}Reduced basis method}{xvii}
 \contentsline {section}{\numberline {4.1}Snapshot proper orthogonal decomposition}{xvii}
 \contentsline {subsection}{\numberline {4.1.1}Spectral decomposition of snapshots}{xvii}
@@ -24,5 +24,7 @@
 \contentsline {section}{\numberline {5.2}Lid-driven cavity problem}{xix}
 \contentsline {section}{\numberline {5.3}Analytical example}{xix}
 \contentsline {section}{\numberline {5.4}POD-Galerkin method}{xxiii}
-\contentsline {chapter}{Appendices}{xxix}
-\contentsline {section}{\numberline {.1}Description of symbol}{xxx}
+\contentsline {subsection}{\numberline {5.4.1}Different test and train parameters}{xxiii}
+\contentsline {subsection}{\numberline {5.4.2}Same test and train parameters}{xxix}
+\contentsline {chapter}{Appendices}{xxxvi}
+\contentsline {section}{\numberline {.1}Description of symbol}{xxxvii}

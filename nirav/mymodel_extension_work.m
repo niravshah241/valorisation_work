@@ -47,7 +47,7 @@ paramsP.dofs = zeros(paramsP.ndofs,1);
 params.show_sparsity = false;
 paramsP.show_sparsity = params.show_sparsity;
 
-params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
+%params.rhs_func = @(glob,params,paramsP,grid)[ 2 * params.mu - 1 0]';
 params.rhs_func = @(glob,params,paramsP,grid)[0 0]';
 
 tic();
@@ -92,7 +92,7 @@ disp(['Time for assembling+solving DG system : ' ...
 % disp(['Time for assembling DG stiffness matrix and rhs : ' num2str(t_DG_assembly_short)]);
 
 % % Parametrization
-N = 25;
+N = 100;
 x_para = 0.4 + (0.6-0.4).*rand(N,1);
 y_para = 0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
@@ -150,6 +150,9 @@ error_rb_energy = zeros(length(k),1);
 % error_estimate_pressure = zeros(length(k),1);
 speedup = zeros(length(k),1);
 online_simulation_time = zeros(length(k),1);
+N = 10;
+x_para = 0.4 + (0.6-0.4).*rand(N,1);
+y_para = 0.2 + (0.4-0.2).*rand(N,1);
 
 for temp2 = 1:1:length(k)
     disp(['Entering POD-Galerkin number ' num2str(temp2) ' of ' num2str(length(k))])
@@ -317,6 +320,7 @@ for temp2 = 1:1:length(k)
     mu_x = 0.43; % online parameter 1
     mu_y = 0.36; % online parameter 2
     plot_online_solution = 0;
+    save_online_solution = 0;
     online_phase;
     speedup(temp2) = t_end_full/(t_end_rb+t_end_rb_2);
     online_simulation_time(temp2) = t_end_rb+t_end_rb_2;

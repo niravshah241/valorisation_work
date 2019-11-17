@@ -616,13 +616,24 @@ The flux approximation can be transformed as,
 
 The coercivity term can be transformed as,
 
+%\begin{equation}\label{affine_coercivity_term}
+%\begin{split}
+%(\phi_i \otimes n,\phi_j \otimes n)_{\Gamma \cup \Gamma_D} = \int_{\Gamma \cup \Gamma_D} (\phi_i \otimes n) : (\phi_j \otimes n) \ , \\
+%= \sum_{k,l=1}^{d} \det(G_F) \frac{(n_k (G_T)_{kl} (G_T)_{kl} n_k)}{\sum_{m=1}^{d} n_m^2 } \int_{\hat{\Gamma} \cup \hat{\Gamma}_D} (\hat{\phi}_i \otimes \hat{n}) : (\hat{\phi}_j \otimes \hat{n}) \ , \\
+%\hat{n} \in \hat{\mathbb{M}} \ , n \in \mathbb{M} \ .
+%\end{split}
+%\end{equation}
+
 \begin{equation}\label{affine_coercivity_term}
 \begin{split}
-(\phi_i \otimes n,\phi_j \otimes n)_{\Gamma \cup \Gamma_D} = \int_{\Gamma \cup \Gamma_D} (\phi_i \otimes n) : (\phi_j \otimes n) \ , \\
-= \sum_{k,l=1}^{d} \det(G_F) \frac{(n_k (G_T)_{kl} (G_T)_{kl} n_k)}{\sum_{m=1}^{d} n_m^2 } \int_{\hat{\Gamma} \cup \hat{\Gamma}_D} (\hat{\phi}_i \otimes \hat{n}) : (\hat{\phi}_j \otimes \hat{n}) \ , \\
+C_{11}(\phi_i \otimes n,\phi_j \otimes n)_{\Gamma \cup \Gamma_D} = C_{11} \int_{\Gamma \cup \Gamma_D} (\phi_i \otimes n) : (\phi_j \otimes n) \ , \\
+= C_{11}\sum_{k,l=1}^{d} \det(R_F) (n_k (R_T)_{kl} (R_T)_{kl} n_k) \int_{\hat{\Gamma} \cup \hat{\Gamma}_D} (\hat{\phi}_i \otimes \hat{n}) : (\hat{\phi}_j \otimes \hat{n}) \ , \\
 \hat{n} \in \hat{\mathbb{M}} \ , n \in \mathbb{M} \ .
 \end{split}
 \end{equation}
+where, $R_T,R_F$ are rotation of matrices $T,F$ respectively, obtained by polar decomposition. 
+Above, transformation essentially means that only reference unit normal at the edge of element is rotated. The length of edge $dl$ changes to $dl'=k(dl)$ where $k$ is constant corresponding to stretch of edge. In case of affine transformation $k$ is independent of subdomain of $\Omega$. In such case we replace the $C_{11}$ to $kC_{11}$. However, since $C_11$ is actually empirical coefficient updating it to $kC_{11}$ is not necessary as long as coercivity of $A$ is maintained. Practically, $kC_{11}$ should be of same order as $C_{11}$ since the very large deformation is anyhow not recommended. This is due to the fact that large $k$ would mean large mesh deformation which will make mesh quality bad, "truth" solution not reliable at given parameter and in turn, provide bad snapshot corresponding to "truth" solution.
+
 
 The incompressibility term can be transformed as,
 
@@ -1059,9 +1070,11 @@ The domain is shown in Figure \ref{pod_figure}. The geometric parameters were co
 (x_{ref},y_{ref}) = (0.5,0.3) \ .
 \end{gather*}
 
-We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $100$. 
+\subsection{Different test and train parameters}
 
-The reduced basis error was measured at $10$ random points in parameter range $[0.4,0.6] \times [0.2,0.4]$ (Figure \ref{rb_error}). The figures \ref{rb_error_vs_size}, \ref{online_simulation_time} and \ref{speedup} represent reduced basis relative error, online simulation time and speedup vs size of reduced basis respectively. The reduced basis size for pressure is kept constant at $5$ as further eigenvalues are close to machine precision.
+We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure_semilog}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $20$. 
+
+The reduced basis error was measured at $10$ random points in parameter range $[0.4,0.6] \times [0.2,0.4]$ (Figure \ref{rb_error}). The figures \ref{rb_error_vs_size}, \ref{online_simulation_time} and \ref{speedup} represent reduced basis relative error, online simulation time and speedup vs size of reduced basis respectively.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{pod_figure.jpg}
@@ -1071,10 +1084,13 @@ The reduced basis error was measured at $10$ random points in parameter range $[
 
 \begin{figure}
 \begin{subfigure}{\textwidth}	
-  \includegraphics[width=\linewidth]{velocity_eigen_value_semilog.jpg}
-  \caption{Velocity Eigenvalue decay (semilog scale)} 
-  \label{eigen_value_decay_velocity_semilog}
-  \includegraphics[width=\linewidth]{pressure_eigen_value_semilog.jpg}
+  \includegraphics[width=\linewidth,height=0.3\textheight]{x_velocity_eigen_value_semilog.jpg}
+  \caption{$x$-Velocity Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_x_velocity_semilog}
+  \includegraphics[width=\linewidth,height=0.3\textheight]{y_velocity_eigen_value_semilog.jpg}
+  \caption{$y$-Velocity Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_y_velocity_semilog}
+  \includegraphics[width=\linewidth,height=0.3\textheight]{pressure_eigen_value_semilog.jpg}
   \caption{Pressure Eigenvalue decay (semilog scale)} 
   \label{eigen_value_decay_pressure_semilog}
 \end{subfigure}
@@ -1096,8 +1112,28 @@ The reduced basis error was measured at $10$ random points in parameter range $[
 \end{figure}
 
 \begin{figure}
-  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
-  \caption{Reduced basis relative error vs size of reduced basis for velocity (semilog scale)} 
+\begin{subfigure}{\textwidth}
+  \includegraphics[width=\linewidth,height=0.45\textheight]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Reduced basis maximum relative error vs size of reduced basis for velocity (semilog scale)}
+  \label{rb_max_velocity_error_vs_size} 
+  %%%%
+    \includegraphics[width=\linewidth,height=0.45\textheight]{size_vs_average_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Reduced basis average relative error vs size of reduced basis for velocity (semilog scale)}
+  \label{rb_avg_velocity_error_vs_size} 
+  \end{subfigure}
+ \end{figure}
+  %%%%
+  \begin{figure}\ContinuedFloat
+  \begin{subfigure}{\textwidth}
+  \includegraphics[width=\linewidth,height=0.45\textheight]{size_vs_maximum_reduced_basis_pressure_error_semilog.jpg}
+  \caption{Reduced basis maximum relative error vs size of reduced basis for pressure (semilog scale)}
+  \label{rb_max_pressure_error_vs_size} 
+  %%%%
+    \includegraphics[width=\linewidth,height=0.45\textheight]{size_vs_average_reduced_basis_pressure_error_semilog.jpg}
+  \caption{Reduced basis average relative error vs size of reduced basis for pressure (semilog scale)}
+  \label{rb_avg_pressure_error_vs_size} 
+\end{subfigure}
+\caption{Reduced basis site vs Relative error}
 \label{rb_error_vs_size}
 \end{figure}
 
@@ -1179,6 +1215,79 @@ The solution computed by reduced basis and full order at parameter values $[0.43
 \end{subfigure}
 \caption{DG and RB solution $[\mu_x \ \mu_y] = [0.55 \ 0.25]$} 
 \label{dg_rb_solution_55_25}
+\end{figure}
+
+\subsection{Same test and train parameters}
+
+We show eigenvalue decay of the snapshot matrix (Figure \ref{pod_eigenvalue_figure_semilog_2}). The parameters for generating snapshots were generated randomly over space $[0.4,0.6] \times [0.2,0.4]$. The number of parameters considered were $10$. 
+
+The reduced basis error was measured at $10$ random points in parameter range $[0.4,0.6] \times [0.2,0.4]$ (Figure \ref{rb_error_2}). The figures \ref{rb_error_vs_size_2}, \ref{online_simulation_time_2} and \ref{speedup_2} represent reduced basis relative error, online simulation time and speedup vs size of reduced basis respectively.
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth,height=0.3\textheight]{same_train_test/x_velocity_eigen_value_semilog.jpg}
+  \caption{$x$-Velocity Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_x_velocity_semilog_2}
+  \includegraphics[width=\linewidth,height=0.3\textheight]{same_train_test/y_velocity_eigen_value_semilog.jpg}
+  \caption{$y$-Velocity Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_y_velocity_semilog_2}
+  \includegraphics[width=\linewidth,height=0.3\textheight]{same_train_test/pressure_eigen_value_semilog.jpg}
+  \caption{Pressure Eigenvalue decay (semilog scale)} 
+  \label{eigen_value_decay_pressure_semilog_2}
+\end{subfigure}
+\caption{Eigenvalue decay for velocity and pressure}
+\label{pod_eigenvalue_figure_semilog_2}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}	
+  \includegraphics[width=\linewidth]{same_train_test/rb_error_velocity.jpg}
+  \caption{Reduced basis relative error for velocity} 
+  \label{rb_error_velocity_2}
+  \includegraphics[width=\linewidth]{same_train_test/rb_error_pressure.jpg}
+  \caption{Reduced basis relative error for pressure} 
+  \label{rb_error_pressure_2}
+\end{subfigure}
+\caption{Reduced basis error}
+\label{rb_error_2}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{\textwidth}
+  \includegraphics[width=\linewidth,height=0.45\textheight]{same_train_test/size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Reduced basis maximum relative error vs size of reduced basis for velocity (semilog scale)}
+  \label{rb_max_velocity_error_vs_size} 
+  %%%%
+    \includegraphics[width=\linewidth,height=0.45\textheight]{same_train_test/size_vs_average_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Reduced basis average relative error vs size of reduced basis for velocity (semilog scale)}
+  \label{rb_avg_velocity_error_vs_size} 
+  \end{subfigure}
+ \end{figure}
+  %%%%
+  \begin{figure}\ContinuedFloat
+  \begin{subfigure}{\textwidth}
+  \includegraphics[width=\linewidth,height=0.45\textheight]{same_train_test/size_vs_maximum_reduced_basis_pressure_error_semilog.jpg}
+  \caption{Reduced basis maximum relative error vs size of reduced basis for pressure (semilog scale)}
+  \label{rb_max_pressure_error_vs_size} 
+  %%%%
+    \includegraphics[width=\linewidth,height=0.45\textheight]{same_train_test/size_vs_average_reduced_basis_pressure_error_semilog.jpg}
+  \caption{Reduced basis average relative error vs size of reduced basis for pressure (semilog scale)}
+  \label{rb_avg_pressure_error_vs_size} 
+\end{subfigure}
+\caption{Reduced basis site vs Relative error}
+\label{rb_error_vs_size_2}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{same_train_test/size_vs_online_simulation_time_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
+\label{online_simulation_time_2}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{same_train_test/size_vs_reduced_basis_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs speedup (semilog scale)} 
+\label{speedup_2}
 \end{figure}
 
 

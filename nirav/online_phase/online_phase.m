@@ -78,8 +78,10 @@ if plot_online_solution == 1
         axis tight
         ldg_plot(sdf,transformed_grid,params);
         plot(transformed_grid);
-        %     saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-        %     saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+        if save_online_solution == 1
+            saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+            saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+        end
     end
     
     for i=1:1:paramsP.dimrange
@@ -94,8 +96,10 @@ if plot_online_solution == 1
         axis tight
         ldg_plot(sdf,transformed_grid,paramsP);
         plot(transformed_grid);
-        %     saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-        %     saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+        if save_online_solution == 1
+            saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
+            saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+        end
     end
 end
 t_end_full = toc();
