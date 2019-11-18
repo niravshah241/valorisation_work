@@ -140,7 +140,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 1:1:min(size(snapshot_matrix_velocity,2),20);
+k = 1:1:min(size(snapshot_matrix_velocity,2),40);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
