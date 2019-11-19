@@ -1,0 +1,1 @@
+100 train sample randomly generated and 10 test sample random generated within [0.4,0.6]X[0.2,0.4] with expected mean at (0.5,0.3). Reference parameters are (0.5,0.3).
