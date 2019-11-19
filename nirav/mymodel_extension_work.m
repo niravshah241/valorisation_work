@@ -93,8 +93,8 @@ disp(['Time for assembling+solving DG system : ' ...
 
 % % Parametrization
 N = 100;
-x_para = 0.4 + (0.6-0.4).*rand(N,1);
-y_para = 0.2 + (0.4-0.2).*rand(N,1);
+x_para = linspace(0.4,0.6,N);%0.4 + (0.6-0.4).*rand(N,1);
+y_para = linspace(0.2,0.4,N);%0.2 + (0.4-0.2).*rand(N,1);
 snapshot_matrix_velocity = zeros(params.ndofs,N);
 snapshot_matrix_pressure = zeros(paramsP.ndofs,N);
 
@@ -140,7 +140,7 @@ for temp = 1:1:N
 end
 
 % POD-Galerkin
-k = 1:1:min(size(snapshot_matrix_velocity,2),40);
+k = 1:1:min(size(snapshot_matrix_velocity,2),12);
 error_rb_velocity_mean = zeros(length(k),1);
 error_rb_pressure_mean = zeros(length(k),1);
 error_rb_velocity_max = zeros(length(k),1);
@@ -433,3 +433,18 @@ saveas(a,'nirav/pod_galerkin/rb_error_pressure.jpg');
 total_end_time = toc(total_start_time);
 disp(['Total time for script : ' num2str(total_end_time)]);
 etime(clock,clock_start_time)
+
+% plot_online_solution = 1;
+% save_online_solution = 1;
+% mu_x = 0.43;
+% mu_y = 0.36;
+% online_phase;
+% mu_x = 0.48;
+% mu_y = 0.28;
+% online_phase;
+% mu_x = 0.52;
+% mu_y = 0.32;
+% online_phase;
+% mu_x = 0.55;
+% mu_y = 0.25;
+% online_phase;
