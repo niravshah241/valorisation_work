@@ -28,6 +28,14 @@
 
 \usepackage{url}
 
+%%Nirav added
+\newenvironment{spmatrix}[1]
+ {\def\mysubscript{#1}\mathop\bgroup\begin{pmatrix}}
+ {\end{pmatrix}\egroup_{\textstyle\mathstrut\mysubscript}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\spn}{span}
+%%Nirav added over
+
 % see the list of further useful packages
 % in the Reference Guide
 
@@ -70,71 +78,113 @@ Geometric parametrization has emerged as important application of Parametric Par
 
 In the present work, we first introduce Discontinuous Galerkin Interior Penalty Method (DG-IPM). We subsequently introduce notion of parametrization characterizing geometry of the domain under consideration, exploit affine parameter dependence and its application in the context of offline-online decomposition. We then apply Proper Orthogonal Decomposition (POD) for constructing reduced basis space and apply Galerkin projection to project the system of equations on the space constructed by POD. Finally we present a test problem to demonstrate the introduced method and present numerical result.
  
-\section{Section Heading}
-\label{sec:2}
-% Always give a unique label
-% and use \ref{<label>} for cross-references
-% and \cite{<label>} for bibliographic references
-% use \sectionmark{}
-% to alter or adjust the section heading in the running head
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations.
+\section{Discontinuous Galerkin formulation}
+\label{DG_formulation}
 
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
+Let $\Omega \subset \mathbb{R}^d$ be open bounded domain. The boundary of $\Omega$, $\partial \Omega$ is divided into Neumann boundary $\Gamma_N$ and Dirichlet boundary $\Gamma_D$ i.e. $\partial \Omega = \Gamma_N \cup \Gamma_D$. The domain $\Omega$ is divide into $N_{su}$ number of mutually non overlapping subdomains such that, $\Omega = \bigcup\limits_{i=1}^{N_{su}} \Omega_i \ , \ \Omega_i \cap \Omega_j = \emptyset \ , \ \text{for } i \neq j$. Each subdomain is divided into $nel$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{nel} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{nel}$. The internal boundary $\Gamma = \lbrace \partial \tau_k \rbrace_{k=1}^{nel} \backslash \partial \Omega$. We represent $\overrightarrow{n}$ as the outward pointing normal to an edge of element.
 
-Use the standard \verb|equation| environment to typeset your equations, e.g.
-%
-\begin{equation}
-a \times b = c\;,
+The Stokes's equation in strong form can be stated as,
+\begin{gather}
+-\nu \Delta \overrightarrow{u} + \nabla p = \overrightarrow{f} \ , \ \text{in } \Omega \ , \\
+\nabla \cdot \overrightarrow{u} = 0 \ , \\
+\overrightarrow{u} = \overrightarrow{u}_D \ , \ \text{on } \Gamma_D \ , \\
+-p \overrightarrow{n} + \nu \overrightarrow{n} \cdot \nabla \overrightarrow{u} = \overrightarrow{t} \ , \ \text{on } \Gamma_N \ .
+\end{gather}
+
+The vector variable velocity $\overrightarrow{u}$ and scalar pressure $p$ are the unknowns. $\nu$ is the material property known as kinematic viscosity. Vector $\overrightarrow{f}$ is external force term or source term. $\overrightarrow{u}_D$ is the Dirichlet velocity and $\overrightarrow{t}$ is the Neumann value.
+
+Before introducing weak form let us introduce broken Sobolev spaces for variables. 
+The space for velocity is 
+\begin{equation} \label{velocity_test}
+\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\mathcal{T}))^d| \quad \overrightarrow{\phi} \in (P^D(\tau_k))^d \quad \forall \quad {\tau_k} \in \mathcal{T} \rbrace \ .
 \end{equation}
-%
-however, for multiline equations we recommend to use the \verb|eqnarray| environment\footnote{In physics texts please activate the class option \texttt{vecphys} to depict your vectors in \textbf{\itshape boldface-italic} type - as is customary for a wide range of physical subjects}.
-\begin{eqnarray}
-\left|\nabla U_{\alpha}^{\mu}(y)\right| &\le&\frac1{d-\alpha}\int
-\left|\nabla\frac1{|\xi-y|^{d-\alpha}}\right|\,d\mu(\xi) =
-\int \frac1{|\xi-y|^{d-\alpha+1}} \,d\mu(\xi)  \\
-&=&(d-\alpha+1) \int\limits_{d(y)}^\infty
-\frac{\mu(B(y,r))}{r^{d-\alpha+2}}\,dr \le (d-\alpha+1)
-\int\limits_{d(y)}^\infty \frac{r^{d-\alpha}}{r^{d-\alpha+2}}\,dr
-\label{eq:01}
-\end{eqnarray}
+The space for pressure is 
+\begin{equation} \label{pressure_test}
+\mathbb{Q} = \lbrace \psi \in (L^2(\mathcal{T}))| \quad \psi \in (P^{D-1}(\tau_k)) \quad \forall \quad {\tau_k} \in \mathcal{T} \rbrace \ .
+\end{equation}
+Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D$ over $\tau_k$.
 
-\subsection{Subsection Heading}
-\label{subsec:2}
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references\index{cross-references} and citations\index{citations} as has already been described in Sect.~\ref{sec:2}.
+In order to approximate the numerical flux we need the concept of Jump and Average operator. 
+1.  For scalar quantity $p$ the jump operator is defined as,
+\begin{equation}
+\begin{split}
+[p\overrightarrow{n}] = p^+ \overrightarrow{n}^+ + p^- \overrightarrow{n}^- \quad \textrm{on} \quad \Gamma \textrm{,}\\
+[p\overrightarrow{n}] = p \overrightarrow{n} \quad \textrm{on} \quad \Gamma_D \textrm{.}
+\end{split}
+\end{equation}
 
-\begin{quotation}
-Please do not use quotation marks when quoting texts! Simply use the \verb|quotation| environment -- it will automatically be rendered in line with the preferred layout.
-\end{quotation}
+2. For vector quantity $\overrightarrow{u}$ the jump operator is defined as,
+\begin{equation}
+\begin{split}
+[\overrightarrow{n} \cdot \overrightarrow{u}] = \overrightarrow{n}^+ \cdot \overrightarrow{u}^+ + \overrightarrow{n}^- \cdot \overrightarrow{u}^- \quad \textrm{on} \quad \Gamma \textrm{,}\\
+[\overrightarrow{n} \cdot \overrightarrow{u}] = \overrightarrow{n} \cdot \overrightarrow{u} \quad \textrm{on} \quad \Gamma_D \textrm{.}\\
+\end{split}
+\end{equation}
+
+3. The average operator is defined as,
+\begin{equation}\label{average operator}
+\left\lbrace \overrightarrow{u} \right\rbrace = \frac{\overrightarrow{u}^+ + \overrightarrow{u}^-}{2} \textrm{.}
+\end{equation} 
+
+The weak form of Stokes equation is as follow,
+
+\begin{equation}\label{stokes_weak_ch3}
+\begin{split}
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + (\lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ .
+\end{split}
+\end{equation}
+
+\begin{equation}\label{a_IP}
+\begin{split}
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) = (\nabla \overrightarrow{u}, \nabla \overrightarrow{\phi}) + C_{11} ([\overrightarrow{u}],[\overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} \\
+- \nu ({\nabla \overrightarrow{u}},[\overrightarrow{n} \otimes \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} - \nu ([\overrightarrow{n} \otimes \overrightarrow{u}],{\nabla \overrightarrow{\phi}})_{\Gamma \cup \Gamma_D} \textrm{.}
+\end{split}
+\end{equation}
+
+The penalty paramter $C_{11}>0$ is an empirical constant to be kept large enough to maintain coercivity of bilinear form.
+
+\begin{equation}\label{b}
+b(\phi,\psi) = -\int_{\mathcal{T}} \psi \nabla \cdot \overrightarrow{\phi} \ ,
+\end{equation}
+
+\begin{equation}\label{l_IP}
+\begin{split}
+l_{IP}(\overrightarrow{\phi}) = (\overrightarrow{f},\overrightarrow{\phi}) + (\overrightarrow{t},\overrightarrow{\phi})_{\Gamma_N} + C_{11} (\overrightarrow{u}_D,\overrightarrow{\phi})_{\Gamma_D} - (\overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi})_{\Gamma_D} \ .
+\end{split}
+\end{equation}
+
+Discrete form of equations can be written in Matrix form as, 
+
+\begin{equation} \label{Stokes_matrix_ch3}
+\begin{spmatrix}{\textrm{Stiffness matrix}}
+    A & B \\
+    B^T & 0
+\end{spmatrix}
+\begin{spmatrix}{\textrm{Solution vector}}
+    U \\
+    P
+\end{spmatrix}
+=
+\begin{spmatrix}{\textrm{Right hand side (Known)}}
+    F_1  \\
+    F_2
+\end{spmatrix}
+\textrm{.}
+\end{equation}
+
+Here, 
+\begin{equation} \label{matrix A}
+\begin{split}
+A_{ij} = \sum_{k=1}^d (\frac{\partial \phi_i}{\partial x_k} , \frac{\partial \phi_j}{\partial x_k}) + \sum_{k=1}^d C_{11} ([\phi_i n_k] , [\phi_j n_k])_{\Gamma \cup \Gamma_D} \\ - \sum_{k=1}^d \nu ([\phi_i n_k] , \lbrace \frac{\partial \phi_j}{\partial x_k} \rbrace)_{\Gamma \cup \Gamma_D} - \sum_{k=1}^d \nu (\lbrace \frac{\partial \phi_i}{\partial x_k} \rbrace , [\phi_j n_k])_{\Gamma \cup \Gamma_D} \ .
+\end{split}
+\end{equation}
+
+\begin{equation} \label{matrix B}
+B_{ij} = - \int_{\mathcal{T}} \frac{\partial \phi_i}{\partial x_i} \psi_j +
+(\lbrace \psi_j \rbrace , [n \cdot \phi_i])_{\Gamma \cup \Gamma_D} \ .
+\end{equation}
 
 
-\subsubsection{Subsubsection Heading}
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{subsec:2}, see also Fig.~\ref{fig:1}\footnote{If you copy text passages, figures, or tables from other works, you must obtain \textit{permission} from the copyright holder (usually the original publisher). Please enclose the signed permission with the manuscript. The sources\index{permission to print} must be acknowledged either in the captions, as footnotes or in a separate section of the book.}
-
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-% For figures use
-%
-\begin{figure}[b]
-\sidecaption
-% Use the relevant command for your figure-insertion program
-% to insert the figure file.
-% For example, with the graphicx style use
-\includegraphics[scale=.65]{figure}
-%
-% If no graphics program available, insert a blank space i.e. use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-\caption{If the width of the figure is less than 7.8 cm use the \texttt{sidecapion} command to flush the caption on the left side of the page. If the figure is positioned at the top of the page, align the sidecaption with the top of the figure -- to achieve this you simply need to use the optional argument \texttt{[t]} with the \texttt{sidecaption} command}
-\label{fig:1}       % Give a unique label
-\end{figure}
-
-
-\paragraph{Paragraph Heading} %
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-For typesetting numbered lists we recommend to use the \verb|enumerate| environment -- it will automatically rendered in line with the preferred layout.
 
 \begin{enumerate}
 \item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
