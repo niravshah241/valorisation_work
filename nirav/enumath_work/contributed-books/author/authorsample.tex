@@ -185,6 +185,161 @@ B_{ij} = - \int_{\mathcal{T}} \frac{\partial \phi_i}{\partial x_i} \psi_j +
 \end{equation}
 
 
+\section{Geometric parametrization}
+
+In the context of geometric parametrization, domain $\Omega$ is characterized by set of parameters $\mu$ belonging to parameter space $\mathbb{P}$. A domain, called reference domain $\hat{\Omega}$, whose configuration is defined by known parameter set $\bar{\mu} \in \mathbb{P}$ is selected. In other words, the configuration of $\hat{\Omega}$ is completely known. We denote the Dirichlet boundary on reference domain and Neumann boundary on reference domain as $\hat{\Gamma}_D$ and  $\hat{\Gamma}_N$ respectively. 
+
+A mapping $F$ and inverse mapping $T$ is defined,
+\begin{equation}
+\begin{split}
+F : \hat{\Omega} \times \mathbb{P} \rightarrow \Omega \ , \\
+T : \Omega \times \mathbb{P} \rightarrow \hat{\Omega} \ , \\
+T = F^{-1} \ .
+\end{split}
+\end{equation}
+
+In the case of affine transformation, $F$ is of the form,
+\begin{gather}\label{affine_F}
+x = F(\hat{x},\mu) = G_F(\mu)\hat{x} + c_F(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \hat{\Omega} \ .
+\end{gather}
+
+The inverse map $T$ is expressed in the form,
+\begin{gather}\label{affine_T}
+\hat{x} = T(x,\mu) = G_T(\mu)x + c_T(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \hat{\Omega} \ , \\
+T = F^{-1} \ ,\\
+G_T = G_F^{-1} \ , \\
+c_T = -G_T c_F \ .
+\end{gather}
+
+The unit normal $\overrightarrow{n}$ on parametrized domain is transformed from $\hat{\overrightarrow{n}}$ by,
+\begin{equation}
+\overrightarrow{n} = G_T^T \hat{\overrightarrow{n}} \ , \ \overrightarrow{n} \in \mathbb{M} \ , \ \hat{\overrightarrow{n}} \in \hat{\mathbb{M}} \ .
+\end{equation}
+
+We emphasize the fact that the map $T$ (or $F$) is dependent only on parameter $\mu$. 
+
+\section{Reduced basis method}
+
+\subsection{Snapshot proper orthogonal decomposition}\label{POD_section}
+
+We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $M_u \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}}$ and $M_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$, formed by inner product of basis function with respect to suitable function space $\mathbb{W}$.
+
+\begin{equation}
+M_u = <\phi,\phi>_{\mathbb{W}} \ .
+\end{equation}
+
+\begin{equation}
+M_p = <\psi,\psi>_{\mathbb{W}} \ .
+\end{equation}
+
+We also introduce matrices storing velocity snapshots $S_u$ and storing pressure snapshots $S_p$. We discuss the method only for velocity snapshots. The method is similar for pressure snapshots. We note the size of matrices, useful for matrix operations presented hereafter.
+
+\begin{center}
+
+$S_u \in \mathbb{R}^{u_{ndofs} \times n_s} \ ,$\\
+$S_p \in \mathbb{R}^{p_{ndofs} \times n_s} \ ,$\\
+$M_u \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}} \ ,$\\
+$M_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}} \ .$\\
+
+\end{center}
+
+\subsection{Spectral decomposition of snapshots}
+
+We denote the dimension of reduced basis as $N$ and assert that $N < n_s$. We now perform the spectral decomposition of $S_u^TM_uS_u$,
+
+\begin{equation}
+S_u^TM_uS_u = V \Theta V^T \textrm{.}
+\end{equation}
+
+The columns of $V$ are eigenvectors and $\Theta$ has eigenvalues $\theta$ such that,
+
+\begin{equation}
+\Theta_{ij} = \theta_{ij} \delta_{ij} \textrm{.}
+\end{equation}
+
+We also note that $\theta_{ij} > 0$ and $\theta_1 \geq \theta_2 \geq ... \geq \theta_{n_s}$ i.e. the eigenvalues are in sorted order. We form the reduced basis by linear combination of the snapshot vector,
+\begin{equation}
+B_{velocity} = S_u A \textrm{,} \quad A \in \mathbb{R}^{n_s \times N} \textrm{.}
+\end{equation}
+
+Here,$B_{velocity}$ is defined such that, if $\phi \in \mathbb{R}^{n \times d_u}$ $B_{velocity} \in \mathbb{R}^{n \times N}$, the reduced basis for velocity $\psi_u \in \mathbb{R}^{d_u \times N}$ is formed by,
+\begin{equation}
+\psi_u = \phi^T B \textrm{.}
+\end{equation}
+
+Considering orthonormality of reduced basis $\psi_u$ with respect to inner product in function space $\mathbb{W}$,
+
+\begin{equation}
+<\psi_u , \psi_u>_{\mathbb{W}} = B_u^T M_{u} B_u = I \ .
+\end{equation}
+
+Considering above orthonormality, we express matrix $A$ as,
+\begin{equation}
+A = V \Theta^{-\frac{1}{2}} R \textrm{,} \quad R \in \mathbb{R}^{n_s \times N} \textrm{,} \quad R^TR = I \textrm{.}
+\end{equation}
+
+where, $I$ is identity matrix of suitable size.
+
+We set now $R$ as,
+\begin{equation}
+R = [I_{N \times N} ; 0_{(n_s \times N)}] \quad \textrm{ and accordingly} \quad B = S V \Theta^{-\frac{1}{2}} R \textrm{.}
+\end{equation}
+
+\subsection{Galerkin reduced basis formulation}\label{Galerkin_section}
+
+We now present the reduced bilinear form as,
+
+\begin{equation} \label{stokes_equation_parameter}
+a(u_N,\phi_N;\mu) + b(p_N,\phi_N;\mu) = f_1(\phi_N,\mu) \textrm{,}
+\end{equation}
+
+\begin{equation} \label{continuity_equation_parameter}
+b(u_N,\psi_N;\mu) = f_2(\psi_N,\mu) \textrm{.}
+\end{equation}
+
+In discrete form, we form reduced equation as,
+
+\begin{equation} \label{Stokes_matrix_reduced}
+\begin{spmatrix}{\tilde{K}}
+    B_{velocity}^T A(\mu) B_{velocity} & B_{velocity}^T B(\mu) B_{pressure} \\
+    B_{pressure}^T B(\mu)^T B_{velocity} & 0
+\end{spmatrix}
+\begin{spmatrix}{\zeta}
+    U_N \\
+    P_N
+\end{spmatrix}
+=
+\begin{spmatrix}{\tilde{F}}
+    B_{velocity}^T F_1(\mu)  \\
+    B_{pressure}^T F_2(\mu)
+\end{spmatrix} \textrm{,}
+\end{equation}
+
+and accordingly we solve following variational form for reduced degrees of freedom $\zeta$,
+\begin{equation}
+\tilde{K} \zeta = \tilde{F} \textrm{,} \quad \zeta_u \in \mathbb{R}^{N} \textrm{,}
+\end{equation}
+
+and calculate reduced solution $u_N$ as,
+\begin{equation}
+u_N = \psi_u \zeta_u \textrm{,} \quad u_N \in \mathbb{R}^{d_u} \textrm{.}
+\end{equation}
+
+\section{Numerical example}
+
+We perform the POD-Galerkin method as mentioned in section \ref{POD_section} and section \ref{Galerkin_section}. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
+
+We consider inner-product matrix as ($u_{rb},p_{rb}$ is reduced basis solution and $u_h,p_h$ is DG solution) i.e.
+\begin{gather*}
+M_u = \int_{\Omega} \phi_i \cdot \phi_j + \sum_{k=1}^{nel} \int_{\tau_k} \nabla \phi_l : \nabla \phi_m \ ,  \\ \ i,j = 1, \ldots, u_{ndofs} \ , \ l,m = 1,\ldots,u_{ndofs\_per\_element} \\
+M_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
+\end{gather*}
+
+The domain is shown in Figure \ref{pod_figure}. The geometric parameters were coordinates of tip of the obstacle.
+\begin{gather*}
+(x,y) = (\mu_1,\mu_2) \ . \\
+(x_{ref},y_{ref}) = (0.5,0.3) \ .
+\end{gather*}
 
 \begin{enumerate}
 \item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
