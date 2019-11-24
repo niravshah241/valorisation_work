@@ -34,6 +34,7 @@
  {\end{pmatrix}\egroup_{\textstyle\mathstrut\mysubscript}}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\spn}{span}
+\usepackage{bm}
 %%Nirav added over
 
 % see the list of further useful packages
@@ -47,7 +48,7 @@
 
 \begin{document}
 
-\title*{Reduced order modeling of geometrically parametrized discontinuous Galerkin formulation for the Stokes equation}
+\title*{Discontinuous Galerkin model order reduction of geometrically parametrized Stokes flow}
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \author{Nirav Vasant Shah, Martin Hess and Gianluigi Rozza}
@@ -78,10 +79,24 @@ Geometric parametrization has emerged as important application of Parametric Par
 
 In the present work, we first introduce Discontinuous Galerkin Interior Penalty Method (DG-IPM). We subsequently introduce notion of parametrization characterizing geometry of the domain under consideration, exploit affine parameter dependence and its application in the context of offline-online decomposition. We then apply Proper Orthogonal Decomposition (POD) for constructing reduced basis space and apply Galerkin projection to project the system of equations on the space constructed by POD. Finally we present a test problem to demonstrate the introduced method and present numerical result.
  
+\section{Geometric parametrization} 
+
+Consider domain $\Omega = \Omega(\mu) \in \mathbb{R}^d$ as open bounded domain. The parameter set $\mu \in \mathbb{P}$, where $\mathbb{P}$ is parameter space, completely characterizes the domain. Also, consider a parameter set $\bar{\mu} \in \mathbb{P}$, as the known parameter set and $\Omega(\bar{\mu})$ as the reference domain, whose configuration is completely known. The mapping $\bm{F}(\cdot,\mu) : \Omega(\bar{\mu}) \rightarrow \Omega(\mu)$ links reference domain and parametrized domain. Divide the domain $\Omega(\mu)$ into $n_{su}$ subdomains such that $\Omega(\mu) = \bigcup\limits_{i=1}^{n_{su}} \Omega_i(\mu) \ , \ \Omega_i(\mu) \bigcap \Omega_j(\mu) = \emptyset \ , \ \text{for} \ i \neq j$. The boundary of $\Omega(\mu)$, $\partial \Omega(\mu)$ is divided into Neumann boundary $\Gamma_N(\mu)$ and Dirichlet boundary $\Gamma_D(\mu)$ i.e. $\partial \Omega(\mu) = \Gamma_N(\mu) \cup \Gamma_D(\mu)$.
+
+In the case of affine transformation, $\bm{F}$ is of the form,
+\begin{gather}\label{affine_F}
+x = \bm{F}(\hat{x},\mu) = \bm{G}_F(\mu)\hat{x} + c_F(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \hat{\Omega} \ .
+\end{gather}
+
+The inverse map $\bm{T}$ is expressed in the form,
+\begin{gather}\label{affine_T}
+\hat{x} = \bm{T}(x,\mu) = \bm{G}_T(\mu)x + c_T(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \hat{\Omega} \ .
+\end{gather}
+
 \section{Discontinuous Galerkin formulation}
 \label{DG_formulation}
 
-Let $\Omega \subset \mathbb{R}^d$ be open bounded domain. The boundary of $\Omega$, $\partial \Omega$ is divided into Neumann boundary $\Gamma_N$ and Dirichlet boundary $\Gamma_D$ i.e. $\partial \Omega = \Gamma_N \cup \Gamma_D$. The domain $\Omega$ is divide into $N_{su}$ number of mutually non overlapping subdomains such that, $\Omega = \bigcup\limits_{i=1}^{N_{su}} \Omega_i \ , \ \Omega_i \cap \Omega_j = \emptyset \ , \ \text{for } i \neq j$. Each subdomain is divided into $nel$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{nel} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{nel}$. The internal boundary $\Gamma = \lbrace \partial \tau_k \rbrace_{k=1}^{nel} \backslash \partial \Omega$. We represent $\overrightarrow{n}$ as the outward pointing normal to an edge of element.
+Each subdomain is divided into $nel$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{nel} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{nel}$. The internal boundary $\Gamma = \lbrace \partial \tau_k \rbrace_{k=1}^{nel} \backslash \partial \Omega$. We represent $\overrightarrow{n}$ as the outward pointing normal to an edge of element.
 
 The Stokes's equation in strong form can be stated as,
 \begin{gather}
@@ -183,40 +198,6 @@ A_{ij} = \sum_{k=1}^d (\frac{\partial \phi_i}{\partial x_k} , \frac{\partial \ph
 B_{ij} = - \int_{\mathcal{T}} \frac{\partial \phi_i}{\partial x_i} \psi_j +
 (\lbrace \psi_j \rbrace , [n \cdot \phi_i])_{\Gamma \cup \Gamma_D} \ .
 \end{equation}
-
-
-\section{Geometric parametrization}
-
-In the context of geometric parametrization, domain $\Omega$ is characterized by set of parameters $\mu$ belonging to parameter space $\mathbb{P}$. A domain, called reference domain $\hat{\Omega}$, whose configuration is defined by known parameter set $\bar{\mu} \in \mathbb{P}$ is selected. In other words, the configuration of $\hat{\Omega}$ is completely known. We denote the Dirichlet boundary on reference domain and Neumann boundary on reference domain as $\hat{\Gamma}_D$ and  $\hat{\Gamma}_N$ respectively. 
-
-A mapping $F$ and inverse mapping $T$ is defined,
-\begin{equation}
-\begin{split}
-F : \hat{\Omega} \times \mathbb{P} \rightarrow \Omega \ , \\
-T : \Omega \times \mathbb{P} \rightarrow \hat{\Omega} \ , \\
-T = F^{-1} \ .
-\end{split}
-\end{equation}
-
-In the case of affine transformation, $F$ is of the form,
-\begin{gather}\label{affine_F}
-x = F(\hat{x},\mu) = G_F(\mu)\hat{x} + c_F(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \hat{\Omega} \ .
-\end{gather}
-
-The inverse map $T$ is expressed in the form,
-\begin{gather}\label{affine_T}
-\hat{x} = T(x,\mu) = G_T(\mu)x + c_T(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \hat{\Omega} \ , \\
-T = F^{-1} \ ,\\
-G_T = G_F^{-1} \ , \\
-c_T = -G_T c_F \ .
-\end{gather}
-
-The unit normal $\overrightarrow{n}$ on parametrized domain is transformed from $\hat{\overrightarrow{n}}$ by,
-\begin{equation}
-\overrightarrow{n} = G_T^T \hat{\overrightarrow{n}} \ , \ \overrightarrow{n} \in \mathbb{M} \ , \ \hat{\overrightarrow{n}} \in \hat{\mathbb{M}} \ .
-\end{equation}
-
-We emphasize the fact that the map $T$ (or $F$) is dependent only on parameter $\mu$. 
 
 \section{Reduced basis method}
 
