@@ -35,6 +35,7 @@
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\spn}{span}
 \usepackage{bm}
+\usepackage{tikz}
 %%Nirav added over
 
 % see the list of further useful packages
@@ -96,7 +97,7 @@ The inverse map $\bm{T}$ is expressed in the form,
 \section{Discontinuous Galerkin formulation}
 \label{DG_formulation}
 
-Each subdomain is divided into $nel$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{nel} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{nel}$. The internal boundary $\Gamma = \lbrace \partial \tau_k \rbrace_{k=1}^{nel} \backslash \partial \Omega$. We represent $\overrightarrow{n}$ as the outward pointing normal to an edge of element.
+Each subdomain is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary $\Gamma = \lbrace \partial \tau_k \rbrace_{k=1}^{N_{el}} \backslash \partial \Omega$. We represent $\overrightarrow{n}$ as the outward pointing normal to an edge of element.
 
 The Stokes's equation in strong form can be stated as,
 \begin{gather}
@@ -108,68 +109,77 @@ The Stokes's equation in strong form can be stated as,
 
 The vector variable velocity $\overrightarrow{u}$ and scalar pressure $p$ are the unknowns. $\nu$ is the material property known as kinematic viscosity. Vector $\overrightarrow{f}$ is external force term or source term. $\overrightarrow{u}_D$ is the Dirichlet velocity and $\overrightarrow{t}$ is the Neumann value.
 
-Before introducing weak form let us introduce broken Sobolev spaces for variables. 
+Before introducing weak form let us introduce broken Sobolev spaces for variables.
+
 The space for velocity is 
 \begin{equation} \label{velocity_test}
-\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\mathcal{T}))^d| \quad \overrightarrow{\phi} \in (P^D(\tau_k))^d \quad \forall \quad {\tau_k} \in \mathcal{T} \rbrace \ .
+\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\mathcal{T}))^d | \ \overrightarrow{\phi} \in (P^D(\tau_k))^d \ , \ \forall \ {\tau_k} \in \mathcal{T} \rbrace \ .
 \end{equation}
 The space for pressure is 
 \begin{equation} \label{pressure_test}
-\mathbb{Q} = \lbrace \psi \in (L^2(\mathcal{T}))| \quad \psi \in (P^{D-1}(\tau_k)) \quad \forall \quad {\tau_k} \in \mathcal{T} \rbrace \ .
+\mathbb{Q} = \lbrace \psi \in (L^2(\mathcal{T})) | \ \psi \in (P^{D-1}(\tau_k)) \ \forall \ {\tau_k} \in \mathcal{T} \rbrace \ .
 \end{equation}
-Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D$ over $\tau_k$.
+Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D \geq 2$ over $\tau_k$.
 
-In order to approximate the numerical flux we need the concept of Jump and Average operator. 
-1.  For scalar quantity $p$ the jump operator is defined as,
-\begin{equation}
-\begin{split}
-[p\overrightarrow{n}] = p^+ \overrightarrow{n}^+ + p^- \overrightarrow{n}^- \quad \textrm{on} \quad \Gamma \textrm{,}\\
-[p\overrightarrow{n}] = p \overrightarrow{n} \quad \textrm{on} \quad \Gamma_D \textrm{.}
-\end{split}
-\end{equation}
+In order to approximate the numerical flux we need the concept of Jump and Average operator. The superscript $+$ refers to quantity in the element itself and the superscript $-$ refers to quantity in the neighboring element (Figure \ref{fig:Self_neighbour}).
 
-2. For vector quantity $\overrightarrow{u}$ the jump operator is defined as,
-\begin{equation}
-\begin{split}
-[\overrightarrow{n} \cdot \overrightarrow{u}] = \overrightarrow{n}^+ \cdot \overrightarrow{u}^+ + \overrightarrow{n}^- \cdot \overrightarrow{u}^- \quad \textrm{on} \quad \Gamma \textrm{,}\\
-[\overrightarrow{n} \cdot \overrightarrow{u}] = \overrightarrow{n} \cdot \overrightarrow{u} \quad \textrm{on} \quad \Gamma_D \textrm{.}\\
-\end{split}
-\end{equation}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\draw (0,0) node[anchor=north]{${}$}
+  -- (4,0) node[anchor=north]{${}$}
+  -- (0,4) node[anchor=south]{${}$}
+  -- cycle;
+\draw (4,4) node[anchor=north]{${}$}
+  -- (4,0) node[anchor=north]{${}$}
+  -- (0,4) node[anchor=south]{${}$}
+  -- cycle;
+\draw[->] (2,2)--(2.5,2.5)node[label={[xshift=0cm, yshift=-0.7cm]${\overrightarrow{n}^+}$}]{};
+\draw[->] (2,2)--(1.5,1.5)node[label={[xshift=0cm, yshift=0cm]${\overrightarrow{n}^-}$}]{};
+\node at (1,1){$\mathcal{T^-}$};
+\node at (3,3){$\mathcal{T^+}$};
+\node at (1.7,3){$\overrightarrow{v}^+,p^+$};
+\node at (2.3,1){$\overrightarrow{v}^-,p^-$};
+\end{tikzpicture}
+\caption{Element self (+) and neighbouring element (-)}
+\label{fig:Self_neighbour}
+\end{figure}
 
-3. The average operator is defined as,
-\begin{equation}\label{average operator}
-\left\lbrace \overrightarrow{u} \right\rbrace = \frac{\overrightarrow{u}^+ + \overrightarrow{u}^-}{2} \textrm{.}
-\end{equation} 
+\begin{itemize}
+\item For vector quantity $\overrightarrow{\phi}$:
+\begin{itemize}
+\item Jump operator: 
+$\left[\overrightarrow{\phi} \cdot \overrightarrow{n}\right] = \overrightarrow{\phi}^+ \cdot \overrightarrow{n}^+ + \overrightarrow{\phi}^- \cdot \overrightarrow{n}^-$ on $\Gamma$, $\left[\overrightarrow{\phi} \cdot \overrightarrow{n}\right] = \overrightarrow{\phi} \cdot \overrightarrow{n}$ on $\Gamma_D$.
+\item Average operator:
+$\lbrace \overrightarrow{\phi} \rbrace = \frac{\overrightarrow{\phi}^+ + \overrightarrow{\phi}^-}{2}$ on $\Gamma$, $\lbrace \overrightarrow{\phi} \rbrace = \overrightarrow{\phi}$ on $\partial \Omega$.
+\end{itemize}
+\item For scalar quantity $\psi$:
+\begin{itemize}
+\item Jump operator:
+$\left[\psi\right] = \psi^+ + \psi^-$ on $\Gamma$, $\left[\psi\right] = \psi$ on $\partial \Omega$.
+\item Average operator:
+$\lbrace \psi \rbrace = \frac{\psi^+ + \psi^-}{2}$ on $\Gamma$, $\lbrace \psi \rbrace = \psi$ on $\partial \Omega$. 
+\end{itemize}
+\end{itemize}
 
 The weak form of Stokes equation is as follow,
-
-\begin{equation}\label{stokes_weak_ch3}
-\begin{split}
-a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + (\lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ .
-\end{split}
-\end{equation}
-
-\begin{equation}\label{a_IP}
-\begin{split}
-a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) = (\nabla \overrightarrow{u}, \nabla \overrightarrow{\phi}) + C_{11} ([\overrightarrow{u}],[\overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} \\
-- \nu ({\nabla \overrightarrow{u}},[\overrightarrow{n} \otimes \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} - \nu ([\overrightarrow{n} \otimes \overrightarrow{u}],{\nabla \overrightarrow{\phi}})_{\Gamma \cup \Gamma_D} \textrm{.}
-\end{split}
-\end{equation}
-
-The penalty paramter $C_{11}>0$ is an empirical constant to be kept large enough to maintain coercivity of bilinear form.
-
-\begin{equation}\label{b}
-b(\phi,\psi) = -\int_{\mathcal{T}} \psi \nabla \cdot \overrightarrow{\phi} \ ,
-\end{equation}
-
-\begin{equation}\label{l_IP}
-\begin{split}
+\begin{gather}\label{stokes_weak_ch3}
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + (\lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ , \\
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) = (\nabla \overrightarrow{u}, \nabla \overrightarrow{\phi}) + C_{11} ([\overrightarrow{u}],[\overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} - \nu ({\nabla \overrightarrow{u}},[\overrightarrow{n} \otimes \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} - \nu ([\overrightarrow{n} \otimes \overrightarrow{u}],{\nabla \overrightarrow{\phi}})_{\Gamma \cup \Gamma_D} \ , \\
+b(\phi,\psi) = -\int_{\mathcal{T}} \psi \nabla \cdot \overrightarrow{\phi} \ , \\
 l_{IP}(\overrightarrow{\phi}) = (\overrightarrow{f},\overrightarrow{\phi}) + (\overrightarrow{t},\overrightarrow{\phi})_{\Gamma_N} + C_{11} (\overrightarrow{u}_D,\overrightarrow{\phi})_{\Gamma_D} - (\overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi})_{\Gamma_D} \ .
+\end{gather}
+
+The penalty paramter $C_{11}>0$ in $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ is an empirical constant to be kept large enough to maintain coercivity of bilinear form.
+
+The weak for of continuity equation is as follow,
+\begin{equation}\label{contiuity_weak_ch3}
+\begin{split}
+b(\overrightarrow{u},\psi) + ({\psi},[\overrightarrow{n} \cdot \overrightarrow{u}])_{\Gamma \cup \Gamma_D} = (\psi,\overrightarrow{n} \cdot \overrightarrow{u}_D)_{\Gamma_D} \ .
 \end{split}
 \end{equation}
 
-Discrete form of equations can be written in Matrix form as, 
-
+In matrix form system of equations can be written as, 
 \begin{equation} \label{Stokes_matrix_ch3}
 \begin{spmatrix}{\textrm{Stiffness matrix}}
     A & B \\
@@ -187,17 +197,9 @@ Discrete form of equations can be written in Matrix form as,
 \textrm{.}
 \end{equation}
 
-Here, 
-\begin{equation} \label{matrix A}
-\begin{split}
-A_{ij} = \sum_{k=1}^d (\frac{\partial \phi_i}{\partial x_k} , \frac{\partial \phi_j}{\partial x_k}) + \sum_{k=1}^d C_{11} ([\phi_i n_k] , [\phi_j n_k])_{\Gamma \cup \Gamma_D} \\ - \sum_{k=1}^d \nu ([\phi_i n_k] , \lbrace \frac{\partial \phi_j}{\partial x_k} \rbrace)_{\Gamma \cup \Gamma_D} - \sum_{k=1}^d \nu (\lbrace \frac{\partial \phi_i}{\partial x_k} \rbrace , [\phi_j n_k])_{\Gamma \cup \Gamma_D} \ .
-\end{split}
-\end{equation}
+Here, $A_{ij} = a_{IP}(\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $B_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + (\lbrace \psi_j \rbrace , [n \cdot \phi_i])_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = (\psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D)_{\Gamma_D}$.
 
-\begin{equation} \label{matrix B}
-B_{ij} = - \int_{\mathcal{T}} \frac{\partial \phi_i}{\partial x_i} \psi_j +
-(\lbrace \psi_j \rbrace , [n \cdot \phi_i])_{\Gamma \cup \Gamma_D} \ .
-\end{equation}
+\textbf{TODO: ADD : Affine forms, Offline online decomposition, REVIEW : POD and Galerkin formulation, ADD : experimental results: Eigenvalue drop, error vs basis function, RB,DG Solution and error at one parameter value}
 
 \section{Reduced basis method}
 
