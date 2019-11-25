@@ -1,26 +1,25 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: authorsample.aux
-The style file: spbasic.bst.bst
+The style file: spmpsci.bst.bst
 I couldn't open database file references.tex.bib
----line 35 of file authorsample.aux
+---line 53 of file authorsample.aux
  : \bibdata{references.tex
  :                        }
 I'm skipping whatever remains of this command
 I found no database files---while reading file authorsample.aux
 Warning--I didn't find a database entry for "psysoc-journal"
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 You've used 0 entries,
-            3269 wiz_defined-function locations,
-            667 strings with 4811 characters,
-and the built_in function-call counts, 35 in all, are:
+            2945 wiz_defined-function locations,
+            600 strings with 4596 characters,
+and the built_in function-call counts, 28 in all, are:
 = -- 0
 > -- 0
 < -- 0
 + -- 0
 - -- 0
 * -- 2
-:= -- 8
+:= -- 7
 add.period$ -- 0
 call.type$ -- 0
 change.case$ -- 0
@@ -30,10 +29,10 @@ duplicate$ -- 0
 empty$ -- 1
 format.name$ -- 0
 if$ -- 1
-int.to.chr$ -- 1
-int.to.str$ -- 1
+int.to.chr$ -- 0
+int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 10
+newline$ -- 8
 num.names$ -- 0
 pop$ -- 0
 preamble$ -- 1
@@ -50,5 +49,5 @@ type$ -- 0
 warning$ -- 0
 while$ -- 0
 width$ -- 0
-write$ -- 9
+write$ -- 7
 (There were 2 error messages)

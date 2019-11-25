@@ -36,6 +36,10 @@
 \DeclareMathOperator{\spn}{span}
 \usepackage{bm}
 \usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
 %%Nirav added over
 
 % see the list of further useful packages
@@ -49,7 +53,7 @@
 
 \begin{document}
 
-\title*{Discontinuous Galerkin model order reduction of geometrically parametrized Stokes flow}
+\title{Discontinuous Galerkin model order reduction of geometrically parametrized Stokes flow}
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \author{Nirav Vasant Shah, Martin Hess and Gianluigi Rozza}
@@ -80,7 +84,7 @@ Geometric parametrization has emerged as important application of Parametric Par
 
 In the present work, we first introduce Discontinuous Galerkin Interior Penalty Method (DG-IPM). We subsequently introduce notion of parametrization characterizing geometry of the domain under consideration, exploit affine parameter dependence and its application in the context of offline-online decomposition. We then apply Proper Orthogonal Decomposition (POD) for constructing reduced basis space and apply Galerkin projection to project the system of equations on the space constructed by POD. Finally we present a test problem to demonstrate the introduced method and present numerical result.
  
-\section{Geometric parametrization} 
+\section{Geometric parametrization}\label{geometric_parametrization_section}
 
 Consider domain $\Omega = \Omega(\mu) \in \mathbb{R}^d$ as open bounded domain. The parameter set $\mu \in \mathbb{P}$, where $\mathbb{P}$ is parameter space, completely characterizes the domain. Also, consider a parameter set $\bar{\mu} \in \mathbb{P}$, as the known parameter set and $\Omega(\bar{\mu})$ as the reference domain, whose configuration is completely known. The mapping $\bm{F}(\cdot,\mu) : \Omega(\bar{\mu}) \rightarrow \Omega(\mu)$ links reference domain and parametrized domain. Divide the domain $\Omega(\mu)$ into $n_{su}$ subdomains such that $\Omega(\mu) = \bigcup\limits_{i=1}^{n_{su}} \Omega_i(\mu) \ , \ \Omega_i(\mu) \bigcap \Omega_j(\mu) = \emptyset \ , \ \text{for} \ i \neq j$. The boundary of $\Omega(\mu)$, $\partial \Omega(\mu)$ is divided into Neumann boundary $\Gamma_N(\mu)$ and Dirichlet boundary $\Gamma_D(\mu)$ i.e. $\partial \Omega(\mu) = \Gamma_N(\mu) \cup \Gamma_D(\mu)$.
 
@@ -113,18 +117,15 @@ Before introducing weak form let us introduce broken Sobolev spaces for variable
 
 The space for velocity is 
 \begin{equation} \label{velocity_test}
-\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\mathcal{T}))^d | \ \overrightarrow{\phi} \in (P^D(\tau_k))^d \ , \ \forall \ {\tau_k} \in \mathcal{T} \rbrace \ .
+\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\mathcal{T}))^d | \ \overrightarrow{\phi} \in (P^D(\tau_k))^d \ , \ \tau_k \in \mathcal{T} \rbrace \ .
 \end{equation}
 The space for pressure is 
 \begin{equation} \label{pressure_test}
-\mathbb{Q} = \lbrace \psi \in (L^2(\mathcal{T})) | \ \psi \in (P^{D-1}(\tau_k)) \ \forall \ {\tau_k} \in \mathcal{T} \rbrace \ .
+\mathbb{Q} = \lbrace \psi \in (L^2(\mathcal{T})) | \ \psi \in (P^{D-1}(\tau_k)) \ , \ \tau_k \in \mathcal{T} \rbrace \ .
 \end{equation}
 Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D \geq 2$ over $\tau_k$.
 
-In order to approximate the numerical flux we need the concept of Jump and Average operator. The superscript $+$ refers to quantity in the element itself and the superscript $-$ refers to quantity in the neighboring element (Figure \ref{fig:Self_neighbour}).
-
-\begin{figure}
-\centering
+\begin{wrapfigure}{r}{5.5cm}
 \begin{tikzpicture}
 \draw (0,0) node[anchor=north]{${}$}
   -- (4,0) node[anchor=north]{${}$}
@@ -134,22 +135,27 @@ In order to approximate the numerical flux we need the concept of Jump and Avera
   -- (4,0) node[anchor=north]{${}$}
   -- (0,4) node[anchor=south]{${}$}
   -- cycle;
-\draw[->] (2,2)--(2.5,2.5)node[label={[xshift=0cm, yshift=-0.7cm]${\overrightarrow{n}^+}$}]{};
-\draw[->] (2,2)--(1.5,1.5)node[label={[xshift=0cm, yshift=0cm]${\overrightarrow{n}^-}$}]{};
+\draw[->] (2,2)--(2.5,2.5)node[label={[xshift=0.4cm, yshift=-0.7cm]${\overrightarrow{n}^-}$}]{};
+\draw[->] (2,2)--(1.5,1.5)node[label={[xshift=0cm, yshift=0cm]${\overrightarrow{n}^+}$}]{};
 \node at (1,1){$\mathcal{T^-}$};
 \node at (3,3){$\mathcal{T^+}$};
-\node at (1.7,3){$\overrightarrow{v}^+,p^+$};
-\node at (2.3,1){$\overrightarrow{v}^-,p^-$};
+\node at (1.7,3){$\overrightarrow{\phi}^+,\psi^+$};
+\node at (2.3,1){$\overrightarrow{\phi}^-,\psi^-$};
 \end{tikzpicture}
 \caption{Element self (+) and neighbouring element (-)}
 \label{fig:Self_neighbour}
-\end{figure}
+\end{wrapfigure}
+In order to approximate the numerical flux we need the concept of Jump and Average operator. The superscript $+$ refers to quantity in the element itself and the superscript $-$ refers to quantity in the neighboring element (Figure \ref{fig:Self_neighbour}).
 
+The presence of normal vector $\overrightarrow{n}$ in jump and average operator introduced below allows symmetric formulation and also ensures that jump of a vector is vector and jump of a scalar is scalar.
+\vspace{\baselineskip}
+\vspace{\baselineskip}
+\vspace{\baselineskip}
 \begin{itemize}
 \item For vector quantity $\overrightarrow{\phi}$:
 \begin{itemize}
 \item Jump operator: 
-$\left[\overrightarrow{\phi} \cdot \overrightarrow{n}\right] = \overrightarrow{\phi}^+ \cdot \overrightarrow{n}^+ + \overrightarrow{\phi}^- \cdot \overrightarrow{n}^-$ on $\Gamma$, $\left[\overrightarrow{\phi} \cdot \overrightarrow{n}\right] = \overrightarrow{\phi} \cdot \overrightarrow{n}$ on $\Gamma_D$.
+$\left[\overrightarrow{\phi} \cdot \overrightarrow{n}\right] = \overrightarrow{\phi}^+ \cdot \overrightarrow{n}^+ + \overrightarrow{\phi}^- \cdot \overrightarrow{n}^-$ on $\Gamma$, $\left[\overrightarrow{\phi} \cdot \overrightarrow{n}\right] = \overrightarrow{\phi} \cdot \overrightarrow{n}$ on $\partial \Omega$.
 \item Average operator:
 $\lbrace \overrightarrow{\phi} \rbrace = \frac{\overrightarrow{\phi}^+ + \overrightarrow{\phi}^-}{2}$ on $\Gamma$, $\lbrace \overrightarrow{\phi} \rbrace = \overrightarrow{\phi}$ on $\partial \Omega$.
 \end{itemize}
@@ -164,10 +170,10 @@ $\lbrace \psi \rbrace = \frac{\psi^+ + \psi^-}{2}$ on $\Gamma$, $\lbrace \psi \r
 
 The weak form of Stokes equation is as follow,
 \begin{gather}\label{stokes_weak_ch3}
-a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + (\lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ , \\
-a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) = (\nabla \overrightarrow{u}, \nabla \overrightarrow{\phi}) + C_{11} ([\overrightarrow{u}],[\overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} - \nu ({\nabla \overrightarrow{u}},[\overrightarrow{n} \otimes \overrightarrow{\phi}])_{\Gamma \cup \Gamma_D} - \nu ([\overrightarrow{n} \otimes \overrightarrow{u}],{\nabla \overrightarrow{\phi}})_{\Gamma \cup \Gamma_D} \ , \\
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + \left( \lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ , \\
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) = \left( \nabla \overrightarrow{u}, \nabla \overrightarrow{\phi} \right) + C_{11} \left( [\overrightarrow{u}],[\overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} - \nu \left( \lbrace \nabla \overrightarrow{u}\rbrace ,[\overrightarrow{n} \otimes \overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} - \nu \left( [\overrightarrow{n} \otimes \overrightarrow{u}], \lbrace \nabla \overrightarrow{\phi} \rbrace \right)_{\Gamma \cup \Gamma_D} \ , \\
 b(\phi,\psi) = -\int_{\mathcal{T}} \psi \nabla \cdot \overrightarrow{\phi} \ , \\
-l_{IP}(\overrightarrow{\phi}) = (\overrightarrow{f},\overrightarrow{\phi}) + (\overrightarrow{t},\overrightarrow{\phi})_{\Gamma_N} + C_{11} (\overrightarrow{u}_D,\overrightarrow{\phi})_{\Gamma_D} - (\overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi})_{\Gamma_D} \ .
+l_{IP}(\overrightarrow{\phi}) = \left( \overrightarrow{f},\overrightarrow{\phi} \right) + \left( \overrightarrow{t},\overrightarrow{\phi} \right)_{\Gamma_N} + C_{11} \left(\overrightarrow{u}_D,\overrightarrow{\phi}\right)_{\Gamma_D} - \left( \overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi} \right)_{\Gamma_D} \ .
 \end{gather}
 
 The penalty paramter $C_{11}>0$ in $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ is an empirical constant to be kept large enough to maintain coercivity of bilinear form.
@@ -197,75 +203,83 @@ In matrix form system of equations can be written as,
 \textrm{.}
 \end{equation}
 
-Here, $A_{ij} = a_{IP}(\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $B_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + (\lbrace \psi_j \rbrace , [n \cdot \phi_i])_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = (\psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D)_{\Gamma_D}$.
+Here, $A_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $B_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + \left( \lbrace \psi_j \rbrace , [n \cdot \phi_i]\right)_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = \left( \psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D \right)_{\Gamma_D}$.
 
-\textbf{TODO: ADD : Affine forms, Offline online decomposition, REVIEW : POD and Galerkin formulation, ADD : experimental results: Eigenvalue drop, error vs basis function, RB,DG Solution and error at one parameter value}
+\section{Affine expansion}
+
+We evaluate and solve the Stokes equation weak formulation on reference domain $\Omega{\bar{\mu}}$. Given a parameter set $\mu \neq \bar{\mu}$ we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The transformation of operators in affine is standard in literature \textbf{ADD affine expansion literature} and only two relevant section as specific to DG formulation will be mentioned here as below.
+
+In order to transfer the terms containing jump and average operator following approach is used in present analysis.
+\begin{equation}\label{jump_average_term_split}
+\begin{split}
+\left(\lbrace \nabla \overrightarrow{\phi} \rbrace , \left[ \overrightarrow{n} \otimes \overrightarrow{\phi}  \right]  \right) = \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
+\end{split}
+\end{equation}
+Each term on right hand side of equation \eqref{jump_average_term_split} can now be transformed using affine map.
+
+The coercivity term $C_{11}\left( [\overrightarrow{\phi},\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
+\begin{equation}
+\begin{split}
+C_{11}\left( [\overrightarrow{\phi}(\hat{x}),\overrightarrow{u}(\hat{x})] \right)_{\Gamma(\mu) \cup \Gamma_D(\mu)} = C_{11} \alpha \left( [\overrightarrow{\phi}(\bm{F}(\hat{x})),\overrightarrow{u}(\bm{F}(\hat{x}))] \right)_{\Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})} \ , \\
+\alpha = \frac{meas\left( \Gamma(\mu) \cup \Gamma_D(\mu)\right)}{meas\left( \Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})\right)} \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ x \in \Omega(\mu) \ .
+\end{split}
+\end{equation}
+Since, $C_{11}$ is empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$ will not change the formulation as long as coercivity of $a_{IP}$ over parameter space $\mathbb{P}$ is maintained. In the present analysis, $C_{11}$ is not calculated exactly but only order of magnitude required for $C_{11}$ is estimated and $C_{11}$ is kept one magnitude larger as safeguard against round-off errors. As long as the domain $\Omega(\mu)$ is not deformed much compared to its reference configuration $\Omega(\bar{\mu})$, $C_{11}$ and $C_{11}\alpha$ will have the same order of magnitude. However, large deformations are anyhow not favorable as it will lead to bad mesh quality and in turn, will lead to poor DGM-approximation.
 
 \section{Reduced basis method}
 
 \subsection{Snapshot proper orthogonal decomposition}\label{POD_section}
 
-We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $M_u \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}}$ and $M_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$, formed by inner product of basis function with respect to suitable function space $\mathbb{W}$.
+We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $\bm{M}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times \overrightarrow{u}_{ndofs}}$ and $\bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$, where $\overrightarrow{u}_{ndofs}$ and $p_{ndofs}$ are number of velocity and pressure degrees of freedom respectively.
+\begin{gather*}
+\bm{M}_v = \int_{\Omega} \overrightarrow{\phi}_i \cdot \overrightarrow{\phi}_j + \sum_{k=1}^{N_{el}} \int_{\tau_k} \nabla \overrightarrow{\phi}_i : \nabla \overrightarrow{\phi}_j \ , \ i,j = 1, \ldots, \overrightarrow{u}_{ndofs} \ , \\
+\bm{M}_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
+\end{gather*}
+
+We also introduce matrices storing velocity snapshots $\bm{S}_v$ and storing pressure snapshots $\bm{S}_p$. We discuss the method only for velocity snapshots. The method is similar for pressure snapshots. We note the size of matrices, useful for matrix operations presented hereafter.
+
+\begin{gather*}
+\bm{S}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times n_s} \ , \ \bm{S}_p \in \mathbb{R}^{p_{ndofs} \times n_s} \ , \\
+\bm{M}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times \overrightarrow{u}_{ndofs}} \ ,\ \bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}} \ .
+\end{gather*}
+
+\subsection{Spectral decomposition of snapshots}\label{spectral_decomposition_section}
+
+We denote the dimension of reduced basis as $N$ and assert that $N << n_s$. We now perform the spectral decomposition of $\bm{S}_v^T \bm{M}_v \bm{S}_v$,
 
 \begin{equation}
-M_u = <\phi,\phi>_{\mathbb{W}} \ .
+\bm{S}_v^T \bm{M}_v \bm{S}_v = \bm{V} \bm{\Theta} \bm{V}^T \ .
 \end{equation}
 
+The columns of $V$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i \ , \ 1 \leq i \leq n_s$ such that,
 \begin{equation}
-M_p = <\psi,\psi>_{\mathbb{W}} \ .
+\Theta_{ij} = \theta_i \delta_{ij} \ .
 \end{equation}
 
-We also introduce matrices storing velocity snapshots $S_u$ and storing pressure snapshots $S_p$. We discuss the method only for velocity snapshots. The method is similar for pressure snapshots. We note the size of matrices, useful for matrix operations presented hereafter.
-
-\begin{center}
-
-$S_u \in \mathbb{R}^{u_{ndofs} \times n_s} \ ,$\\
-$S_p \in \mathbb{R}^{p_{ndofs} \times n_s} \ ,$\\
-$M_u \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}} \ ,$\\
-$M_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}} \ .$\\
-
-\end{center}
-
-\subsection{Spectral decomposition of snapshots}
-
-We denote the dimension of reduced basis as $N$ and assert that $N < n_s$. We now perform the spectral decomposition of $S_u^TM_uS_u$,
-
+We also note that $\theta_i > 0$ and $\theta_1 \geq \theta_2 \geq ... \geq \theta_{n_s}$ i.e. the eigenvalues are in sorted order. We form the reduced basis by linear combination of the snapshot vector,
 \begin{equation}
-S_u^TM_uS_u = V \Theta V^T \textrm{.}
+\bm{B}_v = \bm{S}_v \bm{A} \ , \ \bm{A} \in \mathbb{R}^{n_s \times N} \ .
 \end{equation}
 
-The columns of $V$ are eigenvectors and $\Theta$ has eigenvalues $\theta$ such that,
-
+Here, $\bm{B}_v$ is defined such that, if $\overrightarrow{\phi} \in \mathbb{R}^{n \times d} \ , \ \bm{B}_v \in \mathbb{R}^{n \times N}$, the reduced basis for velocity $\overrightarrow{\phi}_N \in \mathbb{R}^{d \times N}$ is formed by,
 \begin{equation}
-\Theta_{ij} = \theta_{ij} \delta_{ij} \textrm{.}
+\overrightarrow{\phi}_N = \overrightarrow{\phi}^T \bm{B}_v \ .
 \end{equation}
 
-We also note that $\theta_{ij} > 0$ and $\theta_1 \geq \theta_2 \geq ... \geq \theta_{n_s}$ i.e. the eigenvalues are in sorted order. We form the reduced basis by linear combination of the snapshot vector,
+Considering orthonormality of reduced basis $\overrightarrow{\phi}_N$ with respect to inner product $\bm{M}_v$,
 \begin{equation}
-B_{velocity} = S_u A \textrm{,} \quad A \in \mathbb{R}^{n_s \times N} \textrm{.}
+<\overrightarrow{\phi}_N,\overrightarrow{\phi}_N>_{\bm{M}_v} = \bm{B}_v^T \bm{M}_v \bm{B}_v = I \ .
 \end{equation}
 
-Here,$B_{velocity}$ is defined such that, if $\phi \in \mathbb{R}^{n \times d_u}$ $B_{velocity} \in \mathbb{R}^{n \times N}$, the reduced basis for velocity $\psi_u \in \mathbb{R}^{d_u \times N}$ is formed by,
+Considering above orthonormality, we express matrix $\bm{A}$ as,
 \begin{equation}
-\psi_u = \phi^T B \textrm{.}
+\bm{A} = \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} \in \mathbb{R}^{n_s \times N} \ , \ \bm{R}^T \bm{R} = \bm{I} \ .
 \end{equation}
-
-Considering orthonormality of reduced basis $\psi_u$ with respect to inner product in function space $\mathbb{W}$,
-
-\begin{equation}
-<\psi_u , \psi_u>_{\mathbb{W}} = B_u^T M_{u} B_u = I \ .
-\end{equation}
-
-Considering above orthonormality, we express matrix $A$ as,
-\begin{equation}
-A = V \Theta^{-\frac{1}{2}} R \textrm{,} \quad R \in \mathbb{R}^{n_s \times N} \textrm{,} \quad R^TR = I \textrm{.}
-\end{equation}
-
 where, $I$ is identity matrix of suitable size.
 
-We set now $R$ as,
+We set now $\bm{R}$ as,
 \begin{equation}
-R = [I_{N \times N} ; 0_{(n_s \times N)}] \quad \textrm{ and accordingly} \quad B = S V \Theta^{-\frac{1}{2}} R \textrm{.}
+\bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(n_s \times N)}] \ \text{and accordingly} \ \bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ .
 \end{equation}
 
 \subsection{Galerkin reduced basis formulation}\label{Galerkin_section}
@@ -284,8 +298,8 @@ In discrete form, we form reduced equation as,
 
 \begin{equation} \label{Stokes_matrix_reduced}
 \begin{spmatrix}{\tilde{K}}
-    B_{velocity}^T A(\mu) B_{velocity} & B_{velocity}^T B(\mu) B_{pressure} \\
-    B_{pressure}^T B(\mu)^T B_{velocity} & 0
+    \bm{B}_v^T \bm{A}(\mu) \bm{B}_v & \bm{B}_v^T \bm{B}(\mu) \bm{B}_v \\
+    \bm{B}_p^T \bm{B}(\mu)^T \bm{B}_v & \bm{0}
 \end{spmatrix}
 \begin{spmatrix}{\zeta}
     U_N \\
@@ -293,36 +307,103 @@ In discrete form, we form reduced equation as,
 \end{spmatrix}
 =
 \begin{spmatrix}{\tilde{F}}
-    B_{velocity}^T F_1(\mu)  \\
-    B_{pressure}^T F_2(\mu)
-\end{spmatrix} \textrm{,}
+    \bm{B}_v^T F_1(\mu)  \\
+    \bm{B}_p^T F_2(\mu)
+\end{spmatrix} \ ,
 \end{equation}
-
 and accordingly we solve following variational form for reduced degrees of freedom $\zeta$,
 \begin{equation}
-\tilde{K} \zeta = \tilde{F} \textrm{,} \quad \zeta_u \in \mathbb{R}^{N} \textrm{,}
+\tilde{\bm{K}} \zeta = \tilde{F} \ ,
+\end{equation}
+and calculate reduced solutions $\overrightarrow{u}_N$ and $p_N$ as,
+\begin{equation}
+\overrightarrow{u}_N = \bm{B}_v U_N \ , \ p_N = \bm{B}_p P_N
 \end{equation}
 
-and calculate reduced solution $u_N$ as,
-\begin{equation}
-u_N = \psi_u \zeta_u \textrm{,} \quad u_N \in \mathbb{R}^{d_u} \textrm{.}
-\end{equation}
+\section{Offline-online procedure}
+
+The offline-online procedure is used to separate computationally intensive parameter independent offline procedure and faster parameter dependent online procedure \textbf{cite CRBM}. During the offline phase $n_s$ snapshots are computed and reduced basis spaces $\bm{B}_v$ and $\bm{B}_p$ are created. The offline procedure is outlined in section \ref{POD_section} and section \ref{spectral_decomposition_section}. During the online phase the systems of equations are projected on reduced space using Galerkin projection, the smaller systems of equation obtained by Galerkin projection is solved and the reduced basis solution is computed as outlined in section \ref{Galerkin_section}. The parameter dependent matrices in equation \eqref{Stokes_matrix_reduced} are evaluated by using affine decomposition.
 
 \section{Numerical example}
 
-We perform the POD-Galerkin method as mentioned in section \ref{POD_section} and section \ref{Galerkin_section}. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
+We perform the POD-Galerkin method as mentioned in section \ref{POD_section} - section \ref{Galerkin_section}. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
 
-We consider inner-product matrix as ($u_{rb},p_{rb}$ is reduced basis solution and $u_h,p_h$ is DG solution) i.e.
+The geometric parameters were coordinates of tip of the obstacle on bottom edge.
 \begin{gather*}
-M_u = \int_{\Omega} \phi_i \cdot \phi_j + \sum_{k=1}^{nel} \int_{\tau_k} \nabla \phi_l : \nabla \phi_m \ ,  \\ \ i,j = 1, \ldots, u_{ndofs} \ , \ l,m = 1,\ldots,u_{ndofs\_per\_element} \\
-M_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
+(x,y) = (\mu_1,\mu_2) \ , \ (x_{ref},y_{ref}) = (0.5,0.3) \ ,
 \end{gather*}
+with $(x_{ref},y_{ref})$ as the reference parameters.
 
-The domain is shown in Figure \ref{pod_figure}. The geometric parameters were coordinates of tip of the obstacle.
-\begin{gather*}
-(x,y) = (\mu_1,\mu_2) \ . \\
-(x_{ref},y_{ref}) = (0.5,0.3) \ .
-\end{gather*}
+The training set was generated by random generation of $100$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$.
+
+\begin{figure}%[t!] % "[t!]" placement specifier just for this example
+\begin{subfigure}{\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
+\end{subfigure}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Pressure RB solution} \label{pre_rb}
+\end{subfigure}
+
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Velocity $y-$direction DG solution} \label{vel_y_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Velocity $y-$direction RB solution} \label{vel_y_rb}
+\end{subfigure}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Pressure RB solution} \label{pre_rb}
+\end{subfigure}
+
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Pressure DG solution} \label{pre_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Pressure RB solution} \label{pre_rb}
+\end{subfigure}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
+\caption{Pressure RB solution} \label{pre_rb}
+\end{subfigure}
+\caption{DG and RB solution $[\mu_x \ \mu_y] = [0.43 \ 0.36]$} 
+\label{dg_rb_solution_43_36}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
+\label{online_simulation_time}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
+\label{online_simulation_time}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
+\label{online_simulation_time}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
+\label{online_simulation_time}
+\end{figure}
+
+\textbf{ADD : experimental results: Eigenvalue drop, error vs basis function, RB,DG Solution and error at one parameter value}
 
 \begin{enumerate}
 \item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
@@ -548,7 +629,7 @@ When placed at the end of a chapter or contribution (as opposed to at the end of
 a \times b = c
 \end{equation}
 
-\bibliographystyle{spbasic.bst}
+\bibliographystyle{spmpsci.bst}
 \bibliography{references.tex}
 \input{references}
 \end{document}
