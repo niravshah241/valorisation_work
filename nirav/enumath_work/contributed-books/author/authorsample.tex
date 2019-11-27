@@ -39,6 +39,7 @@
 \usepackage{wrapfig}
 \usepackage[export]{adjustbox}
 \usepackage{subcaption}
+\usepackage{natbib}
 \captionsetup{compatibility=false}
 %%Nirav added over
 
@@ -102,31 +103,40 @@ The inverse map $\bm{T}$ is expressed in the form,
 \section{Discontinuous Galerkin formulation}
 \label{DG_formulation}
 
-Each subdomain is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary $\Gamma = \lbrace \partial \tau_k \rbrace_{k=1}^{N_{el}} \backslash \partial \Omega$. We represent $\overrightarrow{n}$ as the outward pointing normal to an edge of element.
+Each subdomain is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary $\Gamma = \lbrace \bigcup\limits_{k=1}^{N_{el} \partial \tau_k \rbrace} \backslash \partial \Omega$. The vertices of triangle ${\tau_k}_{k=1}^{N_{el}}$ are called nodes. $\overrightarrow{n}$ is the outward pointing normal to an edge of element.
 
 The Stokes's equation in strong form can be stated as,
-\begin{gather}
+\begin{gather}\label{stokes_strong_form}
 -\nu \Delta \overrightarrow{u} + \nabla p = \overrightarrow{f} \ , \ \text{in } \Omega \ , \\
-\nabla \cdot \overrightarrow{u} = 0 \ , \\
+\nabla \cdot \overrightarrow{u} = 0 \ , \ \text{in} \ \Omega \ , \\
 \overrightarrow{u} = \overrightarrow{u}_D \ , \ \text{on } \Gamma_D \ , \\
--p \overrightarrow{n} + \nu \overrightarrow{n} \cdot \nabla \overrightarrow{u} = \overrightarrow{t} \ , \ \text{on } \Gamma_N \ .
+-p \overrightarrow{n} + \nu \overrightarrow{n} \cdot \nabla \overrightarrow{u} = \overrightarrow{t} \ , \ \text{on} \ \Gamma_N \ .
 \end{gather}
 
-The vector variable velocity $\overrightarrow{u}$ and scalar pressure $p$ are the unknowns. $\nu$ is the material property known as kinematic viscosity. Vector $\overrightarrow{f}$ is external force term or source term. $\overrightarrow{u}_D$ is the Dirichlet velocity and $\overrightarrow{t}$ is the Neumann value.
+The velocity vector field $\overrightarrow{u}$ and pressure scalar field $p$ are the unknowns. $\nu$ is the material property known as kinematic viscosity. Vector $\overrightarrow{f}$ is external force term or source term. $\overrightarrow{u}_D$ is the Dirichlet velocity and $\overrightarrow{t}$ is the Neumann value.
 
 Before introducing weak form let us introduce broken Sobolev spaces for variables.
 
 The space for velocity is 
 \begin{equation} \label{velocity_test}
-\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\mathcal{T}))^d | \ \overrightarrow{\phi} \in (P^D(\tau_k))^d \ , \ \tau_k \in \mathcal{T} \rbrace \ .
+\mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\Omega))^d | \ \overrightarrow{\phi} \in (P^D(\tau_k))^d \ , \ \tau_k \in \mathcal{T} \rbrace \ .
 \end{equation}
 The space for pressure is 
 \begin{equation} \label{pressure_test}
-\mathbb{Q} = \lbrace \psi \in (L^2(\mathcal{T})) | \ \psi \in (P^{D-1}(\tau_k)) \ , \ \tau_k \in \mathcal{T} \rbrace \ .
+\mathbb{Q} = \lbrace \psi \in (L^2(\Omega)) | \ \psi \in (P^{D-1}(\tau_k)) \ , \ \tau_k \in \mathcal{T} \rbrace \ .
 \end{equation}
 Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D \geq 2$ over $\tau_k$.
 
-\begin{wrapfigure}{r}{5.5cm}
+The velocity $\overrightarrow{u}(x)$ and pressure $p(x)$ at any point $x \in \Omega$ is given by,
+\begin{equation}\label{velocity_pressure_coefficients}
+\overrightarrow{u}(x) = \sum\limits_{i=1}^{\overrightarrow{u}_{ndofs}} \overrightarrow{\phi}_i \hat{u}_i \ , \
+p(x) = \sum\limits_{i=1}^{p_{ndofs}} \psi_i \hat{p}_i \ ,
+\end{equation}
+where $\hat{u}_i$'s and $\hat{p}_i$'s are coefficients of velocity basis functions and pressure basis functions respectively. 
+
+\begin{figure}
+\centering
+\sidecaption[t]
 \begin{tikzpicture}
 \draw (0,0) node[anchor=north]{${}$}
   -- (4,0) node[anchor=north]{${}$}
@@ -138,20 +148,19 @@ Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D \geq 2$ ov
   -- cycle;
 \draw[->] (2,2)--(2.5,2.5)node[label={[xshift=0.4cm, yshift=-0.7cm]${\overrightarrow{n}^-}$}]{};
 \draw[->] (2,2)--(1.5,1.5)node[label={[xshift=0cm, yshift=0cm]${\overrightarrow{n}^+}$}]{};
-\node at (1,1){$\mathcal{T^-}$};
-\node at (3,3){$\mathcal{T^+}$};
+\node at (1,1){$\tau_{k}^-$};
+\node at (3,3){$\tau_{k}^+$};
 \node at (1.7,3){$\overrightarrow{\phi}^+,\psi^+$};
 \node at (2.3,1){$\overrightarrow{\phi}^-,\psi^-$};
 \end{tikzpicture}
-\caption{Element self (+) and neighbouring element (-)}
+\caption{Definition of jump and mean operator. \newline The superscript $+$ refers to quantity in the element itself and the superscript $-$ refers to quantity in the neighboring element}
 \label{fig:Self_neighbour}
-\end{wrapfigure}
-In order to approximate the numerical flux we need the concept of Jump and Average operator. The superscript $+$ refers to quantity in the element itself and the superscript $-$ refers to quantity in the neighboring element (Figure \ref{fig:Self_neighbour}).
+\end{figure}
+
+In the subsequent sections $\left( \cdot \right),\left( \cdot \right)_{\Gamma_D},\left( \cdot \right)_{\Gamma_N},\left( \cdot \right)_{\Gamma}$ represent the $L^2$ scalar product over $\Omega,\Gamma_D,\Gamma_N,\Gamma$ respectively. The jump operator $\left[ \cdot \right]$ and the average operator $\lbrace \cdot \rbrace$ are are important concepts in DGM formulation and are required to approximate the numerical flux (Figure \ref{fig:Self_neighbour}).
 
 The presence of normal vector $\overrightarrow{n}$ in jump and average operator introduced below allows symmetric formulation and also ensures that jump of a vector is vector and jump of a scalar is scalar.
-\vspace{\baselineskip}
-\vspace{\baselineskip}
-\vspace{\baselineskip}
+
 \begin{itemize}
 \item For vector quantity $\overrightarrow{\phi}$:
 \begin{itemize}
@@ -163,7 +172,7 @@ $\lbrace \overrightarrow{\phi} \rbrace = \frac{\overrightarrow{\phi}^+ + \overri
 \item For scalar quantity $\psi$:
 \begin{itemize}
 \item Jump operator:
-$\left[\psi\right] = \psi^+ + \psi^-$ on $\Gamma$, $\left[\psi\right] = \psi$ on $\partial \Omega$.
+$\left[\psi \overrightarrow{n} \right] = \psi^+ \overrightarrow{n}^+ + \psi^- \overrightarrow{n}^-$ on $\Gamma$, $\left[\psi \overrightarrow{n} \right] = \psi \overrightarrow{n}$ on $\partial \Omega$.
 \item Average operator:
 $\lbrace \psi \rbrace = \frac{\psi^+ + \psi^-}{2}$ on $\Gamma$, $\lbrace \psi \rbrace = \psi$ on $\partial \Omega$. 
 \end{itemize}
@@ -177,7 +186,7 @@ b(\phi,\psi) = -\int_{\mathcal{T}} \psi \nabla \cdot \overrightarrow{\phi} \ , \
 l_{IP}(\overrightarrow{\phi}) = \left( \overrightarrow{f},\overrightarrow{\phi} \right) + \left( \overrightarrow{t},\overrightarrow{\phi} \right)_{\Gamma_N} + C_{11} \left(\overrightarrow{u}_D,\overrightarrow{\phi}\right)_{\Gamma_D} - \left( \overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi} \right)_{\Gamma_D} \ .
 \end{gather}
 
-The penalty paramter $C_{11}>0$ in $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ is an empirical constant to be kept large enough to maintain coercivity of bilinear form.
+The penalty parameter $C_{11}>0$ in $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ is an empirical constant to be kept large enough to maintain coercivity of bilinear form.
 
 The weak for of continuity equation is as follow,
 \begin{equation}\label{contiuity_weak_ch3}
@@ -186,11 +195,11 @@ b(\overrightarrow{u},\psi) + ({\psi},[\overrightarrow{n} \cdot \overrightarrow{u
 \end{split}
 \end{equation}
 
-In matrix form system of equations can be written as, 
+In discrete form system of equations can be written as, 
 \begin{equation} \label{Stokes_matrix_ch3}
 \begin{spmatrix}{\textrm{Stiffness matrix}}
-    A & B \\
-    B^T & 0
+    \bm{A} & \bm{B} \\
+    \bm{B}^T & 0
 \end{spmatrix}
 \begin{spmatrix}{\textrm{Solution vector}}
     U \\
@@ -204,34 +213,39 @@ In matrix form system of equations can be written as,
 \textrm{.}
 \end{equation}
 
-Here, $A_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $B_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + \left( \lbrace \psi_j \rbrace , [n \cdot \phi_i]\right)_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = \left( \psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D \right)_{\Gamma_D}$.
+Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $\bm{B}_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + \left( \lbrace \psi_j \rbrace , [n \cdot \phi_i]\right)_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = \left( \psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D \right)_{\Gamma_D}$. The column vectors $U$ and $P$ are coefficients $\hat{u}$'s and $\hat{p}$'s from equation \eqref{velocity_pressure_coefficients}.
 
 \section{Affine expansion}
 
-We evaluate and solve the Stokes equation weak formulation on reference domain $\Omega{\bar{\mu}}$. Given a parameter set $\mu \neq \bar{\mu}$ we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The transformation of operators in affine is standard in literature \textbf{ADD affine expansion literature} and only two relevant section as specific to DG formulation will be mentioned here as below.
+We evaluate and solve the Stokes equation weak formulation on reference domain $\Omega{\bar{\mu}}$. Given a parameter set $\mu \neq \bar{\mu}$ we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The affine expansion of operators is essentially change of variable and has been explained in literatures such as \textbf{ADD affine expansion literature}. However it is pertinent to mention two expansions as specific to DGM formulation will be mentioned here as below.
 
-In order to transfer the terms containing jump and average operator following approach is used in present analysis.
-\begin{equation}\label{jump_average_term_split}
+\begin{itemize}
+\item In order to transfer the terms containing jump and average operator following approach is used in present analysis.
+\begin{equation*}\label{jump_average_term_split}
 \begin{split}
-\left(\lbrace \nabla \overrightarrow{\phi} \rbrace , \left[ \overrightarrow{n} \otimes \overrightarrow{\phi}  \right]  \right) = \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
+\left(\lbrace \nabla \overrightarrow{\phi} \rbrace , \left[ \overrightarrow{n} \otimes \overrightarrow{\phi}  \right]  \right) = \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) + \\ 
+\left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
 \end{split}
-\end{equation}
+\end{equation*}
 Each term on right hand side of equation \eqref{jump_average_term_split} can now be transformed using affine map.
 
-The coercivity term $C_{11}\left( [\overrightarrow{\phi},\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
-\begin{equation}
+\item The coercivity term $C_{11}\left( [\overrightarrow{\phi}],[\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
+\begin{equation*}
 \begin{split}
 C_{11}\left( [\overrightarrow{\phi}(\hat{x}),\overrightarrow{u}(\hat{x})] \right)_{\Gamma(\mu) \cup \Gamma_D(\mu)} = C_{11} \alpha \left( [\overrightarrow{\phi}(\bm{F}(\hat{x})),\overrightarrow{u}(\bm{F}(\hat{x}))] \right)_{\Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})} \ , \\
 \alpha = \frac{meas\left( \Gamma(\mu) \cup \Gamma_D(\mu)\right)}{meas\left( \Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})\right)} \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ x \in \Omega(\mu) \ .
 \end{split}
-\end{equation}
-Since, $C_{11}$ is empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$ will not change the formulation as long as coercivity of $a_{IP}$ over parameter space $\mathbb{P}$ is maintained. In the present analysis, $C_{11}$ is not calculated exactly but only order of magnitude required for $C_{11}$ is estimated and $C_{11}$ is kept one magnitude larger as safeguard against round-off errors. As long as the domain $\Omega(\mu)$ is not deformed much compared to its reference configuration $\Omega(\bar{\mu})$, $C_{11}$ and $C_{11}\alpha$ will have the same order of magnitude. However, large deformations are anyhow not favorable as it will lead to bad mesh quality and in turn, will lead to poor DGM-approximation.
+\end{equation*}
+
+Since, $C_{11}$ is empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$ will not change the formulation as long as coercivity of $a_{IP}$ over parameter space $\mathbb{P}$ is maintained. In the present analysis, $C_{11}$ is not calculated exactly but only order of magnitude required for $C_{11}$ is estimated and $C_{11}$ is kept one magnitude larger as safeguard against round-off errors. As long as the domain $\Omega(\mu)$ is not deformed much compared to its reference configuration $\Omega(\bar{\mu})$, $C_{11}$ and $C_{11}\alpha$ will have the same order of magnitude. However, regardless of this fact, large deformations are not favorable as it will lead to bad mesh quality and in turn, will lead to poor DGM-approximation.
+\end{itemize}
 
 \section{Reduced basis method}
 
 \subsection{Snapshot proper orthogonal decomposition}\label{POD_section}
 
-We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $\bm{M}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times \overrightarrow{u}_{ndofs}}$ and $\bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$, where $\overrightarrow{u}_{ndofs}$ and $p_{ndofs}$ are number of velocity and pressure degrees of freedom respectively.
+We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $\bm{M}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times \overrightarrow{u}_{ndofs}}$ and $\bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$.
+
 \begin{gather*}
 \bm{M}_v = \int_{\Omega} \overrightarrow{\phi}_i \cdot \overrightarrow{\phi}_j + \sum_{k=1}^{N_{el}} \int_{\tau_k} \nabla \overrightarrow{\phi}_i : \nabla \overrightarrow{\phi}_j \ , \ i,j = 1, \ldots, \overrightarrow{u}_{ndofs} \ , \\
 \bm{M}_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
@@ -248,7 +262,7 @@ We also introduce matrices storing velocity snapshots $\bm{S}_v$ and storing pre
 
 We denote the dimension of reduced basis as $N$ and assert that $N << n_s$. We now perform the spectral decomposition of $\bm{S}_v^T \bm{M}_v \bm{S}_v$,
 
-\begin{equation}
+\begin{equation}\label{snapshot_eigen_value}
 \bm{S}_v^T \bm{M}_v \bm{S}_v = \bm{V} \bm{\Theta} \bm{V}^T \ .
 \end{equation}
 
@@ -258,30 +272,25 @@ The columns of $V$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i \ , \
 \end{equation}
 
 We also note that $\theta_i > 0$ and $\theta_1 \geq \theta_2 \geq ... \geq \theta_{n_s}$ i.e. the eigenvalues are in sorted order. We form the reduced basis by linear combination of the snapshot vector,
-\begin{equation}
+\begin{equation}\label{linear_combination_snapshots}
 \bm{B}_v = \bm{S}_v \bm{A} \ , \ \bm{A} \in \mathbb{R}^{n_s \times N} \ .
 \end{equation}
-
-Here, $\bm{B}_v$ is defined such that, if $\overrightarrow{\phi} \in \mathbb{R}^{n \times d} \ , \ \bm{B}_v \in \mathbb{R}^{n \times N}$, the reduced basis for velocity $\overrightarrow{\phi}_N \in \mathbb{R}^{d \times N}$ is formed by,
+the reduced basis for velocity basis function $\overrightarrow{\phi}_N$ is formed by,
 \begin{equation}
 \overrightarrow{\phi}_N = \overrightarrow{\phi}^T \bm{B}_v \ .
 \end{equation}
 
-Considering orthonormality of reduced basis $\overrightarrow{\phi}_N$ with respect to inner product $\bm{M}_v$,
+Considering orthonormality of reduced basis $\overrightarrow{\phi}_N$ with respect to inner product induced by $\bm{M}_v$, from equation \eqref{snapshot_eigen_value},
 \begin{equation}
 <\overrightarrow{\phi}_N,\overrightarrow{\phi}_N>_{\bm{M}_v} = \bm{B}_v^T \bm{M}_v \bm{B}_v = I \ .
 \end{equation}
-
-Considering above orthonormality, we express matrix $\bm{A}$ as,
+From equation \eqref{linear_combination_snapshots}, we express matrix $\bm{A}$ as,
 \begin{equation}
-\bm{A} = \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} \in \mathbb{R}^{n_s \times N} \ , \ \bm{R}^T \bm{R} = \bm{I} \ .
+\bm{A} = \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(N-n_s \times N)}] \ \text{and accordingly} \ \bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ .
 \end{equation}
-where, $I$ is identity matrix of suitable size.
+The columns of $\bm{B}_v$ now represent the basis functions for reduced space for velocity. Due to round-off errors, these basis functions may not be of unit magnitude and it is necessary to normalize the basis functions.
 
-We set now $\bm{R}$ as,
-\begin{equation}
-\bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(n_s \times N)}] \ \text{and accordingly} \ \bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ .
-\end{equation}
+The reduced basis space $\bm{B}_p$ can be generated in similar manner using pressure snapshots $\bm{S}_p$ and inner product matrix $\bm{M}_p$.
 
 \subsection{Galerkin reduced basis formulation}\label{Galerkin_section}
 
@@ -327,18 +336,14 @@ The offline-online procedure is used to separate computationally intensive param
 
 \section{Numerical example}
 
-We perform the POD-Galerkin method as mentioned in section \ref{POD_section} - section \ref{Galerkin_section}. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
+We perform the POD-Galerkin method as mentioned in section \ref{POD_section} - section \ref{Galerkin_section}. The reference domain $\Omega{\bar{\mu}}$ is the unit square domain with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are coordinates of tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
 
-The geometric parameters were coordinates of tip of the obstacle on bottom edge.
-\begin{gather*}
-(x,y) = (\mu_1,\mu_2) \ , \ (x_{ref},y_{ref}) = (0.5,0.3) \ ,
-\end{gather*}
-with $(x_{ref},y_{ref})$ as the reference parameters.
+The training set was generated by random generation of $100$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ random parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ was used. The number of velocity degrees of freedom and pressure degrees of freedom were $\overrightarrow{u}_{ndofs} = \textbf{YYYYY}$ and $p_{ndofs} = \textbf{YYYYYY}$ respectively.
 
-The training set was generated by random generation of $100$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$.
+Figure \textbf{ABCD} shows solution computed by DGM and POD at parameter value $(----,-----)$. Figure \textbf{ABCD} gives error vs size of reduced basis space. As can be seen the error drops increasing size of basis function, however, this has to be at affordable cost of increased online simulation time \textbf{ABCD}.
 
 \begin{figure}%[t!] % "[t!]" placement specifier just for this example
-\begin{subfigure}{\textwidth}
+\begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{offline_pressure_at_43_36.jpg}
 \caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
 \end{subfigure}\hspace*{\fill}
@@ -381,256 +386,32 @@ The training set was generated by random generation of $100$ parameters between 
 \end{figure}
 
 \begin{figure}
-  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+\caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+\caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
+\end{subfigure}
   \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
 \label{online_simulation_time}
 \end{figure}
 
 \begin{figure}
-  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+\caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
+\caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
+\end{subfigure}
   \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
 \label{online_simulation_time}
 \end{figure}
 
-\begin{figure}
-  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
-  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
-\label{online_simulation_time}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
-  \caption{Size of reduced basis for velocity vs Online simulation time (semilog scale)} 
-\label{online_simulation_time}
-\end{figure}
-
-\textbf{ADD : experimental results: Eigenvalue drop, error vs basis function, RB,DG Solution and error at one parameter value}
-
-\begin{enumerate}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\begin{enumerate}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\end{enumerate}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\end{enumerate}
-
-
-\subparagraph{Subparagraph Heading} In order to avoid simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text. Use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}, see also Fig.~\ref{fig:2}.
-
-For unnumbered list we recommend to use the \verb|itemize| environment -- it will automatically be rendered in line with the preferred layout.
-
-\begin{itemize}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development, cf. Table~\ref{tab:1}.}
-\begin{itemize}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\end{itemize}
-\item{Livelihood and survival mobility are oftentimes coutcomes of uneven socioeconomic development.}
-\end{itemize}
-
-\begin{figure}[t]
-\sidecaption[t]
-% Use the relevant command for your figure-insertion program
-% to insert the figure file.
-% For example, with the option graphics use
-\includegraphics[scale=.65]{figure}
-%
-% If no graphics program available, insert a blank space i.e. use
-%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-%
-%\caption{Please write your figure caption here}
-\caption{If the width of the figure is less than 7.8 cm use the \texttt{sidecapion} command to flush the caption on the left side of the page. If the figure is positioned at the top of the page, align the sidecaption with the top of the figure -- to achieve this you simply need to use the optional argument \texttt{[t]} with the \texttt{sidecaption} command}
-\label{fig:2}       % Give a unique label
-\end{figure}
-
-\runinhead{Run-in Heading Boldface Version} Use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-\subruninhead{Run-in Heading Boldface and Italic Version} Use the \LaTeX\ automatism for all your cross-refer\-ences and citations as has already been described in Sect.~\ref{sec:2}\index{paragraph}.
-
-\subsubruninhead{Run-in Heading Displayed Version} Use the \LaTeX\ automatism for all your cross-refer\-ences and citations as has already been described in Sect.~\ref{sec:2}\index{paragraph}.
-% Use the \index{} command to code your index words
-%
-% For tables use
-%
-\begin{table}[!t]
-\caption{Please write your table caption here}
-\label{tab:1}       % Give a unique label
-%
-% Follow this input for your own table layout
-%
-\begin{tabular}{p{2cm}p{2.4cm}p{2cm}p{4.9cm}}
-\hline\noalign{\smallskip}
-Classes & Subclass & Length & Action Mechanism  \\
-\noalign{\smallskip}\svhline\noalign{\smallskip}
-Translation & mRNA$^a$  & 22 (19--25) & Translation repression, mRNA cleavage\\
-Translation & mRNA cleavage & 21 & mRNA cleavage\\
-Translation & mRNA  & 21--22 & mRNA cleavage\\
-Translation & mRNA  & 24--26 & Histone and DNA Modification\\
-\noalign{\smallskip}\hline\noalign{\smallskip}
-\end{tabular}
-$^a$ Table foot note (with superscript)
-\end{table}
-%
-\section{Section Heading}
-\label{sec:3}
-% Always give a unique label
-% and use \ref{<label>} for cross-references
-% and \cite{<label>} for bibliographic references
-% use \sectionmark{}
-% to alter or adjust the section heading in the running head
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-If you want to list definitions or the like we recommend to use the enhanced \verb|description| environment -- it will automatically rendered in line with the preferred layout.
-
-\begin{description}[Type 1]
-\item[Type 1]{That addresses central themes pertainng to migration, health, and disease. In Sect.~\ref{sec:1}, Wilson discusses the role of human migration in infectious disease distributions and patterns.}
-\item[Type 2]{That addresses central themes pertainng to migration, health, and disease. In Sect.~\ref{subsec:2}, Wilson discusses the role of human migration in infectious disease distributions and patterns.}
-\end{description}
-
-\subsection{Subsection Heading} %
-In order to avoid simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text. Use the \LaTeX\ automatism for all your cross-references and citations citations as has already been described in Sect.~\ref{sec:2}.
-
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-\begin{svgraybox}
-If you want to emphasize complete paragraphs of texts we recommend to use the newly defined class option \verb|graybox| and the newly defined environment \verb|svgraybox|. This will produce a 15 percent screened box 'behind' your text.
-
-If you want to emphasize complete paragraphs of texts we recommend to use the newly defined class option and environment \verb|svgraybox|. This will produce a 15 percent screened box 'behind' your text.
-\end{svgraybox}
-
-
-\subsubsection{Subsubsection Heading}
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-\begin{theorem}
-Theorem text goes here.
-\end{theorem}
-%
-% or
-%
-\begin{definition}
-Definition text goes here.
-\end{definition}
-
-\begin{proof}
-%\smartqed
-Proof text goes here.
-%\qed
-\end{proof}
-
-\paragraph{Paragraph Heading} %
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-Note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-%
-% For built-in environments use
-%
-\begin{theorem}
-Theorem text goes here.
-\end{theorem}
-%
-\begin{definition}
-Definition text goes here.
-\end{definition}
-%
-\begin{proof}
-%\smartqed
-Proof text goes here.
-%\qed
-\end{proof}
-%
-\begin{trailer}{Trailer Head}
-If you want to emphasize complete paragraphs of texts in an \verb|Trailer Head| we recommend to
-use  \begin{verbatim}\begin{trailer}{Trailer Head}
-...
-\end{trailer}\end{verbatim}
-\end{trailer}
-%
-\begin{question}{Questions}
-If you want to emphasize complete paragraphs of texts in an \verb|Questions| we recommend to
-use  \begin{verbatim}\begin{question}{Questions}
-...
-\end{question}\end{verbatim}
-\end{question}
-\eject%
-\begin{important}{Important}
-If you want to emphasize complete paragraphs of texts in an \verb|Important| we recommend to
-use  \begin{verbatim}\begin{important}{Important}
-...
-\end{important}\end{verbatim}
-\end{important}
-%
-\begin{warning}{Attention}
-If you want to emphasize complete paragraphs of texts in an \verb|Attention| we recommend to
-use  \begin{verbatim}\begin{warning}{Attention}
-...
-\end{warning}\end{verbatim}
-\end{warning}
-
-\begin{programcode}{Program Code}
-If you want to emphasize complete paragraphs of texts in an \verb|Program Code| we recommend to
-use
-
-\verb|\begin{programcode}{Program Code}|
-
-\verb|\begin{verbatim}...\end{verbatim}|
-
-\verb|\end{programcode}|
-
-\end{programcode}
-%
-\begin{tips}{Tips}
-If you want to emphasize complete paragraphs of texts in an \verb|Tips| we recommend to
-use  \begin{verbatim}\begin{tips}{Tips}
-...
-\end{tips}\end{verbatim}
-\end{tips}
-\eject
-%
-\begin{overview}{Overview}
-If you want to emphasize complete paragraphs of texts in an \verb|Overview| we recommend to
-use  \begin{verbatim}\begin{overview}{Overview}
-...
-\end{overview}\end{verbatim}
-\end{overview}
-\begin{backgroundinformation}{Background Information}
-If you want to emphasize complete paragraphs of texts in an \verb|Background|
-\verb|Information| we recommend to
-use
-
-\verb|\begin{backgroundinformation}{Background Information}|
-
-\verb|...|
-
-\verb|\end{backgroundinformation}|
-\end{backgroundinformation}
-\begin{legaltext}{Legal Text}
-If you want to emphasize complete paragraphs of texts in an \verb|Legal Text| we recommend to
-use  \begin{verbatim}\begin{legaltext}{Legal Text}
-...
-\end{legaltext}\end{verbatim}
-\end{legaltext}
-%
-\begin{acknowledgement}
-If you want to include acknowledgments of assistance and the like at the end of an individual chapter please use the \verb|acknowledgement| environment -- it will automatically be rendered in line with the preferred layout.
-\end{acknowledgement}
-%
-\section*{Appendix}
-\addcontentsline{toc}{section}{Appendix}
-%
-%
-When placed at the end of a chapter or contribution (as opposed to at the end of the book), the numbering of tables, figures, and equations in the appendix section continues on from that in the main text. Hence please \textit{do not} use the \verb|appendix| command when writing an appendix at the end of your chapter or contribution. If there is only one the appendix is designated ``Appendix'', or ``Appendix 1'', or ``Appendix 2'', etc. if there is more than one.
-
-\begin{equation}
-a \times b = c
-\end{equation}
-
-\bibliographystyle{spmpsci.bst}
+\bibliographystyle{spbasic.bst}
 \bibliography{references.tex}
-\input{references}
+\input{authorsample.bbl}
 \end{document}
