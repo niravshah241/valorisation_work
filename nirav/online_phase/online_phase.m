@@ -79,8 +79,8 @@ if plot_online_solution == 1
         ldg_plot(sdf,transformed_grid,params);
         plot(transformed_grid);
         if save_online_solution == 1
-            saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-            saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+            saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.fig']);
+            saveas(a,['nirav/pod_galerkin/offline_velocity_' num2str(i) '_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.jpg']);
         end
     end
     
@@ -97,8 +97,8 @@ if plot_online_solution == 1
         ldg_plot(sdf,transformed_grid,paramsP);
         plot(transformed_grid);
         if save_online_solution == 1
-            saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-            saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+            saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.fig']);
+            saveas(a,['nirav/pod_galerkin/offline_pressure_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.jpg']);
         end
     end
 end
@@ -134,8 +134,8 @@ if plot_online_solution == 1
         axis tight
         ldg_plot(sdf,transformed_grid,params_reduced_full);
         plot(transformed_grid);
-        %     saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-        %     saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+            saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.fig']);
+            saveas(a,['nirav/pod_galerkin/online_velocity_' num2str(i) '_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.jpg']);
     end
     
     for i=1:1:paramsP_reduced_full.dimrange
@@ -150,8 +150,8 @@ if plot_online_solution == 1
         axis tight
         ldg_plot(sdf,transformed_grid,paramsP_reduced_full);
         plot(transformed_grid);
-        %     saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.fig']);
-        %     saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x) '_' num2str(mu_y) '.jpg']);
+            saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.fig']);
+            saveas(a,['nirav/pod_galerkin/online_pressure_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.jpg']);
     end
 end
 t_end_rb_2 = toc();
@@ -174,3 +174,50 @@ disp(['RB error for velocity : ' ...
     num2str(error_rb_velocity_online_parameter)]);
 disp(['RB error for pressure : ' ...
     num2str(error_rb_pressure_online_parameter)]);
+
+if plot_online_solution == 1
+    
+    for i=1:1:params.dimrange
+        a = figure();
+        axis equal
+        [scalar_dofs, scalar_df_info] = ...
+            ldg_scalar_component((params.dofs-params_reduced_full.dofs),...
+            i,params);
+        sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+        disp(['Plotting ',num2str(i),' degree of freedom (Schur)'])
+        %subplot(params.dimrange,1,i)
+        %title(['Velocity degree of freedom number ',num2str(i)])
+        if i==1
+            title(['Velocity error in x direction (Schur)'])
+        else
+            title(['Velocity error in y direction (Schur)'])
+        end
+        axis equal
+        axis tight
+        ldg_plot(sdf,transformed_grid,params);
+        plot(transformed_grid);
+        if save_online_solution == 1
+            saveas(a,['nirav/pod_galerkin/velocity_error_' num2str(i) '_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.fig']);
+            saveas(a,['nirav/pod_galerkin/velocity_error_' num2str(i) '_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.jpg']);
+        end
+    end
+    
+    for i=1:1:paramsP.dimrange
+        a = figure();
+        [scalar_dofs, scalar_df_info] = ...
+            ldg_scalar_component((paramsP.dofs-paramsP_reduced_full.dofs),...
+            i,paramsP);
+        sdf = ldgdiscfunc(scalar_dofs,scalar_df_info);
+        disp(['Plotting ',num2str(i),' degree of freedom (for pressure)'])
+        %subplot(paramsP.dimrange,1,i)
+        title('Pressure error (Schur)')
+        axis equal
+        axis tight
+        ldg_plot(sdf,transformed_grid,paramsP);
+        plot(transformed_grid);
+        if save_online_solution == 1
+            saveas(a,['nirav/pod_galerkin/pressure_error_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.fig']);
+            saveas(a,['nirav/pod_galerkin/pressure_error_at_' num2str(mu_x*100) '_' num2str(mu_y*100) '.jpg']);
+        end
+    end
+end

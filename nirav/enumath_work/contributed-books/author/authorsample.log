@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  27 NOV 2019 17:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  28 NOV 2019 03:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -914,53 +914,7 @@ LaTeX Info: Redefining \cite on input line 694.
 
 
 Writing index file authorsample.idx
-(./authorsample.aux
-
-LaTeX Warning: Label `pre_rb' multiply defined.
-
-
-LaTeX Warning: Label `sub@pre_rb' multiply defined.
-
-
-LaTeX Warning: Label `pre_rb' multiply defined.
-
-
-LaTeX Warning: Label `sub@pre_rb' multiply defined.
-
-
-LaTeX Warning: Label `pre_rb' multiply defined.
-
-
-LaTeX Warning: Label `sub@pre_rb' multiply defined.
-
-
-LaTeX Warning: Label `vel_x_dg' multiply defined.
-
-
-LaTeX Warning: Label `sub@vel_x_dg' multiply defined.
-
-
-LaTeX Warning: Label `vel_x_rb' multiply defined.
-
-
-LaTeX Warning: Label `sub@vel_x_rb' multiply defined.
-
-
-LaTeX Warning: Label `vel_x_dg' multiply defined.
-
-
-LaTeX Warning: Label `sub@vel_x_dg' multiply defined.
-
-
-LaTeX Warning: Label `vel_x_rb' multiply defined.
-
-
-LaTeX Warning: Label `sub@vel_x_rb' multiply defined.
-
-
-LaTeX Warning: Label `online_simulation_time' multiply defined.
-
-)
+(./authorsample.aux)
 \openout1 = `authorsample.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 55.
@@ -977,8 +931,7 @@ LaTeX Font Info:    ... okay on input line 55.
 LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 55.
 LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 55
 .
-
-(/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
 File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
 )
 LaTeX Font Info:    ... okay on input line 55.
@@ -1199,50 +1152,74 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <11> not available
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 11.0pt on input line 245.
  [6] [7] [8]
-<offline_pressure_at_43_36.jpg, id=54, 894.34125pt x 647.41875pt>
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
+<offline_velocity_1_at_47_33.jpg, id=54, 894.34125pt x 647.41875pt>
+File: offline_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
-<use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 347.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
- <use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 351.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
-
-<use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 355.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
- <use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 360.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
-
-<use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 364.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
- <use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 368.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
-
-<use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 373.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
- <use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 377.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-File: offline_pressure_at_43_36.jpg Graphic file (type jpg)
-
-<use offline_pressure_at_43_36.jpg>
-Package pdftex.def Info: offline_pressure_at_43_36.jpg used on input line 381.
+<use offline_velocity_1_at_47_33.jpg>
+Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 347
+.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
-<size_vs_maximum_reduced_basis_velocity_error_semilog.jpg, id=55, 894.34125pt x
+<online_velocity_1_at_47_33.jpg, id=55, 894.34125pt x 647.41875pt>
+File: online_velocity_1_at_47_33.jpg Graphic file (type jpg)
+
+<use online_velocity_1_at_47_33.jpg>
+Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 351.
+
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<velocity_error_1_at_47_33.jpg, id=56, 894.34125pt x 647.41875pt>
+File: velocity_error_1_at_47_33.jpg Graphic file (type jpg)
+
+<use velocity_error_1_at_47_33.jpg>
+Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 355.
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<offline_velocity_2_at_47_33.jpg, id=57, 894.34125pt x 647.41875pt>
+File: offline_velocity_2_at_47_33.jpg Graphic file (type jpg)
+
+<use offline_velocity_2_at_47_33.jpg>
+Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 360
+.
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<online_velocity_2_at_47_33.jpg, id=58, 894.34125pt x 647.41875pt>
+File: online_velocity_2_at_47_33.jpg Graphic file (type jpg)
+
+<use online_velocity_2_at_47_33.jpg>
+Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 364.
+
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<velocity_error_2_at_47_33.jpg, id=59, 894.34125pt x 647.41875pt>
+File: velocity_error_2_at_47_33.jpg Graphic file (type jpg)
+
+<use velocity_error_2_at_47_33.jpg>
+Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 368.
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<offline_pressure_at_47_33.jpg, id=60, 894.34125pt x 647.41875pt>
+File: offline_pressure_at_47_33.jpg Graphic file (type jpg)
+
+<use offline_pressure_at_47_33.jpg>
+Package pdftex.def Info: offline_pressure_at_47_33.jpg used on input line 373.
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<online_pressure_at_47_33.jpg, id=61, 894.34125pt x 647.41875pt>
+File: online_pressure_at_47_33.jpg Graphic file (type jpg)
+
+<use online_pressure_at_47_33.jpg>
+Package pdftex.def Info: online_pressure_at_47_33.jpg used on input line 377.
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<pressure_error_at_47_33.jpg, id=62, 894.34125pt x 647.41875pt>
+File: pressure_error_at_47_33.jpg Graphic file (type jpg)
+
+<use pressure_error_at_47_33.jpg>
+Package pdftex.def Info: pressure_error_at_47_33.jpg used on input line 381.
+(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
+
+<size_vs_maximum_reduced_basis_velocity_error_semilog.jpg, id=63, 894.34125pt x
  647.41875pt>
 File: size_vs_maximum_reduced_basis_velocity_error_semilog.jpg Graphic file (ty
 pe jpg)
@@ -1250,29 +1227,32 @@ pe jpg)
 Package pdftex.def Info: size_vs_maximum_reduced_basis_velocity_error_semilog.j
 pg used on input line 390.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
-File: size_vs_maximum_reduced_basis_velocity_error_semilog.jpg Graphic file (ty
-pe jpg)
 
-<use size_vs_maximum_reduced_basis_velocity_error_semilog.jpg>
-Package pdftex.def Info: size_vs_maximum_reduced_basis_velocity_error_semilog.j
+<size_vs_maximum_reduced_basis_pressure_error_semilog.jpg, id=64, 894.34125pt x
+ 647.41875pt>
+File: size_vs_maximum_reduced_basis_pressure_error_semilog.jpg Graphic file (ty
+pe jpg)
+ <use size_vs_maximum_reduced_basis_pressure_error_semilog.jpg>
+Package pdftex.def Info: size_vs_maximum_reduced_basis_pressure_error_semilog.j
 pg used on input line 394.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
-File: size_vs_maximum_reduced_basis_velocity_error_semilog.jpg Graphic file (ty
-pe jpg)
 
-<use size_vs_maximum_reduced_basis_velocity_error_semilog.jpg>
-Package pdftex.def Info: size_vs_maximum_reduced_basis_velocity_error_semilog.j
-pg used on input line 403.
-(pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
-File: size_vs_maximum_reduced_basis_velocity_error_semilog.jpg Graphic file (ty
-pe jpg)
+<size_vs_online_simulation_time_semilog.jpg, id=65, 894.34125pt x 647.41875pt>
+File: size_vs_online_simulation_time_semilog.jpg Graphic file (type jpg)
 
-<use size_vs_maximum_reduced_basis_velocity_error_semilog.jpg>
-Package pdftex.def Info: size_vs_maximum_reduced_basis_velocity_error_semilog.j
-pg used on input line 407.
+<use size_vs_online_simulation_time_semilog.jpg>
+Package pdftex.def Info: size_vs_online_simulation_time_semilog.jpg used on inp
+ut line 403.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
 
-(./authorsample.bbl
+<size_vs_reduced_basis_semilog.jpg, id=66, 894.34125pt x 647.41875pt>
+File: size_vs_reduced_basis_semilog.jpg Graphic file (type jpg)
+
+<use size_vs_reduced_basis_semilog.jpg>
+Package pdftex.def Info: size_vs_reduced_basis_semilog.jpg used on input line 4
+07.
+(pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
+ (./authorsample.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 11.
 
@@ -1300,44 +1280,46 @@ Package natbib Warning: Empty `thebibliography' environment on input line 11.
 
 Package natbib Warning: There were undefined citations.
 
-[9 <./offline_pressure_at_43_36.jpg>] [10 <./size_vs_maximum_reduced_basis_velo
-city_error_semilog.jpg>] (./authorsample.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+[9 <./offline_velocity_1_at_47_33.jpg> <./online_velocity_1_at_47_33.jpg> <./ve
+locity_error_1_at_47_33.jpg> <./offline_velocity_2_at_47_33.jpg> <./online_velo
+city_2_at_47_33.jpg> <./velocity_error_2_at_47_33.jpg> <./offline_pressure_at_4
+7_33.jpg> <./online_pressure_at_47_33.jpg> <./pressure_error_at_47_33.jpg>]
+[10 <./size_vs_maximum_reduced_basis_velocity_error_semilog.jpg> <./size_vs_max
+imum_reduced_basis_pressure_error_semilog.jpg> <./size_vs_online_simulation_tim
+e_semilog.jpg> <./size_vs_reduced_basis_semilog.jpg>] (./authorsample.aux) ) 
 Here is how much of TeX's memory you used:
- 18557 strings out of 493029
- 333866 string characters out of 6136233
- 412681 words of memory out of 5000000
- 21605 multiletter control sequences out of 15000+600000
- 114806 words of font info for 206 fonts, out of 8000000 for 9000
+ 18640 strings out of 493029
+ 336547 string characters out of 6136233
+ 412878 words of memory out of 5000000
+ 21675 multiletter control sequences out of 15000+600000
+ 109634 words of font info for 206 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,29n,94p,1134b,773s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/sh
-are/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/fon
-ts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/n
-tx-ec-tlf.enc}</usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/shar
-e/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/newtx/rntxbmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/newtx/rntxbmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx
-/rntxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rntxmi5.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rntxmi7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfont
-s/txbmia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txex-bar.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/txfonts/txmia.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/txfonts/txsyc.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on authorsample.pdf (10 pages, 287593 bytes).
+{/u
+sr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/t
+exmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/fonts/en
+c/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec
+-tlf.enc}</usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/tex
+mf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/newtx/rntxbmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+newtx/rntxbmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rntx
+mi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rntxmi5.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/newtx/rntxmi7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txb
+mia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txex-bar.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/txfonts/txmia.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/txfonts/txsyc.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on authorsample.pdf (10 pages, 1201538 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
+ 143 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
