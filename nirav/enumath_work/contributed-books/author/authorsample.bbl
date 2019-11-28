@@ -1,4 +1,4 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -7,5 +7,34 @@
   \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{{Antonietti, Paola F.} et~al.(2016){Antonietti, Paola F.},
+  {Pacciarini, Paolo}, and {Quarteroni, Alfio}}]{pacciarini}
+{Antonietti, Paola F}, {Pacciarini, Paolo}, {Quarteroni, Alfio} (2016) A
+  discontinuous galerkin reduced basis element method for elliptic problems.
+  ESAIM: M2AN 50(2):337--360, \doi{10.1051/m2an/2015045},
+  \urlprefix\url{https://doi.org/10.1051/m2an/2015045}
+
+\bibitem[{Dolej{\v{s}}{\'\i} and Feistauer(2015)}]{hyperbolic}
+Dolej{\v{s}}{\'\i} V, Feistauer M (2015) Discontinuous Galerkin Method:
+  Analysis and Applications to Compressible Flow. Springer Series in
+  Computational Mathematics, Springer International Publishing,
+  \urlprefix\url{https://books.google.es/books?id=Pj4wCgAAQBAJ}
+
+\bibitem[{Hesthaven et~al.(2015)Hesthaven, Rozza, and Stamm}]{CRBM}
+Hesthaven JS, Rozza G, Stamm B (2015) Certified Reduced Basis Methods for
+  Parametrized Partial Differential Equations, 1st edn. Springer Briefs in
+  Mathematics, Springer, Switzerland, \doi{10.1007/978-3-319-22470-1}
+
+\bibitem[{Peraire and Persson(2008)}]{peraire}
+Peraire J, Persson PO (2008) The compact discontinuous galerkin (cdg) method
+  for elliptic problems. SIAM Journal on Scientific Computing 30(4):1806--1824,
+  \doi{10.1137/070685518}, \urlprefix\url{https://doi.org/10.1137/070685518}
+
+\bibitem[{Riviere(2008)}]{riviere}
+Riviere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
+  Parabolic Equations: Theory and Implementation. Frontiers in Applied
+  Mathematics, Cambridge University Press,
+  \urlprefix\url{https://books.google.de/books?id=GY4GtnDCaSQC}
 
 \end{thebibliography}

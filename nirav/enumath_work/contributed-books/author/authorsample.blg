@@ -1,49 +1,47 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: authorsample.aux
-The style file: spbasic.bst.bst
-I found no \bibdata command---while reading file authorsample.aux
-Warning--I didn't find a database entry for "psysoc-journal"
+The style file: spbasic.bst
+Database file #1: references.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-You've used 0 entries,
+You've used 5 entries,
             3269 wiz_defined-function locations,
-            666 strings with 4797 characters,
-and the built_in function-call counts, 35 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 8
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+            706 strings with 5915 characters,
+and the built_in function-call counts, 4643 in all, are:
+= -- 417
+> -- 109
+< -- 4
++ -- 42
+- -- 33
+* -- 414
+:= -- 645
+add.period$ -- 5
+call.type$ -- 5
+change.case$ -- 35
+chr.to.int$ -- 8
+cite$ -- 5
+duplicate$ -- 414
+empty$ -- 445
+format.name$ -- 50
+if$ -- 978
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 10
-num.names$ -- 0
-pop$ -- 0
+missing$ -- 47
+newline$ -- 25
+num.names$ -- 20
+pop$ -- 91
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 31
 quote$ -- 0
-skip$ -- 1
+skip$ -- 83
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 493
+swap$ -- 102
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 36
 warning$ -- 0
-while$ -- 0
+while$ -- 31
 width$ -- 0
-write$ -- 9
-(There was 1 error message)
+write$ -- 72

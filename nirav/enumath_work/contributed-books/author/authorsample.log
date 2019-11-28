@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  28 NOV 2019 03:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  28 NOV 2019 16:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1031,132 +1031,125 @@ See the caption package documentation for explanation.
 
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.0pt on input line 70.
+(Font)              scaled to size 14.0pt on input line 72.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 70.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.0pt on input line 70.
+(Font)              scaled to size 14.0pt on input line 72.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <16> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 70.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 16.0pt on input line 70.
+(Font)              scaled to size 16.0pt on input line 72.
 LaTeX Font Info:    Try loading font information for OT1+ntxtlf on input line 7
-0.
+2.
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2015/01/17 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 70.
+(Font)              scaled to size 10.0pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 70.
+(Font)              scaled to size 7.3pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 70.
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 70.
+(Font)              scaled to size 5.5pt on input line 72.
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 72.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsym on input line 70.
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 72.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 70.
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 72.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 70.
+(Font)              scaled to size 10.0pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.3pt on input line 70.
+(Font)              scaled to size 7.3pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 5.5pt on input line 70.
+(Font)              scaled to size 5.5pt on input line 72.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.5pt on input line 70.
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 70.
+(Font)              scaled to size 8.5pt on input line 72.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.5pt on input line 70.
+(Font)              scaled to size 8.5pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.20496pt on input line 70.
+(Font)              scaled to size 6.20496pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 4.67502pt on input line 70.
+(Font)              scaled to size 4.67502pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.5pt on input line 70.
+(Font)              scaled to size 8.5pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.20496pt on input line 70.
+(Font)              scaled to size 6.20496pt on input line 72.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 4.67502pt on input line 70.
-LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 70.
+(Font)              scaled to size 4.67502pt on input line 72.
+LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 72.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtt.fd
 File: t1ntxtt.fd 2012/04/20 v3.1
 )
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 8.5pt on input line 70.
-
-Title too long for running head. Please supply
-a shorter form with \titlerunning prior to \maketitle
+(Font)              scaled to size 8.5pt on input line 72.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 76.
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 76.
-
-Package natbib Warning: Citation `psysoc-journal' on page 1 undefined on input 
-line 76.
-
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 78.
-LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
 (Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 78.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 78.
-[1
+(Font)              scaled to size 10.0pt on input line 78.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 80.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 80.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 80.
+ [1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 91.
+(Font)              scaled to size 7.3pt on input line 93.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 91.
+(Font)              scaled to size 5.5pt on input line 93.
  [2] [3]
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <8.5> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 156.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 166.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.5pt on input line 156.
+(Font)              scaled to size 8.5pt on input line 166.
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-65.
+75.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 165.
-
-Overfull \hbox (76.19177pt too wide) in paragraph at lines 187--187
+(Font)              scaled to size 10.0pt on input line 175.
+ [4]
+Overfull \hbox (76.19177pt too wide) in paragraph at lines 197--197
 [] 
  []
 
-[4] [5]
+[5]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 11.0pt on input line 245.
+(Font)              scaled to size 11.0pt on input line 255.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <11> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 245.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 255.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 11.0pt on input line 245.
+(Font)              scaled to size 11.0pt on input line 255.
  [6] [7] [8]
 <offline_velocity_1_at_47_33.jpg, id=54, 894.34125pt x 647.41875pt>
 File: offline_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_velocity_1_at_47_33.jpg>
-Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 347
+Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 357
 .
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1164,7 +1157,7 @@ Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 347
 File: online_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
 <use online_velocity_1_at_47_33.jpg>
-Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 351.
+Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 361.
 
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1172,14 +1165,14 @@ Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 351.
 File: velocity_error_1_at_47_33.jpg Graphic file (type jpg)
 
 <use velocity_error_1_at_47_33.jpg>
-Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 355.
+Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 365.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
 <offline_velocity_2_at_47_33.jpg, id=57, 894.34125pt x 647.41875pt>
 File: offline_velocity_2_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_velocity_2_at_47_33.jpg>
-Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 360
+Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 370
 .
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1187,7 +1180,7 @@ Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 360
 File: online_velocity_2_at_47_33.jpg Graphic file (type jpg)
 
 <use online_velocity_2_at_47_33.jpg>
-Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 364.
+Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 374.
 
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1195,28 +1188,28 @@ Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 364.
 File: velocity_error_2_at_47_33.jpg Graphic file (type jpg)
 
 <use velocity_error_2_at_47_33.jpg>
-Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 368.
+Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 378.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
 <offline_pressure_at_47_33.jpg, id=60, 894.34125pt x 647.41875pt>
 File: offline_pressure_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_pressure_at_47_33.jpg>
-Package pdftex.def Info: offline_pressure_at_47_33.jpg used on input line 373.
+Package pdftex.def Info: offline_pressure_at_47_33.jpg used on input line 383.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
 <online_pressure_at_47_33.jpg, id=61, 894.34125pt x 647.41875pt>
 File: online_pressure_at_47_33.jpg Graphic file (type jpg)
 
 <use online_pressure_at_47_33.jpg>
-Package pdftex.def Info: online_pressure_at_47_33.jpg used on input line 377.
+Package pdftex.def Info: online_pressure_at_47_33.jpg used on input line 387.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
 <pressure_error_at_47_33.jpg, id=62, 894.34125pt x 647.41875pt>
 File: pressure_error_at_47_33.jpg Graphic file (type jpg)
 
 <use pressure_error_at_47_33.jpg>
-Package pdftex.def Info: pressure_error_at_47_33.jpg used on input line 381.
+Package pdftex.def Info: pressure_error_at_47_33.jpg used on input line 391.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
 <size_vs_maximum_reduced_basis_velocity_error_semilog.jpg, id=63, 894.34125pt x
@@ -1225,7 +1218,7 @@ File: size_vs_maximum_reduced_basis_velocity_error_semilog.jpg Graphic file (ty
 pe jpg)
  <use size_vs_maximum_reduced_basis_velocity_error_semilog.jpg>
 Package pdftex.def Info: size_vs_maximum_reduced_basis_velocity_error_semilog.j
-pg used on input line 390.
+pg used on input line 400.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
 
 <size_vs_maximum_reduced_basis_pressure_error_semilog.jpg, id=64, 894.34125pt x
@@ -1234,7 +1227,7 @@ File: size_vs_maximum_reduced_basis_pressure_error_semilog.jpg Graphic file (ty
 pe jpg)
  <use size_vs_maximum_reduced_basis_pressure_error_semilog.jpg>
 Package pdftex.def Info: size_vs_maximum_reduced_basis_pressure_error_semilog.j
-pg used on input line 394.
+pg used on input line 404.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
 
 <size_vs_online_simulation_time_semilog.jpg, id=65, 894.34125pt x 647.41875pt>
@@ -1242,7 +1235,7 @@ File: size_vs_online_simulation_time_semilog.jpg Graphic file (type jpg)
 
 <use size_vs_online_simulation_time_semilog.jpg>
 Package pdftex.def Info: size_vs_online_simulation_time_semilog.jpg used on inp
-ut line 403.
+ut line 413.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
 
 <size_vs_reduced_basis_semilog.jpg, id=66, 894.34125pt x 647.41875pt>
@@ -1250,76 +1243,66 @@ File: size_vs_reduced_basis_semilog.jpg Graphic file (type jpg)
 
 <use size_vs_reduced_basis_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_semilog.jpg used on input line 4
-07.
+17.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
- (./authorsample.bbl
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 10.0pt on input line 428.
 
-Package natbib Warning: Empty `thebibliography' environment on input line 11.
-
-) (./authorsample.bbl
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{thebibliography}{0}
-                              
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Package natbib Warning: Empty `thebibliography' environment on input line 11.
-
-)
-\tf@thm=\write6
-\openout6 = `authorsample.thm'.
-
-
-
-Package natbib Warning: There were undefined citations.
+Overfull \hbox (7.44183pt too wide) in paragraph at lines 428--429
+\T1/ntxtt/m/n/10 / / www . morepas . org / software / rbmatlab / 0 . 11 . 04 / 
+doc / index . html$\T1/ntxtlf/m/n/10 )). We
+ []
 
 [9 <./offline_velocity_1_at_47_33.jpg> <./online_velocity_1_at_47_33.jpg> <./ve
 locity_error_1_at_47_33.jpg> <./offline_velocity_2_at_47_33.jpg> <./online_velo
 city_2_at_47_33.jpg> <./velocity_error_2_at_47_33.jpg> <./offline_pressure_at_4
 7_33.jpg> <./online_pressure_at_47_33.jpg> <./pressure_error_at_47_33.jpg>]
-[10 <./size_vs_maximum_reduced_basis_velocity_error_semilog.jpg> <./size_vs_max
-imum_reduced_basis_pressure_error_semilog.jpg> <./size_vs_online_simulation_tim
-e_semilog.jpg> <./size_vs_reduced_basis_semilog.jpg>] (./authorsample.aux) ) 
+Overfull \hbox (3.63127pt too wide) in paragraph at lines 433--434
+[]\T1/ntxtlf/m/n/10 COST Ac-tion TD1307 by Eu-ro-pean Model Re-duc-tion Net-wor
+k (EU-MORNET) 
+ []
+
+(./authorsample.bbl [10 <./size_vs_maximum_reduced_basis_velocity_error_semilog
+.jpg> <./size_vs_maximum_reduced_basis_pressure_error_semilog.jpg> <./size_vs_o
+nline_simulation_time_semilog.jpg> <./size_vs_reduced_basis_semilog.jpg>])
+\tf@thm=\write6
+\openout6 = `authorsample.thm'.
+
+
+[11] (./authorsample.aux) ) 
 Here is how much of TeX's memory you used:
- 18640 strings out of 493029
- 336547 string characters out of 6136233
- 412878 words of memory out of 5000000
- 21675 multiletter control sequences out of 15000+600000
- 109634 words of font info for 206 fonts, out of 8000000 for 9000
+ 18653 strings out of 493029
+ 336736 string characters out of 6136233
+ 411178 words of memory out of 5000000
+ 21690 multiletter control sequences out of 15000+600000
+ 109956 words of font info for 207 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,29n,94p,1134b,773s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/u
-sr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/t
-exmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/fonts/en
-c/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec
--tlf.enc}</usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/tex
-mf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/newtx/rntxbmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-newtx/rntxbmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rntx
-mi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rntxmi5.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/newtx/rntxmi7.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txb
-mia.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txex-bar.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/txfonts/txmia.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/txfonts/txsyc.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on authorsample.pdf (10 pages, 1201538 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx
+/ntx-ot1-tlf.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/sha
+re/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dis
+t/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/share/texmf/fonts/type1/public/tex
+-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/newtx/rntxbmi.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/newtx/rntxbmi7.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/newtx/rntxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/newtx/rntxmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/new
+tx/rntxmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxmi.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/txfonts/txbmia.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/newtx/txex-bar.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
+xfonts/txex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txmia
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/times/utmri8a.pfb>
+Output written on authorsample.pdf (11 pages, 1208287 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 146 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  78 words of extra memory for PDF output out of 10000 (max. 10000000)
 

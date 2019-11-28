@@ -1,13 +1,14 @@
 \relax 
 \immediate\closeout\minitoc
 \let \MiniTOC =N
-\citation{psysoc-journal}
 \providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {titlech}{\numberline {1}Discontinuous Galerkin model order reduction of geometrically parametrized Stokes flow}{1}}
 \@writefile{toc}{\authcount {1}}
 \@writefile{toc}{\contentsline {authorch}{Nirav Vasant Shah, Martin Hess and Gianluigi Rozza}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Introduction}{1}}
 \newlabel{introduction}{{1.1}{1}}[None]
+\citation{peraire}
+\citation{hyperbolic}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Geometric parametrization}{2}}
 \newlabel{geometric_parametrization_section}{{1.2}{2}}[None]
 \newlabel{affine_F}{{1.1}{3}}[None]
@@ -17,13 +18,16 @@
 \newlabel{stokes_strong_form}{{1.3}{3}}[None]
 \newlabel{velocity_test}{{1.7}{3}}[None]
 \newlabel{pressure_test}{{1.8}{3}}[None]
-\newlabel{velocity_pressure_coefficients}{{1.9}{4}}[None]
+\citation{pacciarini}
+\citation{riviere}
+\newlabel{velocity_pressure_coefficients}{{1.10}{4}}[None]
 \@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Definition of jump and mean operator. \newline  The superscript $+$ refers to quantity in the element itself and the superscript $-$ refers to quantity in the neighboring element}}{4}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:Self_neighbour}{{1.1}{4}}[None]
-\newlabel{stokes_weak_ch3}{{1.10}{5}}[None]
-\newlabel{contiuity_weak_ch3}{{1.14}{5}}[None]
-\newlabel{Stokes_matrix_ch3}{{1.15}{5}}[None]
+\citation{CRBM}
+\newlabel{stokes_weak_ch3}{{1.11}{5}}[None]
+\newlabel{contiuity_weak_ch3}{{1.15}{5}}[None]
+\newlabel{Stokes_matrix_ch3}{{1.16}{5}}[None]
 \@writefile{toc}{\contentsline {section}{\numberline {1.4}Affine expansion}{5}}
 \newlabel{jump_average_term_split}{{1.4}{6}}[None]
 \@writefile{toc}{\contentsline {section}{\numberline {1.5}Reduced basis method}{6}}
@@ -31,18 +35,16 @@
 \newlabel{POD_section}{{1.5.1}{6}}[None]
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.5.2}Spectral decomposition of snapshots}{7}}
 \newlabel{spectral_decomposition_section}{{1.5.2}{7}}[None]
-\newlabel{snapshot_eigen_value}{{1.16}{7}}[None]
-\newlabel{linear_combination_snapshots}{{1.18}{7}}[None]
+\newlabel{snapshot_eigen_value}{{1.17}{7}}[None]
+\newlabel{linear_combination_snapshots}{{1.19}{7}}[None]
+\citation{CRBM}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.5.3}Galerkin reduced basis formulation}{8}}
 \newlabel{Galerkin_section}{{1.5.3}{8}}[None]
-\newlabel{stokes_equation_parameter}{{1.22}{8}}[None]
-\newlabel{continuity_equation_parameter}{{1.23}{8}}[None]
-\newlabel{Stokes_matrix_reduced}{{1.24}{8}}[None]
+\newlabel{stokes_equation_parameter}{{1.23}{8}}[None]
+\newlabel{continuity_equation_parameter}{{1.24}{8}}[None]
+\newlabel{Stokes_matrix_reduced}{{1.25}{8}}[None]
 \@writefile{toc}{\contentsline {section}{\numberline {1.6}Offline-online procedure}{8}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.7}Numerical example}{8}}
-\bibstyle{spbasic.bst}
-\bibdata{references.tex}
-\immediate\closeout\minitoc
 \newlabel{vel_x_dg}{{1.2a}{9}}[None]
 \newlabel{sub@vel_x_dg}{{a}{9}}[None]
 \newlabel{vel_x_rb}{{1.2b}{9}}[None]
@@ -63,6 +65,9 @@
 \newlabel{sub@pre_error}{{i}{9}}[None]
 \@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces DG and RB solution $[\mu _x \ \mu _y] = [0.47 \ 0.33]$\relax }}{9}}
 \newlabel{dg_rb_solution_47_33}{{1.2}{9}}[None]
+\bibstyle{spbasic}
+\bibdata{references}
+\bibcite{pacciarini}{{1}{2016}{{{Antonietti, Paola F.} et~al.}}{{{Antonietti, Paola F.}, {Pacciarini, Paolo}, and {Quarteroni, Alfio}}}}
 \newlabel{error_vs_basis_velocity}{{1.3a}{10}}[None]
 \newlabel{sub@error_vs_basis_velocity}{{a}{10}}[None]
 \newlabel{error_vs_basis_pressure}{{1.3b}{10}}[None]
@@ -75,9 +80,12 @@
 \newlabel{sub@time_vs_speedup}{{b}{10}}[None]
 \@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Size of reduced basis for velocity vs Online computational time\relax }}{10}}
 \newlabel{basis_vs_time}{{1.4}{10}}[None]
-\@writefile{toc}{\contentsline {section}{References}{10}}
-\@writefile{toc}{\contentsline {section}{References}{10}}
-\@mtwritefile{\contentsline {mtchap}{References}{10}}
-\@writefile{toc}{\contentsline {section}{References}{10}}
-\@writefile{toc}{\contentsline {section}{References}{10}}
-\@mtwritefile{\contentsline {mtchap}{References}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.8}Acknowledgements}{10}}
+\bibcite{hyperbolic}{{2}{2015}{{Dolej{\v {s}}{\'\i } and Feistauer}}{{}}}
+\bibcite{CRBM}{{3}{2015}{{Hesthaven et~al.}}{{Hesthaven, Rozza, and Stamm}}}
+\bibcite{peraire}{{4}{2008}{{Peraire and Persson}}{{}}}
+\bibcite{riviere}{{5}{2008}{{Riviere}}{{}}}
+\immediate\closeout\minitoc
+\@writefile{toc}{\contentsline {section}{References}{11}}
+\@writefile{toc}{\contentsline {section}{References}{11}}
+\@mtwritefile{\contentsline {mtchap}{References}{11}}

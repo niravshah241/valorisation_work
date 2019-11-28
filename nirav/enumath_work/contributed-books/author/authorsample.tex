@@ -39,7 +39,7 @@
 \usepackage{wrapfig}
 \usepackage[export]{adjustbox}
 \usepackage{subcaption}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \captionsetup{compatibility=false}
 %%Nirav added over
 
@@ -62,6 +62,8 @@
 % your contribution title if the original one is too long
 \institute{Nirav Vasant Shah \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY, \email{snirav@sissa.it}
 \and Martin Hess \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY \email{martin.hess@sissa.it}}
+\titlerunning{DG MOR of gemetrically parametrized Stokes flow}
+\authorrunning{Shah et. al.}
 %
 % Use the package "url.sty" to avoid
 % problems with special characters
@@ -69,10 +71,10 @@
 %
 \maketitle
 
-\abstract*{Each chapter should be preceded by an abstract (no more than 200 words) that summarizes the content. The abstract will appear \textit{online} at \url{www.SpringerLink.com} and be available with unrestricted access. This allows unregistered users to read the abstract as a teaser for the complete chapter.
-Please use the 'starred' version of the \texttt{abstract} command for typesetting the text of the online abstracts (cf. source file of this chapter template \texttt{abstract}) and include them with the source files of your manuscript. Use the plain \texttt{abstract} command if the abstract is also to appear in the printed version of the book.}
+\abstract*{The present work focuses on geometrical parametrization and reduced order modeling of Stokes flow. We discuss the concept of geometric parametrization and its application along with importance of reduced order model technique.  The full order model is based on discontinuous Galerkin method interior penalty formulation. We introduce broken Sobolev spaces, relevant norms, jump and mean operator, weak formulation. The operators are transformed from fixed domain to parameter dependent domain by exploring affine parameter dependence. Proper orthogonal decomposition is applied to geometrically parametrized Stokes flow to obtain basis of function space for reduced order model. By using Galerkin projection the linear system is projected onto reduced space. During the process, offline-online decomposition is used to separate parameter independent and parameter independent operations. Finally the technique is applied to a test problem. The numerical outcomes presented include the experimental error analysis and measurement of online simulation time.\\
+\textbf{Keywords:} Discontinuous Galerkin method, Stokes flow, Geometric parametrization, Proper orthogonal decomposition}
 
-\abstract{The present work focuses on geometrical parametrization and reduced order modeling of Stokes flow. We discuss the concept of geometric parametrization and its application along with importance of reduced order model technique.  The full order model is based on discontinuous Galerkin method interior penalty formulation. We introduce broken Sobolev spaces, relevant norms, jump and mean operator, weak formulation. The operators are transformed from fixed domain to parameter dependent domain by exploring affine parameter dependence. Proper orthogonal decomposition is applied to geometrically parametrized Stokes flow to obtain basis of function space for reduced order model. By using Galerkin projection the linear system is projected onto reduced space. During the process, offline-online decomposition is used to separate parameter independent and parameter independent operations. Finally the technique is applied to a test problem. The numerical outcomes presented include the experimental error analysis and measurement of online simulation time. \cite{psysoc-journal}\\
+\abstract{The present work focuses on geometrical parametrization and reduced order modeling of Stokes flow. We discuss the concept of geometric parametrization and its application along with importance of reduced order model technique.  The full order model is based on discontinuous Galerkin method interior penalty formulation. We introduce broken Sobolev spaces, relevant norms, jump and mean operator, weak formulation. The operators are transformed from fixed domain to parameter dependent domain by exploring affine parameter dependence. Proper orthogonal decomposition is applied to geometrically parametrized Stokes flow to obtain basis of function space for reduced order model. By using Galerkin projection the linear system is projected onto reduced space. During the process, offline-online decomposition is used to separate parameter independent and parameter independent operations. Finally the technique is applied to a test problem. The numerical outcomes presented include the experimental error analysis and measurement of online simulation time.\\
 \textbf{Keywords:} Discontinuous Galerkin method, Stokes flow, Geometric parametrization, Proper orthogonal decomposition }
 
 \section{Introduction}
@@ -80,7 +82,7 @@ Please use the 'starred' version of the \texttt{abstract} command for typesettin
 
 The subject of mathematical applications in fluid mechanics starts with one of the variants of the Navier-Stokes equations, such as the Stokes equation. Almost all processes of fluid mechanics require considerations related to the Navier-Stokes equations. Navier-Stokes equation is non-linear, characterizing flow fluctuations. However, in case of laminar flow, i.e. when fluctuations are negligible, this linearized form of the Navier-Stokes equation is the Stokes equation.
 
-Discontinuous Galerkin method (DGM) has found traction as numerical method for elliptic problems \textbf{pereire reference} as well as hyperbolic problems \textbf{Book on compressible flow reference}. This is due to its several advantages over Finite Element Method (FEM) and Finite Volume Method (FVM). In fact, DGM is considered as combination of FEM and FVM. DGM uses polynomial approximation of suitable degree providing higher accuracy as well as allows discontinuity at the interface, by the concept of numerical flux, allowing greater flexibility. This fact makes DGM naturally attractive to problems, such as shock capturing, due to presence of steep gradients or discontinuities. Additionally, since the Dirichlet conditions are applied as boundary penalty, it avoids necessity to work with subspace of Sobolev space such as in case of FEM. Several variants of DGM exist based on computational advantages such as sparsity pattern or extension of computational stencil, complexity of numerical implementation etc.
+Discontinuous Galerkin method (DGM) has found traction as numerical method for elliptic problems ~\cite{peraire} as well as hyperbolic problems ~\cite{hyperbolic}. This is due to its several advantages over Finite Element Method (FEM) and Finite Volume Method (FVM). In fact, DGM is considered as combination of FEM and FVM. DGM uses polynomial approximation of suitable degree providing higher accuracy as well as allows discontinuity at the interface, by the concept of numerical flux, allowing greater flexibility. This fact makes DGM naturally attractive to problems, such as shock capturing, due to presence of steep gradients or discontinuities. Additionally, since the Dirichlet conditions are applied as boundary penalty, it avoids necessity to construct subspace of Sobolev space such as in case of FEM. Several variants of DGM exist based on computational advantages such as sparsity pattern or extension of computational stencil, need for stabilization, complexity of numerical implementation etc.
 
 Geometric parametrization has emerged as important application of Parametric Partial Differential Equations (PPDEs) and as alternative to shape optimization. The concept of geometric parametrization allows to transfer operator evaluated on one geometric domain to another geometric domain efficiently. For linear equations, this means exploiting affine parameter dependence as will be shown in later section. Model Order Reduction (MOR) on the other hand allows reducing the size of the system to be solved and working with the smaller system containing only dominant components and discarding the non-dominant components. It is pertinent to mention that identifying "dominant" components is critical to the success of model order reduction strategy. Optimization of engineering components using geometric parametrization combined with MOR for PPDEs has given quite useful results in the fields such as mechanical, naval and aeronautic designs. Also, the  faster computations obtained by MOR has helped in many query context, real time computation and quick transfer of computational results to industrial problems.
 
@@ -103,7 +105,7 @@ The inverse map $\bm{T}$ is expressed in the form,
 \section{Discontinuous Galerkin formulation}
 \label{DG_formulation}
 
-Each subdomain is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary $\Gamma = \lbrace \bigcup\limits_{k=1}^{N_{el} \partial \tau_k \rbrace} \backslash \partial \Omega$. The vertices of triangle ${\tau_k}_{k=1}^{N_{el}}$ are called nodes. $\overrightarrow{n}$ is the outward pointing normal to an edge of element.
+Each subdomain is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary $\Gamma = \bigcup\limits_{k=1}^{N_{el}} \partial \tau_k \backslash \partial \Omega$. The vertices of triangles ${\tau_k}_{k=1}^{N_{el}}$ are called nodes. $\overrightarrow{n}$ is the outward pointing normal to an edge of element.
 
 The Stokes's equation in strong form can be stated as,
 \begin{gather}\label{stokes_strong_form}
@@ -127,12 +129,20 @@ The space for pressure is
 \end{equation}
 Here, $P^D(\tau_k)$ denotes space of polynomials of degree at most $D \geq 2$ over $\tau_k$.
 
-The velocity $\overrightarrow{u}(x)$ and pressure $p(x)$ at any point $x \in \Omega$ is given by,
-\begin{equation}\label{velocity_pressure_coefficients}
-\overrightarrow{u}(x) = \sum\limits_{i=1}^{\overrightarrow{u}_{ndofs}} \overrightarrow{\phi}_i \hat{u}_i \ , \
-p(x) = \sum\limits_{i=1}^{p_{ndofs}} \psi_i \hat{p}_i \ ,
+The velocity $\overrightarrow{u}(x)$ and pressure $p(x)$ at any point $x \in \Omega$ are given by,
+\begin{equation}
+\overrightarrow{u}(x) = \sum\limits_{i=1} \overrightarrow{\phi}_i \hat{u}_i \ , \
+p(x) = \sum\limits_{i=1} \psi_i \hat{p}_i \ ,
 \end{equation}
 where $\hat{u}_i$'s and $\hat{p}_i$'s are coefficients of velocity basis functions and pressure basis functions respectively. 
+
+In finite dimensional or discrete system, velocity $\overrightarrow{u}_h(x)$ and pressure $p_h(x)$ at any point $x \in \Omega$ are given by,
+\begin{equation}\label{velocity_pressure_coefficients}
+\overrightarrow{u}_h(x) = \sum\limits_{i=1}^{u_{ndofs}} \overrightarrow{\phi}_i \hat{u}_i \ , \
+p_h(x) = \sum\limits_{i=1}^{p_{ndofs}} \psi_i \hat{p}_i \ .
+\end{equation}
+
+We expect that $\overrightarrow{u} \rightarrow \overrightarrow{u}_h$ in $\mathbb{V}$ and $p \rightarrow p_h$ in $\mathbb{Q}$ as $u_{ndofs} \rightarrow \infty$ and $p_{ndofs} \rightarrow \infty$ respectively. Considering scope of present work, the convergence analysis will not be discussed here. The readers are advised to refer to \cite{pacciarini}, \cite{riviere}. 
 
 \begin{figure}
 \centering
@@ -217,7 +227,7 @@ Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, 
 
 \section{Affine expansion}
 
-We evaluate and solve the Stokes equation weak formulation on reference domain $\Omega{\bar{\mu}}$. Given a parameter set $\mu \neq \bar{\mu}$ we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The affine expansion of operators is essentially change of variable and has been explained in literatures such as \textbf{ADD affine expansion literature}. However it is pertinent to mention two expansions as specific to DGM formulation will be mentioned here as below.
+We evaluate and solve the Stokes equation weak formulation on reference domain $\Omega({\bar{\mu}})$. Given a parameter $\mu \neq \bar{\mu}$ we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The affine expansion of operators is essentially change of variable and has been explained in literatures such as \cite{CRBM}. However it is pertinent to mention two expansions as specific to DGM formulation will be mentioned here as below.
 
 \begin{itemize}
 \item In order to transfer the terms containing jump and average operator following approach is used in present analysis.
@@ -227,7 +237,7 @@ We evaluate and solve the Stokes equation weak formulation on reference domain $
 \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
 \end{split}
 \end{equation*}
-Each term on right hand side of equation \eqref{jump_average_term_split} can now be transformed using affine map.
+Each term on right hand side of above equation can now be transformed using affine map.
 
 \item The coercivity term $C_{11}\left( [\overrightarrow{\phi}],[\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
 \begin{equation*}
@@ -244,29 +254,29 @@ Since, $C_{11}$ is empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$
 
 \subsection{Snapshot proper orthogonal decomposition}\label{POD_section}
 
-We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $\bm{M}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times \overrightarrow{u}_{ndofs}}$ and $\bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$.
+We present now snapshot proper orthogonal decomposition method. Here, ``snapshot" means solution calculated by discontinuous Galerkin method. We calculate solution based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ i.e. $n_s$ snapshots are generated. We also introduce inner product matrices $\bm{M}_v \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}}$ and $\bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$.
 
 \begin{gather*}
-\bm{M}_v = \int_{\Omega} \overrightarrow{\phi}_i \cdot \overrightarrow{\phi}_j + \sum_{k=1}^{N_{el}} \int_{\tau_k} \nabla \overrightarrow{\phi}_i : \nabla \overrightarrow{\phi}_j \ , \ i,j = 1, \ldots, \overrightarrow{u}_{ndofs} \ , \\
+\bm{M}_v = \int_{\Omega} \overrightarrow{\phi}_i \cdot \overrightarrow{\phi}_j + \sum_{k=1}^{N_{el}} \int_{\tau_k} \nabla \overrightarrow{\phi}_i : \nabla \overrightarrow{\phi}_j \ , \ i,j = 1, \ldots, u_{ndofs} \ , \\
 \bm{M}_p = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
 \end{gather*}
 
 We also introduce matrices storing velocity snapshots $\bm{S}_v$ and storing pressure snapshots $\bm{S}_p$. We discuss the method only for velocity snapshots. The method is similar for pressure snapshots. We note the size of matrices, useful for matrix operations presented hereafter.
 
 \begin{gather*}
-\bm{S}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times n_s} \ , \ \bm{S}_p \in \mathbb{R}^{p_{ndofs} \times n_s} \ , \\
-\bm{M}_v \in \mathbb{R}^{\overrightarrow{u}_{ndofs} \times \overrightarrow{u}_{ndofs}} \ ,\ \bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}} \ .
+\bm{S}_v \in \mathbb{R}^{u_{ndofs} \times n_s} \ , \ \bm{S}_p \in \mathbb{R}^{p_{ndofs} \times n_s} \ , \\
+\bm{M}_v \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}} \ ,\ \bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}} \ .
 \end{gather*}
 
 \subsection{Spectral decomposition of snapshots}\label{spectral_decomposition_section}
 
-We denote the dimension of reduced basis as $N$ and assert that $N << n_s$. We now perform the spectral decomposition of $\bm{S}_v^T \bm{M}_v \bm{S}_v$,
+We denote the dimension of reduced basis as $N$ and assert that $N << u_{ndofs}$. We now perform the spectral decomposition of $\bm{S}_v^T \bm{M}_v \bm{S}_v$,
 
 \begin{equation}\label{snapshot_eigen_value}
 \bm{S}_v^T \bm{M}_v \bm{S}_v = \bm{V} \bm{\Theta} \bm{V}^T \ .
 \end{equation}
 
-The columns of $V$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i \ , \ 1 \leq i \leq n_s$ such that,
+The columns of $V$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i \ , \ 1 \leq i,j \leq n_s$ such that,
 \begin{equation}
 \Theta_{ij} = \theta_i \delta_{ij} \ .
 \end{equation}
@@ -308,7 +318,7 @@ In discrete form, we form reduced equation as,
 
 \begin{equation} \label{Stokes_matrix_reduced}
 \begin{spmatrix}{\tilde{K}}
-    \bm{B}_v^T \bm{A}(\mu) \bm{B}_v & \bm{B}_v^T \bm{B}(\mu) \bm{B}_v \\
+    \bm{B}_v^T \bm{A}(\mu) \bm{B}_v & \bm{B}_v^T \bm{B}(\mu) \bm{B}_p \\
     \bm{B}_p^T \bm{B}(\mu)^T \bm{B}_v & \bm{0}
 \end{spmatrix}
 \begin{spmatrix}{\zeta}
@@ -325,20 +335,20 @@ and accordingly we solve following variational form for reduced degrees of freed
 \begin{equation}
 \tilde{\bm{K}} \zeta = \tilde{F} \ ,
 \end{equation}
-and calculate reduced solutions $\overrightarrow{u}_N$ and $p_N$ as,
+and calculate solution vector $U$ and $P$ (equation \eqref{Stokes_matrix_ch3}) as,
 \begin{equation}
-\overrightarrow{u}_N = \bm{B}_v U_N \ , \ p_N = \bm{B}_p P_N
+U = \bm{B}_v U_N \ , \ P = \bm{B}_p P_N
 \end{equation}
 
 \section{Offline-online procedure}
 
-The offline-online procedure is used to separate computationally intensive parameter independent offline procedure and faster parameter dependent online procedure \textbf{cite CRBM}. During the offline phase $n_s$ snapshots are computed and reduced basis spaces $\bm{B}_v$ and $\bm{B}_p$ are created. The offline procedure is outlined in section \ref{POD_section} and section \ref{spectral_decomposition_section}. During the online phase the systems of equations are projected on reduced space using Galerkin projection, the smaller systems of equation obtained by Galerkin projection is solved and the reduced basis solution is computed as outlined in section \ref{Galerkin_section}. The parameter dependent matrices in equation \eqref{Stokes_matrix_reduced} are evaluated by using affine decomposition.
+The offline-online procedure is used to separate computationally intensive parameter independent offline procedure and faster parameter dependent online procedure ~\cite{CRBM}. During the offline phase $n_s$ snapshots are computed and reduced basis spaces $\bm{B}_v$ and $\bm{B}_p$ are created. The offline procedure is outlined in section \ref{POD_section} and section \ref{spectral_decomposition_section}. During the online phase the systems of equations are projected on reduced space using Galerkin projection, the smaller systems of equation obtained by Galerkin projection is solved and the reduced basis solution is computed as outlined in section \ref{Galerkin_section}. The parameter dependent matrices in equation \eqref{Stokes_matrix_reduced} are evaluated by using affine decomposition.
 
 \section{Numerical example}
 
-We perform the POD-Galerkin method as mentioned in section \ref{POD_section} - section \ref{Galerkin_section}. The reference domain $\Omega{\bar{\mu}}$ is the unit square domain with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are coordinates of tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
+We perform the POD-Galerkin method as mentioned in section \ref{POD_section} - section \ref{Galerkin_section}. The numerical implementation was carried out using. The reference domain $\Omega({\bar{\mu}})$ is the unit square domain with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are coordinates of tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $t = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $f = (0,0)$.
 
-The training set was generated by random generation of $100$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ random parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ was used. The number of velocity degrees of freedom and pressure degrees of freedom were $\overrightarrow{u}_{ndofs} = 4704$ and $p_{ndofs} = 1176$ respectively.
+The training set was generated by random generation of $100$ parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ random parameters between the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ was used. The number of velocity degrees of freedom and pressure degrees of freedom were $u_{ndofs} = 4704$ and $p_{ndofs} = 1176$ respectively.
 
 Figure \ref{dg_rb_solution_47_33} shows solution computed by DGM and POD at parameter value $(0.47,33)$. Figure \ref{error_vs_basis} shows error vs size of reduced basis space. As can be seen the error drops with increasing size of basis function, however, this has to be at affordable cost of increased online simulation time (Figure \ref{basis_vs_time}).
 
@@ -411,7 +421,24 @@ Figure \ref{dg_rb_solution_47_33} shows solution computed by DGM and POD at para
 \label{basis_vs_time}
 \end{figure}
 
-\bibliographystyle{spbasic.bst}
-\bibliography{references.tex}
-\input{authorsample.bbl}
+\section{Acknowledgements}
+
+\begin{itemize}
+
+\item The numerical experiments were performed using RBmatlab (RBmatlab (\url{https://www.morepas.org/software/rbmatlab/0.11.04/doc/index.html})). We would like to express our gratitude towards the developer team.
+
+\item This activity had received partial funding from below two grants.
+\begin{itemize}
+\item AROMA-CFD, H2020 ERC CoG 2015 GA 681447 by European Research Council (ERC)
+\item COST Action TD1307 by European Model Reduction Network (EU-MORNET)
+\end{itemize}
+The author is thankful to the organizers for supporting training, research and networking activity.
+
+\end{itemize}
+
+\bibliographystyle{spbasic}
+\bibliography{references}
+%\input{authorsample.bbl}
+
+
 \end{document}
