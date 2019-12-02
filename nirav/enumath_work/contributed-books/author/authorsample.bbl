@@ -1,4 +1,4 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -49,5 +49,10 @@ Riviere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
   Parabolic Equations: Theory and Implementation. Frontiers in Applied
   Mathematics, Cambridge University Press,
   \urlprefix\url{https://books.google.de/books?id=GY4GtnDCaSQC}
+
+\bibitem[{Shah et~al.(2018)Shah, Haasdonk, Hess, and Rozza}]{master_thesis}
+Shah NV, Haasdonk B, Hess M, Rozza G (2018) Discontinuous-galerkin method for
+  direct numerical simulation of the navier-stokes equation: Master thesis
+  report. Master's thesis, Universit\"at Stuttgart
 
 \end{thebibliography}
