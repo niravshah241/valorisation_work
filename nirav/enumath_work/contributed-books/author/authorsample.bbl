@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -21,10 +21,23 @@ Dolej{\v{s}}{\'\i} V, Feistauer M (2015) Discontinuous Galerkin Method:
   Computational Mathematics, Springer International Publishing,
   \urlprefix\url{https://books.google.es/books?id=Pj4wCgAAQBAJ}
 
+\bibitem[{Drohmann et~al.(2012)Drohmann, Haasdonk, Kaulmann, and
+  Ohlberger}]{rbmatlab}
+Drohmann M, Haasdonk B, Kaulmann S, Ohlberger M (2012) A software framework for
+  reduced basis methods using dune-rb and rbmatlab. In: Dedner A, Flemisch B,
+  Kl{\"o}fkorn R (eds) Advances in DUNE, Springer Berlin Heidelberg, Berlin,
+  Heidelberg, pp 77--88
+
 \bibitem[{Hesthaven et~al.(2015)Hesthaven, Rozza, and Stamm}]{CRBM}
 Hesthaven JS, Rozza G, Stamm B (2015) Certified Reduced Basis Methods for
   Parametrized Partial Differential Equations, 1st edn. Springer Briefs in
   Mathematics, Springer, Switzerland, \doi{10.1007/978-3-319-22470-1}
+
+\bibitem[{Kanschat and Schoetzau(2008)}]{jump_mean_operator}
+Kanschat G, Schoetzau D (2008) Energy norm a posteriori error estimation for
+  divergence‐free discontinuous galerkin approximations of the
+  navier–stokes equations. International Journal for Numerical Methods in
+  Fluids 57:1093 -- 1113, \doi{10.1002/fld.1795}
 
 \bibitem[{Peraire and Persson(2008)}]{peraire}
 Peraire J, Persson PO (2008) The compact discontinuous galerkin (cdg) method
