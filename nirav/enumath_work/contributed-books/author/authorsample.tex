@@ -55,7 +55,7 @@
 
 \begin{document}
 
-\title{Discontinuous Galerkin model order reduction of geometrically parametrized Stokes flow}
+\title{Discontinuous Galerkin model order reduction of geometrically parametrized Stokes equation}
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \author{Nirav Vasant Shah, Martin Hess and Gianluigi Rozza}
@@ -63,7 +63,7 @@
 % your contribution title if the original one is too long
 \institute{Nirav Vasant Shah \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY, \email{snirav@sissa.it}
 \and Martin Hess \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY \email{martin.hess@sissa.it}}
-\titlerunning{DG MOR of gemetrically parametrized Stokes flow}
+\titlerunning{DG MOR of gemetrically parametrized Stokes equation}
 \authorrunning{Shah et. al.}
 %
 % Use the package "url.sty" to avoid
@@ -103,9 +103,9 @@ The boundary of $\Omega(\mu)$, that is $\partial \Omega(\mu)$ is divided into Ne
 \section{Discontinuous Galerkin formulation}
 \label{DG_formulation}
 
-The domain $\Omega$ is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary is denoted by $\Gamma = \bigcup\limits_{k=1}^{N_{el}} \partial \tau_k \backslash \partial \Omega$. The vertices of triangles $\lbrace \tau_k \rbrace_{k=1}^{N_{el}}$ are called nodes. $\overrightarrow{n}$ is the outward pointing normal to an edge of element.
+The domain $\Omega$ is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary is denoted by $\Gamma = \bigcup\limits_{k=1}^{N_{el}} \partial \tau_k \backslash \partial \Omega$. The vertices of triangles $\lbrace \tau_k \rbrace_{k=1}^{N_{el}}$ are called nodes and $\overrightarrow{n}$ is the outward pointing normal to an edge of element.
 
-The Stokes's equation in strong form can be stated as,
+The governing equations in strong form can be stated as,
 \begin{flalign}\label{stokes_strong_form}
 \begin{split}
 \text{Stokes equation: } & -\nu \Delta \overrightarrow{u} + \nabla p = \overrightarrow{f} \ , \ \text{in } \Omega \ , \\
@@ -117,8 +117,7 @@ The Stokes's equation in strong form can be stated as,
 
 The velocity vector field $\overrightarrow{u}$ and pressure scalar field $p$ are the unknowns. $\nu$ is the material property known as kinematic viscosity. Vector $\overrightarrow{f}$ is the external force term or source term. $\overrightarrow{u}_D$ is the Dirichlet velocity and vector $\overrightarrow{t}$ is the Neumann value.
 
-Before introducing the weak form let us introduce the broken Sobolev spaces for variables.
-
+Before introducing the weak form let us introduce the broken Sobolev spaces for the unknowns.
 \begin{equation*} \label{velocity_pressure_test}
 \begin{split}
 \text{For velocity: } \mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\Omega))^d | \ \overrightarrow{\phi} |_{\tau_k} \in (P^D(\tau_k))^d \ , \ \tau_k \in \mathcal{T} \rbrace \ , \\
@@ -180,7 +179,7 @@ In the subsequent sections, $\left( \cdot \right),\left( \cdot \right)_{\Gamma_D
 %\end{itemize}
 %\end{itemize}
 
-The weak form of the Stokes equation is as follow,
+The weak form of the Stokes equation is given by,
 \begin{gather}\label{stokes_weak_ch3}
 a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + \left( \lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ ,
 \end{gather}
@@ -221,11 +220,11 @@ In discrete form the system of equations can be written as,
 \textrm{.}
 \end{equation}
 
-Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $\bm{B}_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + \left( \lbrace \psi_j \rbrace , [n \cdot \overrightarrow{\phi}_i]\right)_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = \left( \psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D \right)_{\Gamma_D}$ for $i=1,\ldots,u_{ndofs}$ and $j=1,\ldots,p_{ndofs}$. The column vectors $U$ and $P$ are coefficients $\hat{u}$'s and $\hat{p}$'s from equation \eqref{velocity_pressure_coefficients}.
+Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $\bm{B}_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + \left( \lbrace \psi_j \rbrace , [n \cdot \overrightarrow{\phi}_i]\right)_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = \left( \psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D \right)_{\Gamma_D}$ for $i=1,\ldots,u_{ndofs}$ and $j=1,\ldots,p_{ndofs}$. The column vectors $U$ and $P$ are coefficients $\hat{u}_i$'s and $\hat{p}_i$'s respectively (equation \eqref{velocity_pressure_coefficients}).
 
 \section{Affine expansion}
 
-We evaluate and solve the Stokes equation weak formulation on a reference domain $\Omega({\bar{\mu}})$. Given a parameter $\mu \neq \bar{\mu}$ we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The affine expansion of operators is essentially change of variable and has been explained in literatures such as \cite{CRBM}. However it is pertinent to explain two expansions as specific to DGM formulation.
+We evaluate and solve the Stokes equation weak formulation on the reference domain $\Omega({\bar{\mu}})$. Given a parameter set $\mu \neq \bar{\mu}$, we need to evaluate the linear systems of equation \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section geometric parametrization [Section \ref{geometric_parametrization_section}]. The affine expansion of operators is essentially change of variable and has been explained in literatures such as \cite{CRBM}. However it is pertinent to explain two expansions as specific to DGM formulation.
 
 \begin{itemize}
 \item In order to transfer the terms containing jump and average operator following approach is used in present analysis.
@@ -235,7 +234,7 @@ We evaluate and solve the Stokes equation weak formulation on a reference domain
 \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
 \end{split}
 \end{equation*}
-Each term on the right hand side of the above equation can now be transformed using the affine map.
+Each term on the right hand side of the above equation can be transformed using the affine map.
 
 \item The coercivity term $C_{11}\left( [\overrightarrow{\phi}],[\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
 \begin{equation*}
@@ -271,16 +270,15 @@ The columns of $\bm{V}$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i 
 %\bm{B}_v = \bm{S}_v \bm{A} \ , \ \bm{A} \in \mathbb{R}^{n_s \times N} \ .
 %\end{equation}
 
-The reduced basis for the velocity $\overrightarrow{\phi}_N$ is formed by,
+The projection matrix $\bm{B}_v \in \mathbb{R}^{N \times N}$, used for the projection from the space of full order model to the space of reduced order model, is given by, 
 \begin{equation}
-\overrightarrow{\phi}_N = \overrightarrow{\phi}^T \bm{B}_v \ , \\
-\bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{u_{ndofs} \times N} ; \bm{0}_{(n_s-N) \times N}] \ .
+\bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(n_s-N) \times N}] \ ,
 \end{equation}
 %Considering orthonormality of the reduced basis $\overrightarrow{\phi}_N$ with respect to inner product given by $\bm{M}_v$, i.e. $\bm{B}_v^T \bm{M}_v \bm{B}_v = \bm{I}_{n_s \times n_s}$,
 %\begin{equation}
 %\bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{u_{ndofs} \times N} ; \bm{0}_{(n_s-N) \times N}] \ ,
 %\end{equation}
-where, $\bm{I}_{N \times N}$ is identity matrix of size $N \times N$.
+where, $\bm{I}_{N \times N}$ is the identity matrix of size $N \times N$.
 The reduced basis space $\bm{B}_p$ can be generated in similar manner using the pressure snapshots $\bm{S}_p$ and the inner product matrix $\bm{M}_p$. Above procedure is performed during offline phase.
 
 The discrete system of equations is projected onto the reduced basis space by Galerkin projection as,
@@ -342,12 +340,12 @@ We perform the POD-Galerkin method as mentioned in the section \ref{rb_section}.
 
 The training set was generated by random generation of $100$ parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ was used. The number of velocity degrees of freedom and pressure degrees of freedom were $u_{ndofs} = 4704$ and $p_{ndofs} = 1176$ respectively.
 
-Figure \ref{dg_rb_solution_47_33} shows solution computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$. Figure \ref{error_vs_basis} shows error vs size of reduced basis space. The drop in error w.r.t to increased size of reduced basis is inline with the expectation based on eigenvalue decay (Figure \ref{ev_decay}). The online simulation time for reduced basis with $10$ basis functions was $2.25$ seconds resulting in speedup of $19.5$ as compared to full order model.
+Figure \ref{dg_rb_solution_47_33} shows the solution computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$. Figure \ref{error_vs_basis} shows error vs size of the reduced basis space. The drop in error w.r.t to the increased size of reduced basis is inline with the expectation based on the eigenvalue decay (Figure \ref{ev_decay}). The online simulation time for the reduced basis with $10$ basis functions was $2.25$ seconds resulting in the speedup of $19.5$ as compared to the discontinuous Galerkin model.
 
 \begin{figure}[H] %[t!] % "[t!]" placement specifier just for this example
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{offline_velocity_1_at_47_33.jpg}
-\caption{Velocity $x-$direction DG solution} \label{vel_x_dg}
+\caption{Velocity $x-$direction DGM solution} \label{vel_x_dg}
 \end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{online_velocity_1_at_47_33.jpg}
@@ -360,7 +358,7 @@ Figure \ref{dg_rb_solution_47_33} shows solution computed by DGM and Reduced Bas
 
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{offline_velocity_2_at_47_33.jpg}
-\caption{Velocity $y-$direction DG solution} \label{vel_y_dg}
+\caption{Velocity $y-$direction DGM solution} \label{vel_y_dg}
 \end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{online_velocity_2_at_47_33.jpg}
@@ -373,7 +371,7 @@ Figure \ref{dg_rb_solution_47_33} shows solution computed by DGM and Reduced Bas
 
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{offline_pressure_at_47_33.jpg}
-\caption{Pressure DG solution} \label{pre_dg}
+\caption{Pressure DGM solution} \label{pre_dg}
 \end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{online_pressure_at_47_33.jpg}
@@ -383,20 +381,20 @@ Figure \ref{dg_rb_solution_47_33} shows solution computed by DGM and Reduced Bas
 \includegraphics[width=\linewidth]{pressure_error_at_47_33.jpg}
 \caption{Pressure absolute error $p_h-p_N$} \label{pre_error}
 \end{subfigure}
-\caption{DG and RB solution $\mu = [\mu_x \ \mu_y] = [0.47 \ 0.33]$} 
+\caption{DGM and RB solution $\mu = [\mu_x \ \mu_y] = [0.47 \ 0.33]$} 
 \label{dg_rb_solution_47_33}
 \end{figure}
 
 \begin{figure}[H]
 \begin{subfigure}{0.48\textwidth}
-\includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_velocity_error_semilog.jpg}
-\caption{Size of reduced basis space vs. Maximum relative error in velocity with inner product induced by $\bm{M}_v$} \label{error_vs_basis_velocity}
+\includegraphics[width=\linewidth]{size_vs_average_reduced_basis_velocity_error_semilog.jpg}
+\caption{Size of reduced basis space vs. Average relative error in velocity with inner product induced by $\bm{M}_v$} \label{error_vs_basis_velocity}
 \end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.48\textwidth}
-\includegraphics[width=\linewidth]{size_vs_maximum_reduced_basis_pressure_error_semilog.jpg}
-\caption{Size of reduced basis space vs. Maximum relative error in pressure with inner product induced by $\bm{M}_p$} \label{error_vs_basis_pressure}
+\includegraphics[width=\linewidth]{size_vs_average_reduced_basis_pressure_error_semilog.jpg}
+\caption{Size of reduced basis space vs. Average relative error in pressure with inner product induced by $\bm{M}_p$} \label{error_vs_basis_pressure}
 \end{subfigure}
-  \caption{Size of reduced basis vs Maximum relative error} 
+  \caption{Size of reduced basis vs Average relative error} 
 \label{error_vs_basis}
 \end{figure}
 
