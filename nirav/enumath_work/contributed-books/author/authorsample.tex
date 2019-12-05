@@ -92,13 +92,13 @@ As evident from above advantages, the application of geometric parametrization a
 
 \section{Geometric parametrization}\label{geometric_parametrization_section}
 
-Consider $\Omega = \Omega(\mu) \in \mathbb{R}^d$ as an open bounded domain. The parameter set $\mu \in \mathbb{P}$, where $\mathbb{P}$ is the parameter space, completely characterizes the domain. Also, consider a parameter set $\bar{\mu} \in \mathbb{P}$, as the known parameter set and $\Omega(\bar{\mu})$ as the reference domain, whose configuration is completely known. The invertible mapping $\bm{F}(\cdot,\mu) : \Omega(\bar{\mu}) \rightarrow \Omega(\mu)$ links the reference domain and the parametrized domain. In the case of affine transformation, $\bm{F}$ is of the form,
+Consider $\Omega = \Omega(\mu) \in \mathbb{R}^d$ as an open bounded domain. The parameter tuple $\mu \in \mathbb{P}$, where $\mathbb{P}$ is the parameter space, completely characterizes the domain. Also, consider a parameter tuple $\bar{\mu} \in \mathbb{P}$, as the known parameter tuple and $\Omega(\bar{\mu})$ as the reference domain, whose configuration is completely known. The invertible mapping $\bm{F}(\cdot,\mu) : \Omega(\bar{\mu}) \rightarrow \Omega(\mu)$ links the reference domain and the parametrized domain. In the case of affine transformation, $\bm{F}$ is of the form,
 \begin{equation}\label{affine_F}
 \begin{split}
 x = \bm{F}(\hat{x},\mu) = \bm{G}_F(\mu)\hat{x} + c_F(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \\ \bm{G}_F(\mu) \in \mathbb{R}^{d \times d} \ , \ c_F \in \mathbb{R}^{d \times 1} \ .
 \end{split}
 \end{equation}
-The boundary of $\Omega(\mu)$, that is $\partial \Omega(\mu)$ is divided into Neumann boundary $\Gamma_N(\mu)$ and Dirichlet boundary $\Gamma_D(\mu)$ i.e. $\partial \Omega(\mu) = \Gamma_N(\mu) \cup \Gamma_D(\mu)$. In order to have $\bm{F}(\hat{x},\mu)$ affine form, the domain $\Omega(\mu)$ is divided into $n_{su}$ triangular subdomains such that $\Omega(\mu) = \bigcup\limits_{i=1}^{n_{su}} \Omega_i(\mu) \ , \ \Omega_i(\mu) \bigcap \Omega_j(\mu) = \emptyset \ , \ \text{for} \ i \neq j$.
+The boundary of $\Omega(\mu)$, that is $\partial \Omega(\mu)$ is divided into a  Neumann boundary $\Gamma_N(\mu)$ and a Dirichlet boundary $\Gamma_D(\mu)$ i.e. $\partial \Omega(\mu) = \Gamma_N(\mu) \cup \Gamma_D(\mu)$. In order to have $\bm{F}(\hat{x},\mu)$ an affine form, the domain $\Omega(\mu)$ is divided into $n_{su}$ triangular subdomains such that $\Omega(\mu) = \bigcup\limits_{i=1}^{n_{su}} \Omega_i(\mu) \ , \ \Omega_i(\mu) \bigcap \Omega_j(\mu) = \emptyset \ , \ \text{for} \ i \neq j$.
 
 \section{Discontinuous Galerkin formulation}
 \label{DG_formulation}
@@ -133,7 +133,7 @@ p_h(x) = \sum\limits_{i=1}^{p_{ndofs}} \psi_i \hat{p}_i \ ,
 \end{equation}
 where $\hat{u}_i$'s and $\hat{p}_i$'s are coefficients of velocity basis functions and pressure basis functions respectively. 
 
-We expect that $\overrightarrow{u}_h \rightarrow \overrightarrow{u}$ and $p_h \rightarrow p$ as $u_{ndofs} \rightarrow \infty$ and $p_{ndofs} \rightarrow \infty$ respectively. Considering the scope of present work, the convergence analysis will not be discussed here. The readers are advised to refer to \cite{pacciarini}, \cite{riviere}. 
+We expect that $\overrightarrow{u}_h \rightarrow \overrightarrow{u}$ and $p_h \rightarrow p$ as $u_{ndofs} \rightarrow \infty$ and $p_{ndofs} \rightarrow \infty$ respectively. Considering the scope of present work, the convergence analysis will not be discussed here. The readers are advised to refer to \cite{pacciarini},\cite{jump_mean_operator},\cite{riviere}.
 
 %\begin{figure}
 %\centering
@@ -158,7 +158,7 @@ We expect that $\overrightarrow{u}_h \rightarrow \overrightarrow{u}$ and $p_h \r
 %\label{fig:Self_neighbour}
 %\end{figure}
 
-In the subsequent sections, $\left( \cdot \right),\left( \cdot \right)_{\Gamma_D},\left( \cdot \right)_{\Gamma_N},\left( \cdot \right)_{\Gamma}$ represent the $L^2$ scalar product over $\Omega,\Gamma_D,\Gamma_N,\Gamma$ respectively. The jump operator $\left[ \cdot \right]$ and the average operator $\lbrace \cdot \rbrace$ are important concepts in DGM formulation and are required to approximate the numerical flux. Different representations are used in literatures for jump and mean operators. We use the jump and average operators as represented in \cite{jump_mean_operator}.
+In the subsequent sections, $\left( \cdot \right),\left( \cdot \right)_{\Gamma_D},\left( \cdot \right)_{\Gamma_N},\left( \cdot \right)_{\Gamma}$ represent the $L^2$ scalar product over $\Omega,\Gamma_D,\Gamma_N,\Gamma$ respectively. The jump operator $\left[ \cdot \right]$ and the average operator $\lbrace \cdot \rbrace$ are important concepts in the DGM formulation and are required to approximate the numerical flux. Different representations are used in literatures for jump and mean operators. We use the jump and average operators as represented in \cite{jump_mean_operator}.
 
 %The presence of normal vector $\overrightarrow{n}$ in jump and average operator introduced below allows symmetric formulation and also ensures that jump of a vector is vector and jump of a scalar is scalar.
 %
@@ -193,16 +193,16 @@ b(\overrightarrow{\phi},\psi) = -\int_{\Omega} \psi \nabla \cdot \overrightarrow
 l_{IP}(\overrightarrow{\phi}) = \left( \overrightarrow{f},\overrightarrow{\phi} \right) + \left( \overrightarrow{t},\overrightarrow{\phi} \right)_{\Gamma_N} + C_{11} \left(\overrightarrow{u}_D,\overrightarrow{\phi}\right)_{\Gamma_D} - \left( \overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi} \right)_{\Gamma_D} \ .
 \end{gather}
 
-The penalty parameter $C_{11}>0$ is an empirical constant to be kept large enough to maintain the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$.
+The penalty parameter $C_{11}>0$ is an empirical constant to be kept large enough to maintain the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ [see \cite{jump_mean_operator}].
 
-The weak form of the continuity equation is as follow,
+The weak form of the continuity equation is as follows,
 \begin{equation}\label{contiuity_weak_ch3}
 \begin{split}
 b(\overrightarrow{u},\psi) + ({\psi},[\overrightarrow{n} \cdot \overrightarrow{u}])_{\Gamma \cup \Gamma_D} = (\psi,\overrightarrow{n} \cdot \overrightarrow{u}_D)_{\Gamma_D} \ .
 \end{split}
 \end{equation}
 
-In discrete form the system of equations can be written as, 
+In the discrete form the system of equations can be written as, 
 \begin{equation} \label{Stokes_matrix_ch3}
 \begin{spmatrix}{\textrm{Stiffness matrix}}
     \bm{A} & \bm{B} \\
@@ -224,10 +224,10 @@ Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, 
 
 \section{Affine expansion}
 
-We evaluate and solve the Stokes equation weak formulation on the reference domain $\Omega({\bar{\mu}})$. Given a parameter set $\mu \neq \bar{\mu}$, we need to evaluate the linear systems of equations \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this, we use affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section \ref{geometric_parametrization_section}. The affine expansion of operators is essentially change of variable and has been explained in literatures such as \cite{CRBM}. However, it is pertinent to explain two expansions as specific to DGM formulation.
+We evaluate and solve the Stokes equation weak formulation on the reference domain $\Omega({\bar{\mu}})$. Given a parameter tuple $\mu \neq \bar{\mu}$, we need to evaluate the linear systems of equations \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this, we use the affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section \ref{geometric_parametrization_section}. The affine expansion of operators is essentially a change of variables and has been explained in the literatures such as \cite{CRBM}. However, it is pertinent to explain two expansions as specific to DGM formulation.
 
 \begin{itemize}
-\item In order to transfer the terms containing jump and average operator following approach is used in present analysis.
+\item In order to transfer the terms containing jump and average operator the following approach is used in present analysis.
 \begin{equation*}\label{jump_average_term_split}
 \begin{split}
 \left(\lbrace \nabla \overrightarrow{\phi} \rbrace , \left[ \overrightarrow{n} \otimes \overrightarrow{\phi}  \right]  \right) = \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) + \\ 
@@ -270,7 +270,7 @@ The columns of $\bm{V}$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i 
 %\bm{B}_v = \bm{S}_v \bm{A} \ , \ \bm{A} \in \mathbb{R}^{n_s \times N} \ .
 %\end{equation}
 
-The projection matrix $\bm{B}_v \in \mathbb{R}^{N \times N}$, used for the projection from the space of full order model to the space of reduced order model, is given by, 
+The projection matrix $\bm{B}_v \in \mathbb{R}^{N \times N}$, used for the projection from the space of the full order model to the space of the reduced order model, is given by, 
 \begin{equation}
 \bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(n_s-N) \times N}] \ ,
 \end{equation}
@@ -279,7 +279,7 @@ The projection matrix $\bm{B}_v \in \mathbb{R}^{N \times N}$, used for the proje
 %\bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{u_{ndofs} \times N} ; \bm{0}_{(n_s-N) \times N}] \ ,
 %\end{equation}
 where, $\bm{I}_{N \times N}$ is the identity matrix of size $N \times N$.
-The reduced basis space $\bm{B}_p$ can be generated in similar manner using the pressure snapshots $\bm{S}_p$ and the inner product matrix $\bm{M}_p$. Above procedure is performed during offline phase.
+The reduced basis space $\bm{B}_p$ can be generated in a similar manner using the pressure snapshots $\bm{S}_p$ and the inner product matrix $\bm{M}_p$. Above procedure is performed during the offline phase.
 
 The discrete system of equations is projected onto the reduced basis space by Galerkin projection as,
 \begin{equation} \label{Stokes_matrix_reduced}
