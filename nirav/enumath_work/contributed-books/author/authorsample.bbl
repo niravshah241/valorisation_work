@@ -8,16 +8,23 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
 
-\bibitem[{{Antonietti, Paola F.} et~al.(2016){Antonietti, Paola F.},
-  {Pacciarini, Paolo}, and {Quarteroni, Alfio}}]{pacciarini}
-{Antonietti, Paola F}, {Pacciarini, Paolo}, {Quarteroni, Alfio} (2016) A
-  discontinuous galerkin reduced basis element method for elliptic problems.
-  ESAIM: M2AN 50(2):337--360
+\bibitem[{Antonietti et~al.(2016)Antonietti, Pacciarini, and
+  Quarteroni}]{pacciarini}
+Antonietti PF, Pacciarini P, Quarteroni A (2016) A discontinuous galerkin
+  reduced basis element method for elliptic problems. ESAIM: M2AN
+  50(2):337--360
 
 \bibitem[{Dolej{\v{s}}{\'\i} and Feistauer(2015)}]{hyperbolic}
 Dolej{\v{s}}{\'\i} V, Feistauer M (2015) Discontinuous Galerkin Method:
   Analysis and Applications to Compressible Flow. Springer Series in
   Computational Mathematics, Springer International Publishing
+
+\bibitem[{Drohmann et~al.(2012)Drohmann, Haasdonk, Kaulmann, and
+  Ohlberger}]{rbmatlab}
+Drohmann M, Haasdonk B, Kaulmann S, Ohlberger M (2012) A software framework for
+  reduced basis methods using dune-rb and rbmatlab. In: Dedner A, Flemisch B,
+  Kl{\"o}fkorn R (eds) Advances in DUNE, Springer Berlin Heidelberg, Berlin,
+  Heidelberg, pp 77--88
 
 \bibitem[{Hesthaven et~al.(2015)Hesthaven, Rozza, and Stamm}]{CRBM}
 Hesthaven JS, Rozza G, Stamm B (2015) Certified Reduced Basis Methods for
@@ -43,9 +50,5 @@ Rivi\`ere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
 Shah NV, Haasdonk B, Hess M, Rozza G (2018) Discontinuous-galerkin method for
   direct numerical simulation of the navier-stokes equation: Master thesis
   report. Master's thesis, Universit\"at Stuttgart
-
-\bibitem[{\url{https://www.morepas.org/software/rbmatlab/0.11.04/doc/index.html}(2019)}]{rbmatlab}
-\url{https://wwwmorepasorg/software/rbmatlab/01104/doc/indexhtml} (2019) Online
-  accessed : "December 07, 2019"
 
 \end{thebibliography}

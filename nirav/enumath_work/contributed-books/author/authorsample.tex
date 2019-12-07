@@ -150,7 +150,7 @@ b(\overrightarrow{\phi},\psi) = -\int_{\Omega} \psi \nabla \cdot \overrightarrow
 l_{IP}(\overrightarrow{\phi}) = \left( \overrightarrow{f},\overrightarrow{\phi} \right) + \left( \overrightarrow{t},\overrightarrow{\phi} \right)_{\Gamma_N} + C_{11} \left(\overrightarrow{u}_D,\overrightarrow{\phi}\right)_{\Gamma_D} - \left( \overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi} \right)_{\Gamma_D} \ .
 \end{gather}
 
-The penalty parameter $C_{11}>0$ is an empirical constant to be kept large enough to maintain the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ [see \cite{jump_mean_operator}].
+The penalty parameter $C_{11}>0$ is an empirical constant to be kept large enough to maintain the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ (see \cite{jump_mean_operator}).
 
 The weak form of the continuity equation is as follows,
 \begin{equation}\label{contiuity_weak_ch3}
@@ -247,11 +247,13 @@ The solution vectors $U$ and $P$ (equation \eqref{Stokes_matrix_ch3}) are then c
 
 \section{Numerical example}
 
-The numerical experiments were performed using RBmatlab ,~\cite{master_thesis}. The reference domain $\Omega({\bar{\mu}})$ is the unit square domain $[0,1] \times [0,1]$ with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are the coordinates of the tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is a Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $\overrightarrow{t} = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $\overrightarrow{f} = (0,0)$.
+The numerical experiments were performed using RBmatlab ~\cite{rbmatlab},~\cite{master_thesis}. The reference domain $\Omega({\bar{\mu}})$ is the unit square domain $[0,1] \times [0,1]$ with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are the coordinates of the tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is a Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $\overrightarrow{t} = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $\overrightarrow{f} = (0,0)$.
 
 The training set contained $100$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ were used. The number of velocity degrees of freedom and pressure degrees of freedom were $u_{ndofs} = 4704$ and $p_{ndofs} = 1176$ respectively.
 
 Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$ with reduced basis of size $10$. The drop in error w.r.t to the increased size of the reduced basis space (Figure \ref{error_vs_basis}) is inline with the expectation based on the eigenvalue decay (Figure \ref{ev_decay}). The average speedup was $20.6$. Typically, during the offline phase, the full order system was assembled in $35.37$ seconds and was solved in $6.74$ seconds. During the online phase, the reduced system was assembled in $2.03$ seconds and was solved in $0.009$ seconds.
+
+As demonstrated by the example, proper orthogonal decomposition can significantly accelerate the computations involving geometrically parametrized discontinuous Galerkin formulations while maintaining the reliability of solution above minimum acceptable limit. We expect this work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
 
 \begin{figure}[H] %[t!] % "[t!]" placement specifier just for this example
 \begin{subfigure}{0.31\textwidth}
@@ -325,9 +327,9 @@ Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Red
 \caption{Eigenvalue decay}\label{ev_decay}
 \end{figure}
 
-\section{Concluding remarks}
-
-The potential of proper orthogonal decomposition as applied to geometrically parametrized discontinuous Galerkin formulation of Stokes equation was demonstrated. We expect this work to contribute towards further developments in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
+%\section{Concluding remarks}
+%
+%The potential of proper orthogonal decomposition as applied to geometrically parametrized discontinuous Galerkin formulation of Stokes equation was demonstrated. We expect this work to contribute towards further developments in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
 
 \bibliographystyle{spbasic}
 \bibliography{references}
