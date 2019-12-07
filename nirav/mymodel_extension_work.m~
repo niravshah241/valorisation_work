@@ -368,7 +368,7 @@ xlabel('Size of reduced basis');
 ylabel('Reduced basis pressure error (log scale)');
 title('Size of reduced basis vs pressure error (semilog scale)');
 saveas(a,'nirav/pod_galerkin/size_vs_reduced_basis_pressure_error_semilog.fig');
-saveas(a,'nirav/pod_galerkin/size_vs_reduced_basis_pressure_error_semilog.jpg');
+saveas(a,'nirav/pod_galerkin/size_vs_reduced_basis_vel_error_semilog.jpg');
 
 % a = figure();
 % semilogy(k,error_rb_velocity_max,'*-');

@@ -12,47 +12,40 @@
   {Pacciarini, Paolo}, and {Quarteroni, Alfio}}]{pacciarini}
 {Antonietti, Paola F}, {Pacciarini, Paolo}, {Quarteroni, Alfio} (2016) A
   discontinuous galerkin reduced basis element method for elliptic problems.
-  ESAIM: M2AN 50(2):337--360, \doi{10.1051/m2an/2015045},
-  \urlprefix\url{https://doi.org/10.1051/m2an/2015045}
+  ESAIM: M2AN 50(2):337--360
 
 \bibitem[{Dolej{\v{s}}{\'\i} and Feistauer(2015)}]{hyperbolic}
 Dolej{\v{s}}{\'\i} V, Feistauer M (2015) Discontinuous Galerkin Method:
   Analysis and Applications to Compressible Flow. Springer Series in
-  Computational Mathematics, Springer International Publishing,
-  \urlprefix\url{https://books.google.es/books?id=Pj4wCgAAQBAJ}
-
-\bibitem[{Drohmann et~al.(2012)Drohmann, Haasdonk, Kaulmann, and
-  Ohlberger}]{rbmatlab}
-Drohmann M, Haasdonk B, Kaulmann S, Ohlberger M (2012) A software framework for
-  reduced basis methods using dune-rb and rbmatlab. In: Dedner A, Flemisch B,
-  Kl{\"o}fkorn R (eds) Advances in DUNE, Springer Berlin Heidelberg, Berlin,
-  Heidelberg, pp 77--88
+  Computational Mathematics, Springer International Publishing
 
 \bibitem[{Hesthaven et~al.(2015)Hesthaven, Rozza, and Stamm}]{CRBM}
 Hesthaven JS, Rozza G, Stamm B (2015) Certified Reduced Basis Methods for
   Parametrized Partial Differential Equations, 1st edn. Springer Briefs in
-  Mathematics, Springer, Switzerland, \doi{10.1007/978-3-319-22470-1}
+  Mathematics, Springer, Switzerland
 
 \bibitem[{Kanschat and Schoetzau(2008)}]{jump_mean_operator}
 Kanschat G, Schoetzau D (2008) Energy norm a posteriori error estimation for
-  divergence‐free discontinuous galerkin approximations of the
-  navier–stokes equations. International Journal for Numerical Methods in
-  Fluids 57:1093 -- 1113, \doi{10.1002/fld.1795}
+  divergence-free discontinuous galerkin approximations of the navier-stokes
+  equations. International Journal for Numerical Methods in Fluids 57:1093 --
+  1113
 
 \bibitem[{Peraire and Persson(2008)}]{peraire}
 Peraire J, Persson PO (2008) The compact discontinuous galerkin (cdg) method
-  for elliptic problems. SIAM Journal on Scientific Computing 30(4):1806--1824,
-  \doi{10.1137/070685518}, \urlprefix\url{https://doi.org/10.1137/070685518}
+  for elliptic problems. SIAM Journal on Scientific Computing 30(4):1806--1824
 
-\bibitem[{Riviere(2008)}]{riviere}
-Riviere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
+\bibitem[{Rivi\`ere(2008)}]{riviere}
+Rivi\`ere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
   Parabolic Equations: Theory and Implementation. Frontiers in Applied
-  Mathematics, Cambridge University Press,
-  \urlprefix\url{https://books.google.de/books?id=GY4GtnDCaSQC}
+  Mathematics, Cambridge University Press
 
 \bibitem[{Shah et~al.(2018)Shah, Haasdonk, Hess, and Rozza}]{master_thesis}
 Shah NV, Haasdonk B, Hess M, Rozza G (2018) Discontinuous-galerkin method for
   direct numerical simulation of the navier-stokes equation: Master thesis
   report. Master's thesis, Universit\"at Stuttgart
+
+\bibitem[{\url{https://www.morepas.org/software/rbmatlab/0.11.04/doc/index.html}(2019)}]{rbmatlab}
+\url{https://wwwmorepasorg/software/rbmatlab/01104/doc/indexhtml} (2019) Online
+  accessed : "December 07, 2019"
 
 \end{thebibliography}
