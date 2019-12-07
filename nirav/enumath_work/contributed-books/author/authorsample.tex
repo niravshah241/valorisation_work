@@ -83,11 +83,12 @@
 
 The subject of the mathematical applications in fluid mechanics starts with one of the variants of the Navier-Stokes equation. In case of the laminar flow, i.e. when fluctuations are negligible, this linearized form of the Navier-Stokes equation is the Stokes equation.
 
-Discontinuous Galerkin Method (DGM) has found traction as numerical method for the elliptic problems ~\cite{peraire} as well as the hyperbolic problems ~\cite{hyperbolic}. DGM uses polynomial approximation of a suitable degree providing higher accuracy as well as allows discontinuity at the interface, by the concept of numerical flux, allowing greater flexibility. This fact makes DGM naturally attractive to problems, such as shock capturing, due to presence of steep gradients or discontinuities. Additionally, since the Dirichlet conditions are applied as boundary penalty, it avoids the necessity to construct a subspace of Sobolev space.
+Discontinuous Galerkin Method (DGM) has found traction as numerical method for the elliptic problems ~\cite{peraire} as well as the hyperbolic problems ~\cite{hyperbolic}. DGM uses polynomial approximation of a suitable degree providing higher accuracy as well as allows discontinuity at the interface, by the concept of numerical flux, allowing greater flexibility. Additionally, since the Dirichlet conditions are applied as boundary penalty, it avoids the necessity to construct a subspace of Sobolev space.
 
-Geometric parametrization has emerged as a important application of the Parametric Partial Differential Equations (PPDEs) and as an alternative to the shape optimization. The concept of geometric parametrization allows to transfer operator evaluated on one geometric domain to another geometric domain efficiently. Model Order Reduction (MOR) on the other hand allows reducing the size of the system to be solved by working with the smaller system containing only dominant components. It is pertinent to mention that identifying the "dominant" components is critical to the success of the model order reduction strategy. The  faster computations obtained by MOR has helped in many query context, real time computation and quick transfer of computational results to industrial problems.
+%Geometric parametrization has emerged as a important application of the Parametric Partial Differential Equations (PPDEs) and as an alternative to the shape optimization. 
+The concept of geometric parametrization allows to transfer operator evaluated on one geometric domain to another geometric domain efficiently. Model Order Reduction (MOR) on the other hand allows reducing the size of the system to be solved by working with the smaller system containing only dominant components. The faster computations obtained by MOR has helped in many query context, real time computation and quick transfer of computational results to industrial problems.
 
-As evident from above advantages, the application of geometric parametrization and reduced order modeling to discontinuous Galerkin method will remain at the forefront of scientific work. The present work is aimed to contribute to this emerging field. 
+As evident from above advantages, the application of geometric parametrization and reduced order modeling to discontinuous Galerkin method will remain at the forefront of scientific work. We first explain the concept of geometric parametrization. Thereafter, the governing equations, broken Sobolev spaces and weak formulation are presented. In the next section affine expansion is introduced. The affine expansion is key to the online-offline decomposition and increases efficiency of the reduced basis method, introduced in the subsequent section. Finally, an obstacle test problem demonstrates the application and potential of the introduced method.
 
 \section{Geometric parametrization}\label{geometric_parametrization_section}
 
@@ -163,7 +164,7 @@ In the discrete form the system of equations can be written as,
 \begin{equation} \label{Stokes_matrix_ch3}
 \begin{spmatrix}{\textrm{Stiffness matrix}}
     \bm{A} & \bm{B} \\
-    \bm{B}^T & 0
+    \bm{B}^T & \bm{0}
 \end{spmatrix}
 \begin{spmatrix}{\textrm{Solution vector}}
     U \\
@@ -196,11 +197,11 @@ Each term on the right hand side of the above equation can be transformed using 
 \item The coercivity term $C_{11}\left( [\overrightarrow{\phi}],[\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
 \begin{equation*}
 \begin{split}
-C_{11}\left( [\overrightarrow{\phi}(\hat{x}),\overrightarrow{u}(\hat{x})] \right)_{\Gamma(\mu) \cup \Gamma_D(\mu)} = C_{11} \alpha \left( [\overrightarrow{\phi}(\bm{F}(\hat{x})),\overrightarrow{u}(\bm{F}(\hat{x}))] \right)_{\Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})} \ , \\
+C_{11}\left( [\overrightarrow{\phi}(x),\overrightarrow{u}(x)] \right)_{\Gamma(\mu) \cup \Gamma_D(\mu)} = C_{11} \alpha \left( [\overrightarrow{\phi}(\bm{F}(\hat{x})),\overrightarrow{u}(\bm{F}(\hat{x}))] \right)_{\Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})} \ , \\
 \alpha = \frac{\text{length of }\left( \Gamma(\mu) \cup \Gamma_D(\mu)\right)}{\text{length of }\left( \Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})\right)} \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ x \in \Omega(\mu) \ .
 \end{split}
 \end{equation*}
-Since, $C_{11}$ is an empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$ will not change the formulation as long as the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) $ over parameter space $\mathbb{P}$ is maintained. 
+Since, $C_{11}$ is an empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$ will not change the formulation as long as the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) $ over parameter space $\mathbb{P}$ is maintained.
 \end{itemize}
 
 \section{Reduced basis method}\label{rb_section}
@@ -252,6 +253,8 @@ The numerical experiments were performed using RBmatlab ~\cite{rbmatlab},~\cite{
 The training set contained $100$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ were used. The number of velocity degrees of freedom and pressure degrees of freedom were $u_{ndofs} = 4704$ and $p_{ndofs} = 1176$ respectively.
 
 Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$ with reduced basis of size $10$. The drop in error w.r.t to the increased size of the reduced basis space (Figure \ref{error_vs_basis}) is inline with the expectation based on the eigenvalue decay (Figure \ref{ev_decay}). The average speedup was $20.6$. Typically, during the offline phase, the full order system was assembled in $35.37$ seconds and was solved in $6.74$ seconds. During the online phase, the reduced system was assembled in $2.03$ seconds and was solved in $0.009$ seconds.
+
+\section{Concluding remarks}
 
 As demonstrated by the numerical example, proper orthogonal decomposition can significantly accelerate the computations involving geometrically parametrized discontinuous Galerkin formulations while maintaining the reliability of solution above minimum acceptable limit. We expect this work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
 
