@@ -253,7 +253,7 @@ The training set contained $100$ uniformly distributed random parameters within 
 
 Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$ with reduced basis of size $10$. The drop in error w.r.t to the increased size of the reduced basis space (Figure \ref{error_vs_basis}) is inline with the expectation based on the eigenvalue decay (Figure \ref{ev_decay}). The average speedup was $20.6$. Typically, during the offline phase, the full order system was assembled in $35.37$ seconds and was solved in $6.74$ seconds. During the online phase, the reduced system was assembled in $2.03$ seconds and was solved in $0.009$ seconds.
 
-As demonstrated by the example, proper orthogonal decomposition can significantly accelerate the computations involving geometrically parametrized discontinuous Galerkin formulations while maintaining the reliability of solution above minimum acceptable limit. We expect this work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
+As demonstrated by the numerical example, proper orthogonal decomposition can significantly accelerate the computations involving geometrically parametrized discontinuous Galerkin formulations while maintaining the reliability of solution above minimum acceptable limit. We expect this work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
 
 \begin{figure}[H] %[t!] % "[t!]" placement specifier just for this example
 \begin{subfigure}{0.31\textwidth}
