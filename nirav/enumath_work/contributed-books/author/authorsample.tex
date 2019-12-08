@@ -75,27 +75,26 @@
 \abstract*{The present work focuses on the geometric parametrization and the reduced order modeling of the Stokes equation. We discuss the concept of a parametrized geometry and its application within a reduced order modeling technique.  The full order model is based on the discontinuous Galerkin method with an interior penalty formulation. We introduce the broken Sobolev spaces as well as the weak formulation required for an affine parameter dependency. The operators are transformed from a fixed domain to a parameter dependent domain using the affine parameter dependency. The proper orthogonal decomposition is used to obtain the basis of functions of the reduced order model. By using the Galerkin projection the linear system is projected onto the reduced space. During this process, the offline-online decomposition is used to separate parameter dependent operations from parameter independent operations. Finally this technique is applied to an obstacle test problem. The numerical outcomes presented include experimental error analysis, eigenvalue decay and measurement of online simulation time.\\
 \textbf{Keywords} Discontinuous Galerkin method, Stokes flow, Geometric parametrization, Proper orthogonal decomposition}
 
-\abstract{The present work focuses on the geometric parametrization and the reduced order modeling of the Stokes equation. We discuss the concept of a parametrized geometry and its application within a reduced order modeling technique.  The full order model is based on the discontinuous Galerkin method with an interior penalty formulation. We introduce the broken Sobolev spaces as well as the weak formulation required for an affine parameter dependency. The operators are transformed from a fixed domain to a parameter dependent domain using the affine parameter dependency. The proper orthogonal decomposition is used to obtain the basis of functions of the reduced order model. By using the Galerkin projection the linear system is projected onto the reduced space. During this process, the offline-online decomposition is used to separate parameter dependent operations from parameter independent operations. Finally this technique is applied to an obstacle test problem. The numerical outcomes presented include experimental error analysis, eigenvalue decay and measurement of online simulation time.\\
+\abstract{The present work focuses on the geometric parametrization and the reduced order modeling of the Stokes equation. We discuss the concept of a parametrized geometry and its application within a reduced order modeling technique.  The full order model is based on the discontinuous Galerkin method with an interior penalty formulation. We introduce the broken Sobolev spaces as well as the weak formulation required for an affine parameter dependency. The operators are transformed from a fixed domain to a parameter dependent domain using the affine parameter dependency. The proper orthogonal decomposition is used to obtain the basis of functions of the reduced order model. By using the Galerkin projection the linear system is projected onto the reduced space. During this process, the offline-online decomposition is used to separate parameter dependent operations from parameter independent operations. Finally this technique is applied to an obstacle test problem.The numerical outcomes presented include experimental error analysis, eigenvalue decay and measurement of online simulation time.\\
 \textbf{Keywords} Discontinuous Galerkin method, Stokes flow, Geometric parametrization, Proper orthogonal decomposition}
 
 \section{Introduction}
 \label{introduction}
 
-The subject of the mathematical applications in fluid mechanics starts with one of the variants of the Navier-Stokes equation. In case of the laminar flow, i.e. when fluctuations are negligible, this linearized form of the Navier-Stokes equation is the Stokes equation.
+%The subject of the mathematical applications in fluid mechanics starts with one of the variants of the Navier-Stokes equation. In case of the laminar flow, i.e. when fluctuations are negligible, this linearized form of the Navier-Stokes equation is the Stokes equation.
 
 Discontinuous Galerkin Method (DGM) has found traction as numerical method for the elliptic problems ~\cite{peraire} as well as the hyperbolic problems ~\cite{hyperbolic}. DGM uses polynomial approximation of a suitable degree providing higher accuracy as well as allows discontinuity at the interface, by the concept of numerical flux, allowing greater flexibility. Additionally, since the Dirichlet conditions are applied as boundary penalty, it avoids the necessity to construct a subspace of Sobolev space.
 
-%Geometric parametrization has emerged as a important application of the Parametric Partial Differential Equations (PPDEs) and as an alternative to the shape optimization. 
-The concept of geometric parametrization allows to transfer operator evaluated on one geometric domain to another geometric domain efficiently. Model Order Reduction (MOR) on the other hand allows reducing the size of the system to be solved by working with the smaller system containing only dominant components. The faster computations obtained by MOR has helped in many query context, real time computation and quick transfer of computational results to industrial problems.
+Geometric parametrization has emerged as a important application of the Parametric Partial Differential Equations (PPDEs) and as an alternative to the shape optimization. The concept of geometric parametrization allows to transfer operator evaluated on one geometric domain to another geometric domain efficiently. Model Order Reduction (MOR) on the other hand allows reducing the size of the system to be solved by working with the smaller system containing only dominant components. The faster computations obtained by MOR has helped in many query context, real time computation and quick transfer of computational results to industrial problems.
 
-As evident from above advantages, the application of geometric parametrization and reduced order modeling to discontinuous Galerkin method will remain at the forefront of scientific work. We first explain the concept of geometric parametrization. Thereafter, the governing equations, broken Sobolev spaces and weak formulation are presented. In the next section affine expansion is introduced. The affine expansion is key to the online-offline decomposition and increases efficiency of the reduced basis method, introduced in the subsequent section. Finally, an obstacle test problem demonstrates the application and potential of the introduced method.
+As evident from above advantages, the application of geometric parametrization and reduced order modeling to discontinuous Galerkin method will remain at the forefront of scientific work. The paper in organized as follow. We first explain the concept of geometric parametrization. Thereafter, the governing equations, broken Sobolev spaces and weak formulation are stated. The affine expansion, key to the online-offline decomposition, is introduced next. In the subsequent section, proper orthogonal decomposition with online-offline decomposition is briefly described. Finally, an obstacle test problem demonstrates the application the introduced method with outcomes involving comparison of full order and reduced order model solutions, error analysis and eigenvalue decay.
 
 \section{Geometric parametrization}\label{geometric_parametrization_section}
 
 Consider $\Omega = \Omega(\mu) \in \mathbb{R}^d$ as an open bounded domain. The parameter tuple $\mu \in \mathbb{P}$, where $\mathbb{P}$ is the parameter space, completely characterizes the domain. Also, consider a parameter tuple $\bar{\mu} \in \mathbb{P}$, as the known parameter tuple and $\Omega(\bar{\mu})$ as the reference domain, whose configuration is completely known. The invertible mapping $\bm{F}(\cdot,\mu) : \Omega(\bar{\mu}) \rightarrow \Omega(\mu)$ links the reference domain and the parametrized domain. In the case of affine transformation, $\bm{F}$ is of the form,
 \begin{equation*}\label{affine_F}
 \begin{split}
-x = \bm{F}(\hat{x},\mu) = \bm{G}_F(\mu)\hat{x} + c_F(\mu) \ ; \forall x \in \Omega \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ \bm{G}_F(\mu) \in \mathbb{R}^{d \times d} \ , \ c_F \in \mathbb{R}^{d \times 1} \ .
+x = \bm{F}(\hat{x},\mu) = \bm{G}_F(\mu)\hat{x} + c_F(\mu) \ ; \\ \forall x \in \Omega(\mu) \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ \bm{G}_F(\mu) \in \mathbb{R}^{d \times d} \ , \ c_F \in \mathbb{R}^{d \times 1} \ .
 \end{split}
 \end{equation*}
 The boundary of $\Omega(\mu)$, that is $\partial \Omega(\mu)$ is divided into a  Neumann boundary $\Gamma_N(\mu)$ and a Dirichlet boundary $\Gamma_D(\mu)$ i.e. $\partial \Omega(\mu) = \Gamma_N(\mu) \cup \Gamma_D(\mu)$. In order to have $\bm{F}(\hat{x},\mu)$ an affine form, the domain $\Omega(\mu)$ is divided into $n_{su}$ triangular subdomains such that $\Omega(\mu) = \bigcup\limits_{i=1}^{n_{su}} \Omega_i(\mu) \ , \ \Omega_i(\mu) \bigcap \Omega_j(\mu) = \emptyset \ , \ \text{for} \ i \neq j$.
@@ -182,7 +181,7 @@ Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, 
 
 \section{Affine expansion}
 
-We evaluate and solve the Stokes equation weak formulation on the reference domain $\Omega({\bar{\mu}})$. Given a parameter tuple $\mu \neq \bar{\mu}$, we need to evaluate the linear systems of equations \eqref{Stokes_matrix_ch3} on new domain $\Omega(\mu)$. To accomplish this, we use the affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section \ref{geometric_parametrization_section}. The affine expansion of operators is essentially a change of variables and has been explained in the literatures such as \cite{CRBM}. However, it is pertinent to explain two expansions as specific to DGM formulation.
+We evaluate and solve the Stokes equation weak formulation on the reference domain $\Omega({\bar{\mu}})$. Given a parameter tuple $\mu \neq \bar{\mu}$, we need to evaluate the linear systems of equations \eqref{Stokes_matrix_ch3} on a new domain $\Omega(\mu)$. To accomplish this, we use the affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section \ref{geometric_parametrization_section}. The affine expansion of operators is essentially a change of variables and has been explained in the literatures such as \cite{CRBM}. However, it is pertinent to explain two expansions as specific to DGM formulation.
 
 \begin{itemize}
 \item In order to transfer the terms containing jump and average operator the following approach is used in present analysis.
@@ -192,7 +191,7 @@ We evaluate and solve the Stokes equation weak formulation on the reference doma
 \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
 \end{split}
 \end{equation*}
-Each term on the right hand side of the above equation can be transformed using the affine map.
+Each term on the right hand side of the above equation can be transformed using the affine map. 
 
 \item The coercivity term $C_{11}\left( [\overrightarrow{\phi}],[\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
 \begin{equation*}
@@ -221,7 +220,7 @@ The dimension of the reduced basis is denoted as $N$ and it is asserted that $N 
 \end{equation}
 The columns of $\bm{V}$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i \ , \ 1 \leq i,j \leq n_s$, in sorted order ($\theta_1 \geq \ldots \geq \theta_{n_s}$) such that, $\Theta_{ij} = \theta_i \delta_{ij}$.
 
-The projection matrix $\bm{B}_v \in \mathbb{R}^{N \times N}$, used for the projection from the space of the full order model to the space of the reduced order model, is given by, 
+The projection matrix $\bm{B}_v \in \mathbb{R}^{u_{ndofs} \times N}$, used for the projection from the space of the full order model to the space of the reduced order model, is given by, 
 \begin{equation}
 \bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(n_s-N) \times N}] \ ,
 \end{equation}
@@ -256,7 +255,7 @@ Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Red
 
 \section{Concluding remarks}
 
-As demonstrated by the numerical example, proper orthogonal decomposition can significantly accelerate the computations involving geometrically parametrized discontinuous Galerkin formulations while maintaining the reliability of solution above minimum acceptable limit. We expect this work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
+As demonstrated by the numerical example, proper orthogonal decomposition can accelerate the computations involving geometrically parametrized discontinuous Galerkin interior penalty formulation while maintaining the reliability of solution above minimum acceptable limit. The paper also discussed, the specific issues related to the geometric parametrization and the affine expansion as pertaining to the discontinuous Galerkin interior penalty formulation. We expect the current work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis approach for the discontinuous Galerkin method.
 
 \begin{figure}[H] %[t!] % "[t!]" placement specifier just for this example
 \begin{subfigure}{0.31\textwidth}
@@ -285,32 +284,32 @@ As demonstrated by the numerical example, proper orthogonal decomposition can si
 \caption{$y-$component of Velocity absolute error $\overrightarrow{u}_h-\overrightarrow{u}_N$} \label{error_y_vel}
 \end{subfigure}
 
-\begin{subfigure}{0.31\textwidth}
-\includegraphics[width=\linewidth]{offline_pressure_at_47_33.jpg}
-\caption{Pressure DGM solution} \label{pre_dg}
-\end{subfigure}\hspace*{\fill}
-\begin{subfigure}{0.31\textwidth}
-\includegraphics[width=\linewidth]{online_pressure_at_47_33.jpg}
-\caption{Pressure RB solution} \label{pre_rb}
-\end{subfigure}
-\begin{subfigure}{0.31\textwidth}
-\includegraphics[width=\linewidth]{pressure_error_at_47_33.jpg}
-\caption{Pressure absolute error $p_h-p_N$} \label{pre_error}
-\end{subfigure}
-\caption{DGM and RB solution $\mu = [\mu_x \ \mu_y] = [0.47 \ 0.33]$} 
+%\begin{subfigure}{0.31\textwidth}
+%\includegraphics[width=\linewidth]{offline_pressure_at_47_33.jpg}
+%\caption{Pressure DGM solution} \label{pre_dg}
+%\end{subfigure}\hspace*{\fill}
+%\begin{subfigure}{0.31\textwidth}
+%\includegraphics[width=\linewidth]{online_pressure_at_47_33.jpg}
+%\caption{Pressure RB solution} \label{pre_rb}
+%\end{subfigure}
+%\begin{subfigure}{0.31\textwidth}
+%\includegraphics[width=\linewidth]{pressure_error_at_47_33.jpg}
+%\caption{Pressure absolute error $p_h-p_N$} \label{pre_error}
+%\end{subfigure}
+\caption{DGM and RB solution $\mu = (0.47,0.33)$} 
 \label{dg_rb_solution_47_33}
 \end{figure}
 
 \begin{figure}[H]
 \begin{subfigure}{0.48\textwidth}
 \includegraphics[width=\linewidth]{size_vs_reduced_basis_velocity_error_semilog.jpg}
-\caption{Size of reduced basis space vs. Relative error in velocity with inner product induced by $\bm{M}_v$} \label{error_vs_basis_velocity}
+\caption{Size of the reduced basis space vs. Relative error in velocity with inner product induced by $\bm{M}_v$} \label{error_vs_basis_velocity}
 \end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.48\textwidth}
 \includegraphics[width=\linewidth]{size_vs_reduced_basis_pressure_error_semilog.jpg}
-\caption{Size of reduced basis space vs. Relative error in pressure with inner product induced by $\bm{M}_p$} \label{error_vs_basis_pressure}
+\caption{Size of the reduced basis space vs. Relative error in pressure with inner product induced by $\bm{M}_p$} \label{error_vs_basis_pressure}
 \end{subfigure}
-  \caption{Size of reduced basis space vs Relative error} 
+  \caption{Size of the reduced basis space vs Relative error} 
 \label{error_vs_basis}
 \end{figure}
 
@@ -329,10 +328,6 @@ As demonstrated by the numerical example, proper orthogonal decomposition can si
 \end{subfigure}
 \caption{Eigenvalue decay}\label{ev_decay}
 \end{figure}
-
-%\section{Concluding remarks}
-%
-%The potential of proper orthogonal decomposition as applied to geometrically parametrized discontinuous Galerkin formulation of Stokes equation was demonstrated. We expect this work to contribute towards further developments in the field of geometric parametrization and reduced basis method for the discontinuous Galerkin method.
 
 \bibliographystyle{spbasic}
 \bibliography{references}

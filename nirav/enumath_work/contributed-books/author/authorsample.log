@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  7 DEC 2019 20:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  8 DEC 2019 05:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1122,28 +1122,25 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (4.76704pt too wide) in paragraph at lines 100--100
-[] 
- []
-
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 101.
+(Font)              scaled to size 7.3pt on input line 100.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 101.
-[2] [3]
+(Font)              scaled to size 5.5pt on input line 100.
+ [2] [3]
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-88.
- (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
+87.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 188.
- [4]
-[5] [6] <offline_velocity_1_at_47_33.jpg, id=46, 894.34125pt x 647.41875pt>
+(Font)              scaled to size 10.0pt on input line 187.
+ [4] [5] [6]
+<offline_velocity_1_at_47_33.jpg, id=46, 894.34125pt x 647.41875pt>
 File: offline_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_velocity_1_at_47_33.jpg>
-Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 263
+Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 262
 .
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1151,7 +1148,7 @@ Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 263
 File: online_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
 <use online_velocity_1_at_47_33.jpg>
-Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 267.
+Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 266.
 
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1159,14 +1156,14 @@ Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 267.
 File: velocity_error_1_at_47_33.jpg Graphic file (type jpg)
 
 <use velocity_error_1_at_47_33.jpg>
-Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 271.
+Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 270.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
 <offline_velocity_2_at_47_33.jpg, id=49, 894.34125pt x 647.41875pt>
 File: offline_velocity_2_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_velocity_2_at_47_33.jpg>
-Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 276
+Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 275
 .
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1174,7 +1171,7 @@ Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 276
 File: online_velocity_2_at_47_33.jpg Graphic file (type jpg)
 
 <use online_velocity_2_at_47_33.jpg>
-Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 280.
+Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 279.
 
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
@@ -1182,128 +1179,107 @@ Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 280.
 File: velocity_error_2_at_47_33.jpg Graphic file (type jpg)
 
 <use velocity_error_2_at_47_33.jpg>
-Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 284.
+Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 283.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
-<offline_pressure_at_47_33.jpg, id=52, 894.34125pt x 647.41875pt>
-File: offline_pressure_at_47_33.jpg Graphic file (type jpg)
-
-<use offline_pressure_at_47_33.jpg>
-Package pdftex.def Info: offline_pressure_at_47_33.jpg used on input line 289.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-
-<online_pressure_at_47_33.jpg, id=53, 894.34125pt x 647.41875pt>
-File: online_pressure_at_47_33.jpg Graphic file (type jpg)
-
-<use online_pressure_at_47_33.jpg>
-Package pdftex.def Info: online_pressure_at_47_33.jpg used on input line 293.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-
-<pressure_error_at_47_33.jpg, id=54, 894.34125pt x 647.41875pt>
-File: pressure_error_at_47_33.jpg Graphic file (type jpg)
-
-<use pressure_error_at_47_33.jpg>
-Package pdftex.def Info: pressure_error_at_47_33.jpg used on input line 297.
-(pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
-
-<size_vs_reduced_basis_velocity_error_semilog.jpg, id=55, 894.34125pt x 647.418
+<size_vs_reduced_basis_velocity_error_semilog.jpg, id=52, 894.34125pt x 647.418
 75pt>
 File: size_vs_reduced_basis_velocity_error_semilog.jpg Graphic file (type jpg)
  <use size_vs_reduced_basis_velocity_error_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_velocity_error_semilog.jpg used 
-on input line 306.
+on input line 305.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
 
-<size_vs_reduced_basis_pressure_error_semilog.jpg, id=56, 894.34125pt x 647.418
+<size_vs_reduced_basis_pressure_error_semilog.jpg, id=53, 894.34125pt x 647.418
 75pt>
 File: size_vs_reduced_basis_pressure_error_semilog.jpg Graphic file (type jpg)
  <use size_vs_reduced_basis_pressure_error_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_pressure_error_semilog.jpg used 
-on input line 310.
+on input line 309.
 (pdftex.def)             Requested size: 159.78925pt x 115.67088pt.
- [7 <./offline_velocity_1_at_47_33.jpg> <./online_velocity_1_at_47_33.jpg> <./v
-elocity_error_1_at_47_33.jpg> <./offline_velocity_2_at_47_33.jpg> <./online_vel
-ocity_2_at_47_33.jpg> <./velocity_error_2_at_47_33.jpg> <./offline_pressure_at_
-47_33.jpg> <./online_pressure_at_47_33.jpg> <./pressure_error_at_47_33.jpg>]
-<x_velocity_eigen_value_semilog.jpg, id=61, 894.34125pt x 647.41875pt>
+
+<x_velocity_eigen_value_semilog.jpg, id=54, 894.34125pt x 647.41875pt>
 File: x_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use x_velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: x_velocity_eigen_value_semilog.jpg used on input line 
-319.
+318.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
-Underfull \hbox (badness 3407) in paragraph at lines 320--320
+Underfull \hbox (badness 3407) in paragraph at lines 319--319
 []\T1/ntxtlf/m/n/8.5 (a) |$\OML/ntxmi/m/it/8.5 x\OMS/ntxsy/m/n/8.5 ^^@$\T1/ntxt
 lf/m/n/8.5 Velocity eigen-val-ues
  []
 
-<y_velocity_eigen_value_semilog.jpg, id=62, 894.34125pt x 647.41875pt>
+<y_velocity_eigen_value_semilog.jpg, id=55, 894.34125pt x 647.41875pt>
 File: y_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use y_velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: y_velocity_eigen_value_semilog.jpg used on input line 
-323.
+322.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
-Underfull \hbox (badness 3199) in paragraph at lines 324--324
+Underfull \hbox (badness 3199) in paragraph at lines 323--323
 []\T1/ntxtlf/m/n/8.5 (b) |$\OML/ntxmi/m/it/8.5 y\OMS/ntxsy/m/n/8.5 ^^@$\T1/ntxt
 lf/m/n/8.5 Velocity eigen-val-ues
  []
 
-<pressure_eigen_value_semilog.jpg, id=63, 894.34125pt x 647.41875pt>
+<pressure_eigen_value_semilog.jpg, id=56, 894.34125pt x 647.41875pt>
 File: pressure_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use pressure_eigen_value_semilog.jpg>
 Package pdftex.def Info: pressure_eigen_value_semilog.jpg used on input line 32
-7.
+6.
 (pdftex.def)             Requested size: 103.19733pt x 74.70349pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 328--328
+Underfull \hbox (badness 10000) in paragraph at lines 327--327
 []\T1/ntxtlf/m/n/8.5 (c) |Pres-sure eigen-val-ues
  []
 
-(./authorsample.bbl [8 <./size_vs_reduced_basis_velocity_error_semilog.jpg> <./
-size_vs_reduced_basis_pressure_error_semilog.jpg> <./x_velocity_eigen_value_sem
-ilog.jpg> <./y_velocity_eigen_value_semilog.jpg> <./pressure_eigen_value_semilo
-g.jpg>])
+[7 <./offline_velocity_1_at_47_33.jpg> <./online_velocity_1_at_47_33.jpg> <./ve
+locity_error_1_at_47_33.jpg> <./offline_velocity_2_at_47_33.jpg> <./online_velo
+city_2_at_47_33.jpg> <./velocity_error_2_at_47_33.jpg> <./size_vs_reduced_basis
+_velocity_error_semilog.jpg> <./size_vs_reduced_basis_pressure_error_semilog.jp
+g>] (./authorsample.bbl)
 \tf@thm=\write6
 \openout6 = `authorsample.thm'.
 
- [9] (./authorsample.aux) ) 
+ [8 <./x_velocity_eigen_value_semilog.jpg> <./y_velocity_eigen_value_semilog.jp
+g> <./pressure_eigen_value_semilog.jpg>]
+(./authorsample.aux) ) 
 Here is how much of TeX's memory you used:
- 18597 strings out of 493029
- 335412 string characters out of 6136233
- 413571 words of memory out of 5000000
- 21666 multiletter control sequences out of 15000+600000
+ 18570 strings out of 493029
+ 334773 string characters out of 6136233
+ 413476 words of memory out of 5000000
+ 21642 multiletter control sequences out of 15000+600000
  87363 words of font info for 166 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,29n,94p,1130b,611s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc
-}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/sha
-re/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dis
-t/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/share/texmf/fonts/type1/public/tex
--gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/newtx/rntxbmi.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/newtx/rntxbmi7.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/newtx/rntxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/newtx/rntxmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/new
-tx/rntxmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxmi.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/txfonts/txbmia.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/newtx/txex-bar.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
-xfonts/txex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txmia
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on authorsample.pdf (9 pages, 1255651 bytes).
+{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/us
+r/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/te
+xlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fon
+ts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/share/texmf/fonts/type1/public/tex-gyre
+/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/newtx/rntxbmi.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/newtx/rntxbmi7.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/newtx/rntxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/newtx/rntxmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rn
+txmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/txfonts/txbmia.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/newtx/txex-bar.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfont
+s/txex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txmia.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
+mes/utmri8a.pfb>
+Output written on authorsample.pdf (8 pages, 970409 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
+ 135 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 83 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 

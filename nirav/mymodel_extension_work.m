@@ -474,3 +474,25 @@ etime(clock,clock_start_time)
 % mu_x = 0.55;
 % mu_y = 0.25;
 % online_phase;
+
+tic();
+diffusive_term_online = ...
+    ldg_evaluate_basis_derivative_assembly_extension_online...
+    ( diffusive_term, para_mapping, params, grid, el_subd);
+t1 = toc();
+tic();
+diffusive_term2 = ldg_evaluate_basis_derivative_assembly( params, grid);
+t2 = toc();
+tic();
+flux_approximation_online = ...
+    del_phi_average_n_phi_tensor_jump_assembly_online...
+    ( flux_approximation.plus_plus, flux_approximation.plus_minus,...
+    flux_approximation.minus_plus, flux_approximation.minus_minus, ...
+    para_mapping, params, grid, el_subd);
+t3 = toc();
+tic();
+flux_approximation2 = del_u_average_n_v_tensor_jump_assembly( grid, params);
+t4 = toc();
+disp(['Normal term speedup: ',num2str(t2/t1)])
+disp(['Mean/Average term speedup: ',num2str(t4/t3)])
+close all
