@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  13 DEC 2019 14:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  13 DEC 2019 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1182,55 +1182,55 @@ File: velocity_error_2_at_47_33.jpg Graphic file (type jpg)
 Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 283.
 (pdftex.def)             Requested size: 103.19733pt x 84.0671pt.
 
-<size_vs_reduced_basis_velocity_error_semilog.jpg, id=52, 1412.27625pt x 774.89
+<size_vs_reduced_basis_velocity_error_semilog.jpg, id=52, 1442.38875pt x 774.89
 5pt>
 File: size_vs_reduced_basis_velocity_error_semilog.jpg Graphic file (type jpg)
  <use size_vs_reduced_basis_velocity_error_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_velocity_error_semilog.jpg used 
 on input line 305.
-(pdftex.def)             Requested size: 159.78925pt x 87.66261pt.
+(pdftex.def)             Requested size: 159.78925pt x 85.84172pt.
 
-<size_vs_reduced_basis_pressure_error_semilog.jpg, id=53, 1406.25375pt x 780.91
-75pt>
+<size_vs_reduced_basis_pressure_error_semilog.jpg, id=53, 1424.32124pt x 769.87
+625pt>
 File: size_vs_reduced_basis_pressure_error_semilog.jpg Graphic file (type jpg)
  <use size_vs_reduced_basis_pressure_error_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_pressure_error_semilog.jpg used 
 on input line 309.
-(pdftex.def)             Requested size: 159.78925pt x 88.72523pt.
+(pdftex.def)             Requested size: 159.78925pt x 86.36652pt.
 
-<x_velocity_eigen_value_semilog.jpg, id=54, 1453.43pt x 783.92876pt>
+<x_velocity_eigen_value_semilog.jpg, id=54, 1431.3475pt x 780.9175pt>
 File: x_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use x_velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: x_velocity_eigen_value_semilog.jpg used on input line 
 318.
-(pdftex.def)             Requested size: 103.19733pt x 55.65813pt.
+(pdftex.def)             Requested size: 103.19733pt x 56.30228pt.
 
 Underfull \hbox (badness 3407) in paragraph at lines 319--319
 []\T1/ntxtlf/m/n/8.5 (a) |$\OML/ntxmi/m/it/8.5 x\OMS/ntxsy/m/n/8.5 ^^@$\T1/ntxt
 lf/m/n/8.5 Velocity eigen-val-ues
  []
 
-<y_velocity_eigen_value_semilog.jpg, id=55, 1433.355pt x 774.895pt>
+<y_velocity_eigen_value_semilog.jpg, id=55, 1426.32875pt x 782.925pt>
 File: y_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use y_velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: y_velocity_eigen_value_semilog.jpg used on input line 
 322.
-(pdftex.def)             Requested size: 103.19733pt x 55.7853pt.
+(pdftex.def)             Requested size: 103.19733pt x 56.63815pt.
 
 Underfull \hbox (badness 3199) in paragraph at lines 323--323
 []\T1/ntxtlf/m/n/8.5 (b) |$\OML/ntxmi/m/it/8.5 y\OMS/ntxsy/m/n/8.5 ^^@$\T1/ntxt
 lf/m/n/8.5 Velocity eigen-val-ues
  []
 
-<pressure_eigen_value_semilog.jpg, id=56, 1421.31pt x 780.9175pt>
+<pressure_eigen_value_semilog.jpg, id=56, 1417.295pt x 776.9025pt>
 File: pressure_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use pressure_eigen_value_semilog.jpg>
 Package pdftex.def Info: pressure_eigen_value_semilog.jpg used on input line 32
 6.
-(pdftex.def)             Requested size: 103.19733pt x 56.6955pt.
+(pdftex.def)             Requested size: 103.19733pt x 56.5581pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 327--327
 []\T1/ntxtlf/m/n/8.5 (c) |Pres-sure eigen-val-ues
@@ -1281,7 +1281,7 @@ ype1/public/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txs
 yc.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on authorsample.pdf (8 pages, 1872408 bytes).
+Output written on authorsample.pdf (8 pages, 1986797 bytes).
 PDF statistics:
  135 PDF objects out of 1000 (max. 8388607)
  93 compressed objects within 1 object stream
