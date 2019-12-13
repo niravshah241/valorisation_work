@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  13 DEC 2019 19:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  13 DEC 2019 20:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1259,7 +1259,7 @@ Here is how much of TeX's memory you used:
  21642 multiletter control sequences out of 15000+600000
  87363 words of font info for 166 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,29n,94p,1130b,611s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,29n,94p,1129b,611s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texm
 f/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/fonts/enc/d
 vips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
