@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  13 DEC 2019 18:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.30)  13 DEC 2019 19:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1040,107 +1040,107 @@ See the caption package documentation for explanation.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.0pt on input line 73.
+(Font)              scaled to size 14.0pt on input line 74.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 73.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 74.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.0pt on input line 73.
+(Font)              scaled to size 14.0pt on input line 74.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <16> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 73.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 74.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 16.0pt on input line 73.
+(Font)              scaled to size 16.0pt on input line 74.
 LaTeX Font Info:    Try loading font information for OT1+ntxtlf on input line 7
-3.
+4.
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2015/01/17 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 73.
+(Font)              scaled to size 10.0pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 73.
+(Font)              scaled to size 7.3pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 73.
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 73.
+(Font)              scaled to size 5.5pt on input line 74.
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 74.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsym on input line 73.
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 74.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 73.
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 74.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 73.
+(Font)              scaled to size 10.0pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.3pt on input line 73.
+(Font)              scaled to size 7.3pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 5.5pt on input line 73.
+(Font)              scaled to size 5.5pt on input line 74.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.5pt on input line 73.
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 73.
+(Font)              scaled to size 8.5pt on input line 74.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.5pt on input line 73.
+(Font)              scaled to size 8.5pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.20496pt on input line 73.
+(Font)              scaled to size 6.20496pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 4.67502pt on input line 73.
+(Font)              scaled to size 4.67502pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.5pt on input line 73.
+(Font)              scaled to size 8.5pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.20496pt on input line 73.
+(Font)              scaled to size 6.20496pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 4.67502pt on input line 73.
-LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 73.
+(Font)              scaled to size 4.67502pt on input line 74.
+LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 74.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtt.fd
 File: t1ntxtt.fd 2012/04/20 v3.1
 )
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 8.5pt on input line 73.
+(Font)              scaled to size 8.5pt on input line 74.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 79.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 79.
+(Font)              scaled to size 10.0pt on input line 80.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 81.
+(Font)              scaled to size 12.0pt on input line 82.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 81.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 82.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 81.
+(Font)              scaled to size 12.0pt on input line 82.
  [1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 100.
+(Font)              scaled to size 7.3pt on input line 101.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 100.
+(Font)              scaled to size 5.5pt on input line 101.
  [2] [3]
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-87.
+88.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 187.
+(Font)              scaled to size 10.0pt on input line 188.
  [4] [5] [6]
 <offline_velocity_1_at_47_33.jpg, id=46, 874.26625pt x 741.77126pt>
 File: offline_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_velocity_1_at_47_33.jpg>
-Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 262
+Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 263
 .
 (pdftex.def)             Requested size: 103.19733pt x 87.54861pt.
 
@@ -1148,7 +1148,7 @@ Package pdftex.def Info: offline_velocity_1_at_47_33.jpg used on input line 262
 File: online_velocity_1_at_47_33.jpg Graphic file (type jpg)
 
 <use online_velocity_1_at_47_33.jpg>
-Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 266.
+Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 267.
 
 (pdftex.def)             Requested size: 103.19733pt x 86.78206pt.
 
@@ -1156,14 +1156,14 @@ Package pdftex.def Info: online_velocity_1_at_47_33.jpg used on input line 266.
 File: velocity_error_1_at_47_33.jpg Graphic file (type jpg)
 
 <use velocity_error_1_at_47_33.jpg>
-Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 270.
+Package pdftex.def Info: velocity_error_1_at_47_33.jpg used on input line 271.
 (pdftex.def)             Requested size: 103.19733pt x 85.40868pt.
 
 <offline_velocity_2_at_47_33.jpg, id=49, 896.34875pt x 738.76pt>
 File: offline_velocity_2_at_47_33.jpg Graphic file (type jpg)
 
 <use offline_velocity_2_at_47_33.jpg>
-Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 275
+Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 276
 .
 (pdftex.def)             Requested size: 103.19733pt x 85.05142pt.
 
@@ -1171,7 +1171,7 @@ Package pdftex.def Info: offline_velocity_2_at_47_33.jpg used on input line 275
 File: online_velocity_2_at_47_33.jpg Graphic file (type jpg)
 
 <use online_velocity_2_at_47_33.jpg>
-Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 279.
+Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 280.
 
 (pdftex.def)             Requested size: 103.19733pt x 85.3981pt.
 
@@ -1179,60 +1179,60 @@ Package pdftex.def Info: online_velocity_2_at_47_33.jpg used on input line 279.
 File: velocity_error_2_at_47_33.jpg Graphic file (type jpg)
 
 <use velocity_error_2_at_47_33.jpg>
-Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 283.
+Package pdftex.def Info: velocity_error_2_at_47_33.jpg used on input line 284.
 (pdftex.def)             Requested size: 103.19733pt x 84.0671pt.
 
-<size_vs_reduced_basis_velocity_error_semilog.jpg, id=52, 1442.38875pt x 774.89
-5pt>
+<size_vs_reduced_basis_velocity_error_semilog.jpg, id=52, 1421.31pt x 769.87625
+pt>
 File: size_vs_reduced_basis_velocity_error_semilog.jpg Graphic file (type jpg)
  <use size_vs_reduced_basis_velocity_error_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_velocity_error_semilog.jpg used 
-on input line 305.
-(pdftex.def)             Requested size: 159.78925pt x 85.84172pt.
+on input line 306.
+(pdftex.def)             Requested size: 159.78925pt x 86.54272pt.
 
-<size_vs_reduced_basis_pressure_error_semilog.jpg, id=53, 1424.32124pt x 769.87
-625pt>
+<size_vs_reduced_basis_pressure_error_semilog.jpg, id=53, 1426.32875pt x 772.88
+75pt>
 File: size_vs_reduced_basis_pressure_error_semilog.jpg Graphic file (type jpg)
  <use size_vs_reduced_basis_pressure_error_semilog.jpg>
 Package pdftex.def Info: size_vs_reduced_basis_pressure_error_semilog.jpg used 
-on input line 309.
-(pdftex.def)             Requested size: 159.78925pt x 86.36652pt.
+on input line 310.
+(pdftex.def)             Requested size: 159.78925pt x 86.5746pt.
 
-<x_velocity_eigen_value_semilog.jpg, id=54, 1431.3475pt x 780.9175pt>
+<x_velocity_eigen_value_semilog.jpg, id=54, 1496.59125pt x 773.89125pt>
 File: x_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use x_velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: x_velocity_eigen_value_semilog.jpg used on input line 
-318.
-(pdftex.def)             Requested size: 103.19733pt x 56.30228pt.
+319.
+(pdftex.def)             Requested size: 103.19733pt x 53.36313pt.
 
-Underfull \hbox (badness 3407) in paragraph at lines 319--319
+Underfull \hbox (badness 3407) in paragraph at lines 320--320
 []\T1/ntxtlf/m/n/8.5 (a) |$\OML/ntxmi/m/it/8.5 x\OMS/ntxsy/m/n/8.5 ^^@$\T1/ntxt
 lf/m/n/8.5 Velocity eigen-val-ues
  []
 
-<y_velocity_eigen_value_semilog.jpg, id=55, 1426.32875pt x 782.925pt>
+<y_velocity_eigen_value_semilog.jpg, id=55, 1493.58pt x 777.90625pt>
 File: y_velocity_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use y_velocity_eigen_value_semilog.jpg>
 Package pdftex.def Info: y_velocity_eigen_value_semilog.jpg used on input line 
-322.
-(pdftex.def)             Requested size: 103.19733pt x 56.63815pt.
+323.
+(pdftex.def)             Requested size: 103.19733pt x 53.7468pt.
 
-Underfull \hbox (badness 3199) in paragraph at lines 323--323
+Underfull \hbox (badness 3199) in paragraph at lines 324--324
 []\T1/ntxtlf/m/n/8.5 (b) |$\OML/ntxmi/m/it/8.5 y\OMS/ntxsy/m/n/8.5 ^^@$\T1/ntxt
 lf/m/n/8.5 Velocity eigen-val-ues
  []
 
-<pressure_eigen_value_semilog.jpg, id=56, 1417.295pt x 776.9025pt>
+<pressure_eigen_value_semilog.jpg, id=56, 1469.49pt x 776.9025pt>
 File: pressure_eigen_value_semilog.jpg Graphic file (type jpg)
 
 <use pressure_eigen_value_semilog.jpg>
 Package pdftex.def Info: pressure_eigen_value_semilog.jpg used on input line 32
-6.
-(pdftex.def)             Requested size: 103.19733pt x 56.5581pt.
+7.
+(pdftex.def)             Requested size: 103.19733pt x 54.55469pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 327--327
+Underfull \hbox (badness 10000) in paragraph at lines 328--328
 []\T1/ntxtlf/m/n/8.5 (c) |Pres-sure eigen-val-ues
  []
 
@@ -1281,7 +1281,7 @@ ype1/public/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txs
 yc.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on authorsample.pdf (8 pages, 1986797 bytes).
+Output written on authorsample.pdf (8 pages, 1967607 bytes).
 PDF statistics:
  135 PDF objects out of 1000 (max. 8388607)
  93 compressed objects within 1 object stream
