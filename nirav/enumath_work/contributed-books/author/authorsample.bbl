@@ -10,7 +10,7 @@
 
 \bibitem[{Antonietti et~al.(2016)Antonietti, Pacciarini, and
   Quarteroni}]{pacciarini}
-Antonietti PF, Pacciarini P, Quarteroni A (2016) A discontinuous galerkin
+Antonietti PF, Pacciarini P, Quarteroni A (2016) A {D}iscontinuous {G}alerkin
   reduced basis element method for elliptic problems. ESAIM: M2AN
   50(2):337--360
 
@@ -38,8 +38,9 @@ Kanschat G, Schoetzau D (2008) Energy norm a posteriori error estimation for
   1113
 
 \bibitem[{Peraire and Persson(2008)}]{peraire}
-Peraire J, Persson PO (2008) The compact discontinuous galerkin (cdg) method
-  for elliptic problems. SIAM Journal on Scientific Computing 30(4):1806--1824
+Peraire J, Persson PO (2008) The {C}ompact {D}iscontinuous {G}alerkin {(CDG)}
+  method for elliptic problems. SIAM Journal on Scientific Computing
+  30(4):1806--1824
 
 \bibitem[{Rivi\`ere(2008)}]{riviere}
 Rivi\`ere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
@@ -47,8 +48,8 @@ Rivi\`ere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
   Mathematics, Cambridge University Press
 
 \bibitem[{Shah et~al.(2018)Shah, Haasdonk, Hess, and Rozza}]{master_thesis}
-Shah NV, Haasdonk B, Hess M, Rozza G (2018) Discontinuous-galerkin method for
-  direct numerical simulation of the navier-stokes equation: Master thesis
-  report. Master's thesis, Universit\"at Stuttgart
+Shah NV, Haasdonk B, Hess M, Rozza G (2018) {D}iscontinuous-{G}alerkin method
+  for direct numerical simulation of the {N}avier-{S}tokes equation: Master
+  thesis report. Master's thesis, Universit\"at Stuttgart
 
 \end{thebibliography}
