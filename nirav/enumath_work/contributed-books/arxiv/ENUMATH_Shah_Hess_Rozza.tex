@@ -1,0 +1,338 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a contributed volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[graybox]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{type1cm}        % activate if the above 3 fonts are
+                            % not available on your system
+%
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+
+\usepackage{newtxtext}       % 
+\usepackage{newtxmath}       % selects Times Roman as basic font
+
+\usepackage{url}
+
+%%Nirav added
+\newenvironment{spmatrix}[1]
+ {\def\mysubscript{#1}\mathop\bgroup\begin{pmatrix}}
+ {\end{pmatrix}\egroup_{\textstyle\mathstrut\mysubscript}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\spn}{span}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\usepackage[numbers]{natbib}
+\usepackage{float}
+\captionsetup{compatibility=false}
+%%Nirav added over
+
+% see the list of further useful packages
+% in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Discontinuous Galerkin Model Order Reduction of Geometrically Parametrized Stokes Equation}
+% Use \titlerunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\author{Nirav Vasant Shah, Martin Wilfried Hess and Gianluigi Rozza}
+% Use \authorrunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\institute{Nirav Vasant Shah, \email{snirav@sissa.it} \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY, 
+\and Martin Wilfried Hess, \email{mhess@sissa.it} \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY,
+\and Gianluigi Rozza, \email{grozza@sissa.it} \at Scuola Internazionale Superiore di Studi Avanzati - via Bonomea, 265 - 34136 Trieste ITALY. }
+\titlerunning{DG MOR of Geometrically Parametrized Stokes Equation}
+\authorrunning{Shah et. al.}
+%
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+%
+\maketitle
+
+\abstract*{The present work focuses on the geometric parametrization and the reduced order modeling of the Stokes equation. We discuss the concept of a parametrized geometry and its application within a reduced order modeling technique.  The full order model is based on the discontinuous Galerkin method with an interior penalty formulation. We introduce the broken Sobolev spaces as well as the weak formulation required for an affine parameter dependency. The operators are transformed from a fixed domain to a parameter dependent domain using the affine parameter dependency. The proper orthogonal decomposition is used to obtain the basis of functions of the reduced order model. By using the Galerkin projection the linear system is projected onto the reduced space. During this process, the offline-online decomposition is used to separate parameter dependent operations from parameter independent operations. Finally this technique is applied to an obstacle test problem.The numerical outcomes presented include experimental error analysis, eigenvalue decay and measurement of online simulation time.\\
+\textbf{Keywords} Discontinuous Galerkin method, Stokes flow, Geometric parametrization, Proper orthogonal decomposition}
+
+\abstract{The present work focuses on the geometric parametrization and the reduced order modeling of the Stokes equation. We discuss the concept of a parametrized geometry and its application within a reduced order modeling technique.  The full order model is based on the discontinuous Galerkin method with an interior penalty formulation. We introduce the broken Sobolev spaces as well as the weak formulation required for an affine parameter dependency. The operators are transformed from a fixed domain to a parameter dependent domain using the affine parameter dependency. The proper orthogonal decomposition is used to obtain the basis of functions of the reduced order model. By using the Galerkin projection the linear system is projected onto the reduced space. During this process, the offline-online decomposition is used to separate parameter dependent operations from parameter independent operations. Finally this technique is applied to an obstacle test problem.The numerical outcomes presented include experimental error analysis, eigenvalue decay and measurement of online simulation time.\\
+\textbf{Keywords} Discontinuous Galerkin method, Stokes flow, Geometric parametrization, Proper orthogonal decomposition}
+
+\section{Introduction}
+\label{introduction}
+
+%The subject of the mathematical applications in fluid mechanics starts with one of the variants of the Navier-Stokes equation. In case of the laminar flow, i.e. when fluctuations are negligible, this linearized form of the Navier-Stokes equation is the Stokes equation.
+
+Discontinuous Galerkin Method (DGM) has gained interest as numerical method for the elliptic problems ~\cite{peraire} as well as the hyperbolic problems ~\cite{hyperbolic}. DGM uses polynomial approximation of a suitable degree providing higher accuracy as well as allows discontinuity at the interface, by the concept of numerical flux, allowing greater flexibility. Additionally, since the Dirichlet conditions are applied as boundary penalty, it avoids the necessity to construct a subspace of Sobolev space.
+
+Geometric parametrization has emerged as a important application of the Parametric Partial Differential Equations (PPDEs) and as an alternative to the shape optimization. The concept of geometric parametrization allows to transfer operator evaluated on one geometric domain to another geometric domain efficiently. Model Order Reduction (MOR) on the other hand allows reducing the size of the system to be solved by working with the smaller system containing only dominant components. The faster computations obtained by MOR has helped in many query context, real time computation and quick transfer of computational results to industrial problems.
+
+As evident from above advantages, the application of geometric parametrization and reduced order modeling to discontinuous Galerkin method will remain at the forefront of scientific work. The present work is organized as follow. We first explain the concept of geometric parametrization. Thereafter, the governing equations, broken Sobolev spaces and weak formulation are stated. The affine expansion, key to the online-offline decomposition, is introduced next. In the subsequent section, proper orthogonal decomposition with online-offline decomposition is briefly described. Finally, an obstacle test problem demonstrates the application the introduced method with outcomes involving comparison of full order and reduced order model solutions, error analysis and eigenvalue decay.
+
+\section{Geometric parametrization}\label{geometric_parametrization_section}
+
+Let us consider $\Omega = \Omega(\mu) \in \mathbb{R}^d$ as an open bounded domain. The parameter tuple $\mu \in \mathbb{P}$, where $\mathbb{P}$ is the parameter space, completely characterizes the domain. Also, consider a parameter tuple $\bar{\mu} \in \mathbb{P}$, as the known parameter tuple and $\Omega(\bar{\mu})$ as the reference domain, whose configuration is completely known. The invertible mapping $\bm{F}(\cdot,\mu) : \Omega(\bar{\mu}) \rightarrow \Omega(\mu)$ links the reference domain and the parametrized domain. In the case of affine transformation, $\bm{F}$ is of the form,
+\begin{equation*}\label{affine_F}
+\begin{split}
+x = \bm{F}(\hat{x},\mu) = \bm{G}_F(\mu)\hat{x} + c_F(\mu) \ ; \\ \forall x \in \Omega(\mu) \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ \bm{G}_F(\mu) \in \mathbb{R}^{d \times d} \ , \ c_F \in \mathbb{R}^{d \times 1} \ .
+\end{split}
+\end{equation*}
+The boundary of $\Omega(\mu)$, that is $\partial \Omega(\mu)$ is divided into a  Neumann boundary $\Gamma_N(\mu)$ and a Dirichlet boundary $\Gamma_D(\mu)$ i.e. $\partial \Omega(\mu) = \Gamma_N(\mu) \cup \Gamma_D(\mu)$. In order to have $\bm{F}(\hat{x},\mu)$ an affine form, the domain $\Omega(\mu)$ is divided into $n_{su}$ triangular subdomains such that $\Omega(\mu) = \bigcup\limits_{i=1}^{n_{su}} \Omega_i(\mu) \ , \ \Omega_i(\mu) \bigcap \Omega_j(\mu) = \emptyset \ , \ \text{for} \ i \neq j$.
+
+\section{Discontinuous Galerkin formulation}
+\label{DG_formulation}
+
+The domain $\Omega$ is divided into $N_{el}$ number of triangular elements $\tau_k$ such that $\Omega = \bigcup\limits_{k=1}^{N_{el}} \tau_k$. The triangulation $\mathcal{T}$ is the set of all triangular elements i.e. $\mathcal{T} = \lbrace \tau_k \rbrace_{k=1}^{N_{el}}$. The internal boundary is denoted by $\Gamma = \bigcup\limits_{k=1}^{N_{el}} \partial \tau_k \backslash \partial \Omega$. $\overrightarrow{n}$ is the outward pointing normal to an edge of element.
+
+The governing equations in strong form can be stated as,
+\begin{flalign}\label{stokes_strong_form}
+\begin{split}
+\text{Stokes equation: } & -\nu \Delta \overrightarrow{u} + \nabla p = \overrightarrow{f} \ , \ \text{in } \Omega \ , \\
+\text{Continuity equation: } & \nabla \cdot \overrightarrow{u} = 0 \ , \ \text{in} \ \Omega \ , \\
+\text{Dirichlet condition: } & \overrightarrow{u} = \overrightarrow{u}_D \ , \ \text{on } \Gamma_D \ , \\
+\text{Neumann condition: } & -p \overrightarrow{n} + \nu \overrightarrow{n} \cdot \nabla \overrightarrow{u} = \overrightarrow{t} \ , \ \text{on} \ \Gamma_N \ .
+\end{split}
+\end{flalign}
+
+The velocity vector field $\overrightarrow{u}$ and pressure scalar field $p$ are the unknowns. $\nu$ is the material property known as kinematic viscosity. Vector $\overrightarrow{f}$ is the external force term or source term. $\overrightarrow{u}_D$ is the Dirichlet velocity and vector $\overrightarrow{t}$ is the Neumann value.
+
+Let us introduce the broken Sobolev spaces for the unknowns.
+\begin{equation*} \label{velocity_pressure_test}
+\begin{split}
+\text{For velocity: } \mathbb{V} = \lbrace \overrightarrow{\phi} \in (L^2(\Omega))^d | \ \overrightarrow{\phi} |_{\tau_k} \in (P^D(\tau_k))^d \ , \ \tau_k \in \mathcal{T} \rbrace \ , \\
+\text{For pressure: } \mathbb{Q} = \lbrace \psi \in (L^2(\Omega)) | \ \psi |_{\tau_k} \in (P^{D-1}(\tau_k)) \ , \ \tau_k \in \mathcal{T} \rbrace \ .
+\end{split}
+\end{equation*}
+Here, $P^D(\tau_k)$ denotes the space of polynomials of degree $D, \ D \geq 2$ over $\tau_k$.
+
+In finite dimensional or discrete system, velocity approximation $\overrightarrow{u}_h(x)$ and pressure approximation $p_h(x)$ at any point $x \in \Omega$ are given by,
+\begin{equation}\label{velocity_pressure_coefficients}
+\overrightarrow{u}_h(x) = \sum\limits_{i=1}^{u_{ndofs}} \overrightarrow{\phi}_i \hat{u}_i \ , \
+p_h(x) = \sum\limits_{i=1}^{p_{ndofs}} \psi_i \hat{p}_i \ ,
+\end{equation}
+where $\hat{u}_i$'s and $\hat{p}_i$'s are coefficients of velocity basis functions and pressure basis functions respectively. 
+
+We expect that $\overrightarrow{u}_h \rightarrow \overrightarrow{u}$ and $p_h \rightarrow p$ as $u_{ndofs} \rightarrow \infty$ and $p_{ndofs} \rightarrow \infty$ respectively. Considering the scope of present work, the convergence analysis will not be discussed here. The readers are advised to refer to \cite{pacciarini},\cite{jump_mean_operator},\cite{riviere}.
+
+In the subsequent sections, $\left( \cdot \right),\left( \cdot \right)_{\Gamma_D},\left( \cdot \right)_{\Gamma_N},\left( \cdot \right)_{\Gamma}$ represent the $L^2$ scalar product over $\Omega,\Gamma_D,\Gamma_N,\Gamma$ respectively. The jump operator $\left[ \cdot \right]$ and the average operator $\lbrace \cdot \rbrace$ are important concepts in the DGM formulation and are required to approximate the numerical flux. We use the jump and average operators as represented in \cite{jump_mean_operator}.
+
+The weak form of the Stokes equation is given by,
+\begin{gather}\label{stokes_weak_ch3}
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) + b(\overrightarrow{\phi},p) + \left( \lbrace p \rbrace,[\overrightarrow{n} \cdot \overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} = l_{IP}(\overrightarrow{\phi}) \ ,
+\end{gather}
+\begin{equation}
+\begin{split}
+a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) = \left( \nabla \overrightarrow{u}, \nabla \overrightarrow{\phi} \right) + C_{11} \left( [\overrightarrow{u}],[\overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} \\ - \nu \left( \lbrace \nabla \overrightarrow{u}\rbrace ,[\overrightarrow{n} \otimes \overrightarrow{\phi}] \right)_{\Gamma \cup \Gamma_D} - \nu \left( [\overrightarrow{n} \otimes \overrightarrow{u}], \lbrace \nabla \overrightarrow{\phi} \rbrace \right)_{\Gamma \cup \Gamma_D} \ ,
+\end{split}
+\end{equation}
+\begin{gather}
+b(\overrightarrow{\phi},\psi) = -\int_{\Omega} \psi \nabla \cdot \overrightarrow{\phi} \ , \\
+l_{IP}(\overrightarrow{\phi}) = \left( \overrightarrow{f},\overrightarrow{\phi} \right) + \left( \overrightarrow{t},\overrightarrow{\phi} \right)_{\Gamma_N} + C_{11} \left(\overrightarrow{u}_D,\overrightarrow{\phi}\right)_{\Gamma_D} - \left( \overrightarrow{n} \otimes \overrightarrow{u}_D, \nu \nabla \overrightarrow{\phi} \right)_{\Gamma_D} \ .
+\end{gather}
+
+The penalty parameter $C_{11}>0$ is an empirical constant to be kept large enough to maintain the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi})$ (see \cite{jump_mean_operator}).
+
+The weak form of the continuity equation is as follows,
+\begin{equation}\label{contiuity_weak_ch3}
+\begin{split}
+b(\overrightarrow{u},\psi) + ({\psi},[\overrightarrow{n} \cdot \overrightarrow{u}])_{\Gamma \cup \Gamma_D} = (\psi,\overrightarrow{n} \cdot \overrightarrow{u}_D)_{\Gamma_D} \ .
+\end{split}
+\end{equation}
+
+In the discrete form the system of equations can be written as, 
+\begin{equation} \label{Stokes_matrix_ch3}
+\begin{spmatrix}{\textrm{Stiffness matrix}}
+    \bm{A} & \bm{B} \\
+    \bm{B}^T & \bm{0}
+\end{spmatrix}
+\begin{spmatrix}{\textrm{Solution vector}}
+    U \\
+    P
+\end{spmatrix}
+=
+\begin{spmatrix}{\textrm{Right hand side (Known)}}
+    F_1  \\
+    F_2
+\end{spmatrix}
+\textrm{.}
+\end{equation}
+
+Here, $\bm{A}_{ij} = a_{IP} (\overrightarrow{\phi}_i,\overrightarrow{\phi}_j)$, $\bm{B}_{ij} = b(\overrightarrow{\phi}_i,\psi_j) + \left( \lbrace \psi_j \rbrace , [n \cdot \overrightarrow{\phi}_i]\right)_{\Gamma \cup \Gamma_D}$, $F_1 = l_{IP}(\overrightarrow{\phi}_i)$ and $F_2 = \left( \psi_j,\overrightarrow{n} \cdot \overrightarrow{u}_D \right)_{\Gamma_D}$ for $i=1,\ldots,u_{ndofs}$ and $j=1,\ldots,p_{ndofs}$. The column vectors $U$ and $P$ are coefficients $\hat{u}_i$'s and $\hat{p}_i$'s respectively (equation \eqref{velocity_pressure_coefficients}).
+
+\section{Affine expansion}
+
+We evaluate and solve the Stokes equation weak formulation on the reference domain $\Omega({\bar{\mu}})$. Given a parameter tuple $\mu \neq \bar{\mu}$, we need to evaluate the linear systems of equations \eqref{Stokes_matrix_ch3} on a new domain $\Omega(\mu)$. To accomplish this, we use the affine expansion using linear nature of equation and diving $\Omega(\bar{\mu})$ into triangular subdomains $\Omega_i(\bar{\mu}) \ , \ i = \lbrace 1,2,\ldots,n_{su} \rbrace$ as explained earlier in the section \ref{geometric_parametrization_section}. The affine expansion of operators is essentially a change of variables and has been explained in the literatures such as \cite{CRBM}. However, it is pertinent to explain two expansions as specific to DGM formulation.
+
+\begin{itemize}
+\item In order to transfer the terms containing jump and average operator the following approach is used in present analysis.
+\begin{equation*}\label{jump_average_term_split}
+\begin{split}
+\left(\lbrace \nabla \overrightarrow{\phi} \rbrace , \left[ \overrightarrow{n} \otimes \overrightarrow{\phi}  \right]  \right) = \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^+ , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) + \\ 
+\left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^+ \otimes \overrightarrow{\phi}^+ \right) + \left( \nabla \overrightarrow{\phi}^- , \overrightarrow{n}^- \otimes \overrightarrow{\phi}^- \right) \ .
+\end{split}
+\end{equation*}
+Each term on the right hand side of the above equation can be transformed using the affine map. 
+
+\item The coercivity term $C_{11}\left( [\overrightarrow{\phi}],[\overrightarrow{u}] \right)_{\Gamma \cup \Gamma_D}$ is not transformed but used as evaluated on reference domain $\Omega(\bar{\mu})$. The affine transformation is given by,
+\begin{equation*}
+\begin{split}
+C_{11}\left( [\overrightarrow{\phi}(x),\overrightarrow{u}(x)] \right)_{\Gamma(\mu) \cup \Gamma_D(\mu)} = C_{11} \alpha \left( [\overrightarrow{\phi}(\bm{F}(\hat{x})),\overrightarrow{u}(\bm{F}(\hat{x}))] \right)_{\Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})} \ , \\
+\alpha = \frac{\text{length of }\left( \Gamma(\mu) \cup \Gamma_D(\mu)\right)}{\text{length of }\left( \Gamma(\bar{\mu}) \cup \Gamma_D(\bar{\mu})\right)} \ , \ \hat{x} \in \Omega(\bar{\mu}) \ , \ x \in \Omega(\mu) \ .
+\end{split}
+\end{equation*}
+Since, $C_{11}$ is an empirical coefficient replacing $C_{11} \alpha$ with $C_{11}$ will not change the formulation as long as the coercivity of $a_{IP}(\overrightarrow{u},\overrightarrow{\phi}) $ over parameter space $\mathbb{P}$ is maintained.
+\end{itemize}
+
+\section{Reduced basis method}\label{rb_section}
+
+In this section, the snapshot proper orthogonal decomposition method and the offline-online decomposition are briefly described. For detailed explanation, we refer to ~\cite{CRBM}.
+
+As first step, the solutions based on $\mu_n, n \in \lbrace 1,....,n_s \rbrace$ are calculated i.e. $n_s$ snapshots are generated. The velocity snapshots and the pressure snapshots are stored in $\bm{S}_v \in \mathbb{R}^{u_{ndofs} \times n_s}$ and $\bm{S}_p \in \mathbb{R}^{p_{ndofs} \times n_s}$ respectively. Let us also introduce inner product matrices $\bm{M}_v \in \mathbb{R}^{u_{ndofs} \times u_{ndofs}}$ and $\bm{M}_p \in \mathbb{R}^{p_{ndofs} \times p_{ndofs}}$.
+
+\begin{gather*}
+\bm{M}_{v,ij} = \int_{\Omega} \overrightarrow{\phi}_i \cdot \overrightarrow{\phi}_j + \sum_{k=1}^{N_{el}} \int_{\tau_k} \nabla \overrightarrow{\phi}_i : \nabla \overrightarrow{\phi}_j \ , \ i,j = 1, \ldots, u_{ndofs} \ , \\
+\bm{M}_{p,ij} = \int_{\Omega} \psi_i \psi_j \ , \ i,j = 1, \ldots, p_{ndofs} \ .
+\end{gather*}
+
+The dimension of the reduced basis is denoted as $N$ and it is asserted that $N << u_{ndofs}, \ N < n_s$. Next, the spectral decomposition of the snapshots is performed.
+\begin{equation}\label{snapshot_eigen_value}
+\bm{S}_v^T \bm{M}_v \bm{S}_v = \bm{V} \bm{\Theta} \bm{V}^T \ .
+\end{equation}
+The columns of $\bm{V}$ are eigenvectors and $\Theta$ has eigenvalues $\theta_i \ , \ 1 \leq i,j \leq n_s$, in sorted order ($\theta_1 \geq \ldots \geq \theta_{n_s}$) such that, $\Theta_{ij} = \theta_i \delta_{ij}$.
+
+The projection matrix $\bm{B}_v \in \mathbb{R}^{u_{ndofs} \times N}$, used for the projection from the space of the full order model to the space of the reduced order model, is given by, 
+\begin{equation}
+\bm{B}_v = \bm{S}_v \bm{V} \bm{\Theta}^{-\frac{1}{2}} \bm{R} \ , \ \bm{R} = [\bm{I}_{N \times N} ; \bm{0}_{(n_s-N) \times N}] \ ,
+\end{equation}
+where, $\bm{I}_{N \times N}$ is the identity matrix of size $N \times N$.
+The reduced basis space $\bm{B}_p$ can be generated in a similar manner using the pressure snapshots $\bm{S}_p$ and the inner product matrix $\bm{M}_p$. Above procedure is performed during the offline phase.
+
+The discrete system of equations is projected onto the reduced basis space by Galerkin projection as,
+\begin{equation} \label{Stokes_matrix_reduced}
+\begin{spmatrix}{\tilde{K}}
+    \bm{B}_v^T \bm{A}(\mu) \bm{B}_v & \bm{B}_v^T \bm{B}(\mu) \bm{B}_p \\
+    \bm{B}_p^T \bm{B}(\mu)^T \bm{B}_v & \bm{0}
+\end{spmatrix}
+\begin{spmatrix}{\zeta}
+    U_N \\
+    P_N
+\end{spmatrix}
+=
+\begin{spmatrix}{\tilde{F}}
+    \bm{B}_v^T F_1(\mu)  \\
+    \bm{B}_p^T F_2(\mu)
+\end{spmatrix} \ .
+\end{equation}
+The solution vectors $U$ and $P$ (equation \eqref{Stokes_matrix_ch3}) are then computed as $U = \bm{B}_v U_N \ , \ P = \bm{B}_p P_N$. The projection onto the reduced basis space, solution of smaller system of equations and computation of $U$ and $P$ are steps performed during online phase.
+
+\section{A numerical example}
+
+The numerical experiments were performed using RBmatlab ~\cite{rbmatlab},~\cite{master_thesis}. The reference domain $\Omega({\bar{\mu}})$ is the unit square domain $[0,1] \times [0,1]$ with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are the coordinates of the tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is a Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $\overrightarrow{t} = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $\overrightarrow{f} = (0,0)$.
+
+The training set contained $100$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ were used. The number of velocity degrees of freedom and pressure degrees of freedom were $u_{ndofs} = 4704$ and $p_{ndofs} = 1176$ respectively.
+
+Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$ with reduced basis of size $10$. The drop in error w.r.t to the increased size of the reduced basis space (Figure \ref{error_vs_basis}) is inline with the expectation based on the eigenvalue decay (Figure \ref{ev_decay}). The average speedup was $20.6$. Typically, during the offline phase, the full order system was assembled in $35.37$ seconds and was solved in $6.74$ seconds. During the online phase, the reduced system was assembled in $2.03$ seconds and was solved in $0.009$ seconds.
+
+\section{Some concluding remarks}
+
+As demonstrated by the numerical example, proper orthogonal decomposition can accelerate the computations involving geometrically parametrized discontinuous Galerkin interior penalty formulation while maintaining the reliability of solution above minimum acceptable limit. The paper also discussed, the specific issues related to the geometric parametrization and the affine expansion as pertaining to the discontinuous Galerkin interior penalty formulation. We expect the current work to contribute towards exploring further potentials in the field of geometric parametrization and reduced basis approach for the discontinuous Galerkin method.
+
+\begin{figure}[H] %[t!] % "[t!]" placement specifier just for this example
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_velocity_1_at_47_33.jpg}
+\caption{Velocity $x-$direction DGM solution} \label{vel_x_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{online_velocity_1_at_47_33.jpg}
+\caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
+\end{subfigure}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{velocity_error_1_at_47_33.jpg}
+\caption{$x-$component of Velocity absolute error $\overrightarrow{u}_h-\overrightarrow{u}_N$} \label{error_x_vel}
+\end{subfigure}
+
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{offline_velocity_2_at_47_33.jpg}
+\caption{Velocity $y-$direction DGM solution} \label{vel_y_dg}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{online_velocity_2_at_47_33.jpg}
+\caption{Velocity $y-$direction RB solution} \label{vel_y_rb}
+\end{subfigure}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{velocity_error_2_at_47_33.jpg}
+\caption{$y-$component of Velocity absolute error $\overrightarrow{u}_h-\overrightarrow{u}_N$} \label{error_y_vel}
+\end{subfigure}
+
+%\begin{subfigure}{0.31\textwidth}
+%\includegraphics[width=\linewidth]{offline_pressure_at_47_33.jpg}
+%\caption{Pressure DGM solution} \label{pre_dg}
+%\end{subfigure}\hspace*{\fill}
+%\begin{subfigure}{0.31\textwidth}
+%\includegraphics[width=\linewidth]{online_pressure_at_47_33.jpg}
+%\caption{Pressure RB solution} \label{pre_rb}
+%\end{subfigure}
+%\begin{subfigure}{0.31\textwidth}
+%\includegraphics[width=\linewidth]{pressure_error_at_47_33.jpg}
+%\caption{Pressure absolute error $p_h-p_N$} \label{pre_error}
+%\end{subfigure}
+\caption{DGM and RB solution $\mu = (0.47,0.33)$} 
+\label{dg_rb_solution_47_33}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{size_vs_reduced_basis_velocity_error_semilog.jpg}
+\caption{Size of the reduced basis space vs. Relative error in velocity with inner product induced by $\bm{M}_v$} \label{error_vs_basis_velocity}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\linewidth]{size_vs_reduced_basis_pressure_error_semilog.jpg}
+\caption{Size of the reduced basis space vs. Relative error in pressure with inner product induced by $\bm{M}_p$} \label{error_vs_basis_pressure}
+\end{subfigure}
+  \caption{Size of the reduced basis space vs Relative error} 
+\label{error_vs_basis}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{x_velocity_eigen_value_semilog.jpg}
+\caption{$x-$Velocity eigenvalues (semilog scale)} \label{vel_x_ev}
+\end{subfigure}\hspace*{\fill}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{y_velocity_eigen_value_semilog.jpg}
+\caption{$y-$Velocity eigenvalues (semilog scale)} \label{vel_y_ev}
+\end{subfigure}
+\begin{subfigure}{0.31\textwidth}
+\includegraphics[width=\linewidth]{pressure_eigen_value_semilog.jpg}
+\caption{Pressure eigenvalues (semilog scale)} \label{pressure_ev}
+\end{subfigure}
+\caption{Eigenvalue decay}\label{ev_decay}
+\end{figure}
+
+\bibliographystyle{spbasic}
+\bibliography{references}
+%\input{authorsample.bbl}
+
+
+\end{document}
