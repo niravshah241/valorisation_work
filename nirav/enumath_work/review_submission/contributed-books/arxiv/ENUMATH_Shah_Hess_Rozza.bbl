@@ -1,0 +1,55 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Antonietti et~al.(2016)Antonietti, Pacciarini, and
+  Quarteroni}]{pacciarini}
+Antonietti PF, Pacciarini P, Quarteroni A (2016) A {D}iscontinuous {G}alerkin
+  reduced basis element method for elliptic problems. ESAIM: M2AN
+  50(2):337--360
+
+\bibitem[{Dolej{\v{s}}{\'\i} and Feistauer(2015)}]{hyperbolic}
+Dolej{\v{s}}{\'\i} V, Feistauer M (2015) Discontinuous Galerkin Method:
+  Analysis and Applications to Compressible Flow. Springer Series in
+  Computational Mathematics, Springer International Publishing
+
+\bibitem[{Drohmann et~al.(2012)Drohmann, Haasdonk, Kaulmann, and
+  Ohlberger}]{rbmatlab}
+Drohmann M, Haasdonk B, Kaulmann S, Ohlberger M (2012) A software framework for
+  reduced basis methods using dune-rb and rbmatlab. In: Dedner A, Flemisch B,
+  Kl{\"o}fkorn R (eds) Advances in DUNE, Springer Berlin Heidelberg, Berlin,
+  Heidelberg, pp 77--88
+
+\bibitem[{Hesthaven et~al.(2015)Hesthaven, Rozza, and Stamm}]{CRBM}
+Hesthaven JS, Rozza G, Stamm B (2015) Certified Reduced Basis Methods for
+  Parametrized Partial Differential Equations, 1st edn. Springer Briefs in
+  Mathematics, Springer, Switzerland
+
+\bibitem[{Kanschat and Schoetzau(2008)}]{jump_mean_operator}
+Kanschat G, Schoetzau D (2008) Energy norm a posteriori error estimation for
+  divergence-free discontinuous galerkin approximations of the navier-stokes
+  equations. International Journal for Numerical Methods in Fluids 57:1093 --
+  1113
+
+\bibitem[{Peraire and Persson(2008)}]{peraire}
+Peraire J, Persson PO (2008) The {C}ompact {D}iscontinuous {G}alerkin {(CDG)}
+  method for elliptic problems. SIAM Journal on Scientific Computing
+  30(4):1806--1824
+
+\bibitem[{Rivi\`ere(2008)}]{riviere}
+Rivi\`ere B (2008) Discontinuous Galerkin Methods for Solving Elliptic and
+  Parabolic Equations: Theory and Implementation. Frontiers in Applied
+  Mathematics, Cambridge University Press
+
+\bibitem[{Shah et~al.(2018)Shah, Haasdonk, Hess, and Rozza}]{master_thesis}
+Shah NV, Haasdonk B, Hess M, Rozza G (2018) {D}iscontinuous-{G}alerkin method
+  for direct numerical simulation of the {N}avier-{S}tokes equation: Master
+  thesis report. Master's thesis, Universit\"at Stuttgart
+
+\end{thebibliography}
