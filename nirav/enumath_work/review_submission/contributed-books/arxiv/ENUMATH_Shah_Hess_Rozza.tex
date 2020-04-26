@@ -244,9 +244,15 @@ The solution vectors $U$ and $P$ (equation \eqref{Stokes_matrix_ch3}) are then c
 
 \section{A numerical example}
 
-The numerical experiments were performed using RBmatlab ~\cite{rbmatlab},~\cite{master_thesis}. The reference domain $\Omega({\bar{\mu}})$ is the unit square domain $[0,1] \times [0,1]$ with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. The geometric parameters are the coordinates of the tip of the obstacle i.e. $\bar{\mu} = (0.5,0.3)$. The boundary ${x=0}$ is a Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $\overrightarrow{t} = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $\overrightarrow{f} = (0,0)$.
+The numerical experiments were performed using RBmatlab ~\cite{rbmatlab},~\cite{master_thesis}. The reference domain $\Omega({\bar{\mu}})$ is the unit square domain $[0,1] \times [0,1]$ with triangle with vertices $(0.3,0),(0.5,0.3),(0.7,0)$ as obstacle. Two geometric parameters, the coordinates of the tip of the obstacle, with reference value i.e. $\bar{\mu} = (0.5,0.3)$ characterize the domain. The $x-$direction refers to the horizontal direction and the $y-$direction refers the vertical direction. The boundary ${x=0}$ is a Dirichlet boundary with inflow velocity at point $(0,y)$ as $u = (y(1-y), 0)$. The boundary ${x = 1}$ is a Neumann boundary with zero Neumann value i.e. $\overrightarrow{t} = (0, 0)$. Other boundaries are Dirichlet boundary with no slip condition. The source term is $\overrightarrow{f} = (0,0)$.
 
-The training set contained $100$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ uniformly distributed random parameters within the interval $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ were used. The number of velocity degrees of freedom and pressure degrees of freedom were $N_u = 4704$ and $N_p = 1176$ respectively.
+The training set contained $100$ uniformly distributed random parameters within the domain $[0.4,0.6] \times [0.4,0.6]$. The test set contained $10$ uniformly distributed random parameters within the domain $[0.4,0.6] \times [0.4,0.6]$. For velocity basis function polynomial of degree $P^D = 2$ and for pressure basis function polynomial of degree $P^{D-1} = 1$ were used. The number of velocity degrees of freedom and pressure degrees of freedom were $N_u = 4704$ and $N_p = 1176$ respectively. The mesh is shown in the figure \ref{mesh_diagram}.
+
+\begin{figure}
+\includegraphics[width=\linewidth]{mesh.jpg}
+\caption{Mesh}
+\label{mesh_diagram}
+\end{figure}
 
 Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Reduced Basis (RB) at parameter value $\mu = (0.47,33)$ with reduced basis of size $10$. The drop in error w.r.t to the increased size of the reduced basis space (Figure \ref{error_vs_basis}) is inline with the expectation based on the eigenvalue decay (Figure \ref{ev_decay}). The average speedup was $20.6$. Typically, during the offline phase, the full order system was assembled in $35.37$ seconds and was solved in $6.74$ seconds. During the online phase, the reduced system was assembled in $2.03$ seconds and was solved in $0.009$ seconds.
 
@@ -258,7 +264,7 @@ Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Red
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{online_velocity_1_at_47_33.jpg}
 \caption{Velocity $x-$direction RB solution} \label{vel_x_rb}
-\end{subfigure}
+\end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{velocity_error_1_at_47_33.jpg}
 \caption{$x-$component of Velocity absolute error $\overrightarrow{u}_h-\overrightarrow{u}_N$} \label{error_x_vel}
@@ -271,7 +277,7 @@ Figure \ref{dg_rb_solution_47_33} compares the solutions computed by DGM and Red
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{online_velocity_2_at_47_33.jpg}
 \caption{Velocity $y-$direction RB solution} \label{vel_y_rb}
-\end{subfigure}
+\end{subfigure}\hspace*{\fill}
 \begin{subfigure}{0.31\textwidth}
 \includegraphics[width=\linewidth]{velocity_error_2_at_47_33.jpg}
 \caption{$y-$component of Velocity absolute error $\overrightarrow{u}_h-\overrightarrow{u}_N$} \label{error_y_vel}
